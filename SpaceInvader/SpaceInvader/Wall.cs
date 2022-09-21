@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SpaceInvader
 {
-    internal class Menu
+    internal class Wall
     {
 
     }
