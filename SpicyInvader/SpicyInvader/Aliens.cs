@@ -8,5 +8,6 @@ namespace SpicyInvader
 {
     internal class Aliens
     {
+
     }
 }

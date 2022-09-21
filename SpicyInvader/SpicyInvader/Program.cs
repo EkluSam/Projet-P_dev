@@ -10,6 +10,7 @@ namespace SpicyInvader
     {
         static void Main(string[] args)
         {
+
         }
     }
 }
