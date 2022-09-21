@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{77750232-429A-47C0-A0D2-0C5998B77FCE}</ProjectGuid>
+    <ProjectGuid>{327FC846-29C7-4293-A337-FBFFFA5DEAEF}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>SpaceInvader</RootNamespace>
-    <AssemblyName>SpaceInvader</AssemblyName>
+    <RootNamespace>SpicyInvader</RootNamespace>
+    <AssemblyName>SpicyInvader</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>

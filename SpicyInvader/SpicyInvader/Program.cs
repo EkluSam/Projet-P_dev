@@ -4,10 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SpaceInvader
+namespace SpicyInvader
 {
-    internal class Shoot
+    internal class Program
     {
-
+        static void Main(string[] args)
+        {
+        }
     }
 }
