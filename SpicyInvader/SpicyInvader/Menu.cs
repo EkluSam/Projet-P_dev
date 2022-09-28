@@ -30,10 +30,10 @@ namespace SpicyInvader
         ";
 
         private const string _OPTION = @"
-                              ____  ___  ______________  _  ______
-                             / __ \/ _ \/_  __/  _/ __ \/ |/ / __/
-                            / /_/ / ___/ / / _/ // /_/ /    /\ \  
-                            \____/_/    /_/ /___/\____/_/|_/___/  
+                              ____  ___  ______________  _  __
+                             / __ \/ _ \/_  __/  _/ __ \/ |/ / 
+                            / /_/ / ___/ / / _/ // /_/ /    / 
+                            \____/_/    /_/ /___/\____/_/|_/ 
         ";
 
         private const string _HIGHSCORE = @"
@@ -73,12 +73,18 @@ namespace SpicyInvader
         }
         public void DisplayMainMenu()
         {
+            Console.SetWindowSize(120, 50);
+            DisplayTitle();
             Console.ForegroundColor = ConsoleColor.White;
             Console.WriteLine(_PLAY);
             Console.WriteLine(_OPTION);
             Console.WriteLine(_HIGHSCORE);
             Console.WriteLine(_ABOUT);
             Console.WriteLine(_QUIT);
+        }
+        public void DisplayOptionMenu()
+        {
+            Console.WriteLine(_DIFFICULTY);
         }
     }
 }
