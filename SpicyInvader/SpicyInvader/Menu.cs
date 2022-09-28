@@ -65,6 +65,10 @@ namespace SpicyInvader
                         \_,_/_/_//_//_/\__/\_,_/_/\__/\__/
         ";
         
+        public void MenuMoves()
+        {
+
+        }
         public void DisplayTitle()
         {
             Console.ForegroundColor = ConsoleColor.Green;
@@ -74,7 +78,10 @@ namespace SpicyInvader
         public void DisplayMainMenu()
         {
             Console.SetWindowSize(120, 50);
+            Console.BufferHeight = 50;
+
             DisplayTitle();
+
             Console.ForegroundColor = ConsoleColor.White;
             Console.WriteLine(_PLAY);
             Console.WriteLine(_OPTION);
