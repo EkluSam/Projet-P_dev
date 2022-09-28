@@ -10,7 +10,13 @@ namespace SpicyInvader
     {
         static void Main(string[] args)
         {
+            Console.SetWindowSize(120, 50);
+            Menu test = new Menu();
 
+
+            test.DisplayTitle();
+            test.DisplayMainMenu();
+            Console.ReadLine();
         }
     }
 }
