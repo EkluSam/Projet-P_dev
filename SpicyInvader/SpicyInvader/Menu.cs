@@ -66,6 +66,9 @@ namespace SpicyInvader
         ";
 
         private const string _NAVARROW = "  <--- ";
+
+        public int yPos;
+        public int xPos;
         public void MenuMoves()
         {
 

@@ -6,8 +6,31 @@ using System.Threading.Tasks;
 
 namespace SpicyInvader
 {
-    internal class Aliens
+    public class Aliens
     {
+        private int _x;
+
+        public int X
+        {
+            get { return _x; }
+            set { _x = value; }
+        }
+
+        private int _y;
+
+        public int Y
+        {
+            get { return _y; }
+            set { _y = value; }
+        }
+
+        private string _symbol;
+
+        public string Symbol
+        {
+            get { return _symbol; }
+            set { _symbol = value; }
+        }
 
     }
 }

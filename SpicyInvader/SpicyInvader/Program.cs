@@ -12,11 +12,11 @@ namespace SpicyInvader
         {
             Console.CursorVisible = false;
             
-            Menu test = new Menu();
+            // Affichage du menu principal
+            Menu mainMenu = new Menu();
+            mainMenu.DisplayMainMenu();
 
 
- 
-            test.DisplayMainMenu();
             Console.ReadLine();
         }
     }
