@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SpicyInvader
 {
-    internal class Menu
+    public class Menu
     {
         public Menu()
         {
@@ -64,7 +64,8 @@ namespace SpicyInvader
                         / _  / / _/ _/ / __/ // / / __/ -_)
                         \_,_/_/_//_//_/\__/\_,_/_/\__/\__/
         ";
-        
+
+        private const string _NAVARROW = "  <--- ";
         public void MenuMoves()
         {
 
