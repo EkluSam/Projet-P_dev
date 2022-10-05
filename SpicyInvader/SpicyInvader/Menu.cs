@@ -78,9 +78,12 @@ namespace SpicyInvader
             while (true)
             {
                 ConsoleKeyInfo Key = Console.ReadKey(true);
-                if(Key == ConsoleKey.UpArrow)
+                if(Key.Key == ConsoleKey.UpArrow)
                 {
+                    if(yPos == 12)
+                    {
 
+                    }
                 }
             }
         }
