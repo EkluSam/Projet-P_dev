@@ -67,13 +67,24 @@ namespace SpicyInvader
 
         private const string _NAVARROW = "  <--- ";
 
-        public int yPos;
-        public int xPos;
-        public void MenuMoves()
+        public int yPos = 12;
+        public int xPos = 75;
+        public void ArrowMoves()
         {
+            Console.SetCursorPosition(xPos, yPos);
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.Write(_NAVARROW);
 
+            while (true)
+            {
+                ConsoleKeyInfo Key = Console.ReadKey(true);
+                if(Key == ConsoleKey.UpArrow)
+                {
+
+                }
+            }
         }
-        public void DisplayTitle()
+        public void Title()
         {
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine(_TITLE);
@@ -84,7 +95,7 @@ namespace SpicyInvader
             Console.SetWindowSize(120, 50);
             Console.BufferHeight = 50;
 
-            DisplayTitle();
+            Title();
 
             Console.ForegroundColor = ConsoleColor.White;
             Console.WriteLine(_PLAY);
@@ -92,6 +103,8 @@ namespace SpicyInvader
             Console.WriteLine(_HIGHSCORE);
             Console.WriteLine(_ABOUT);
             Console.WriteLine(_QUIT);
+
+            ArrowMoves();
         }
         public void DisplayOptionMenu()
         {
