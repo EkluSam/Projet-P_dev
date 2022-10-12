@@ -48,8 +48,7 @@ namespace SpicyInvader
                            ___     ___  ___  ____  ___  ____  ____
                           / _ |   / _ \/ _ \/ __ \/ _ \/ __ \/ __/
                          / __ |  / ___/ , _/ /_/ / ___/ /_/ /\ \  
-                        /_/ |_| /_/  /_/|_|\____/_/   \____/___/  
-                                         
+                        /_/ |_| /_/  /_/|_|\____/_/   \____/___/                                          
         ";
 
         private const string _QUIT = @"
@@ -75,10 +74,9 @@ namespace SpicyInvader
         /// Méthode qui permet la navigation dans le menu
         /// yPos = 12 -> JOUER
         /// yPos = 18 -> OPTION
-        /// 
-        /// 
-        /// yPos = 37 -> QUITTER
-        /// 
+        /// yPos = 24 -> HIGHSCORE
+        /// yPos = 30 -> A PROPOS
+        /// yPos = 36 -> QUITTER
         /// </summary>
         public void ArrowMoves()
         {
@@ -91,11 +89,39 @@ namespace SpicyInvader
                 ConsoleKeyInfo Key = Console.ReadKey(true);
                 if(Key.Key == ConsoleKey.UpArrow)
                 {
-                    if(yPos == 12)
+                    if(yPos <= 12)
                     {
                         Console.SetCursorPosition(xPos, yPos);
                         Console.Write("         ");
-                        yPos = 18;
+                        yPos = 36;
+                        Console.SetCursorPosition(xPos, yPos);
+                        Console.Write(_NAVARROW);
+                    }
+                    else
+                    {
+                        Console.SetCursorPosition(xPos, yPos);
+                        Console.Write("         ");
+                        yPos -= 6;
+                        Console.SetCursorPosition(xPos, yPos);
+                        Console.Write(_NAVARROW);
+                    }
+                }
+
+                if(Key.Key == ConsoleKey.DownArrow)
+                {
+                    if(yPos >= 36)
+                    {
+                        Console.SetCursorPosition(xPos, yPos);
+                        Console.Write("         ");
+                        yPos = 12;
+                        Console.SetCursorPosition(xPos, yPos);
+                        Console.Write(_NAVARROW);
+                    }
+                    else
+                    {
+                        Console.SetCursorPosition(xPos, yPos);
+                        Console.Write("         ");
+                        yPos += 6;
                         Console.SetCursorPosition(xPos, yPos);
                         Console.Write(_NAVARROW);
                     }
