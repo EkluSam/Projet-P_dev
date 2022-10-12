@@ -13,6 +13,7 @@ namespace SpicyInvader
 
         }
 
+        #region Menu
         private const string _TITLE = @"
          _____ _____        _____ ______   _____ _   ___      __     _____  ______ _____   _____ 
         / ____|  __ \ /\   / ____|  ____| |_   _| \ | \ \    / /\   |  __ \|  ____|  __ \ / ____|
@@ -66,9 +67,19 @@ namespace SpicyInvader
         ";
 
         private const string _NAVARROW = "  <--- ";
+        #endregion
 
-        public int yPos = 12;
-        public int xPos = 75;
+        public int yPos = 12; // position de base
+        public int xPos = 75; // position de base
+        /// <summary>
+        /// Méthode qui permet la navigation dans le menu
+        /// yPos = 12 -> JOUER
+        /// yPos = 18 -> OPTION
+        /// 
+        /// 
+        /// yPos = 37 -> QUITTER
+        /// 
+        /// </summary>
         public void ArrowMoves()
         {
             Console.SetCursorPosition(xPos, yPos);
@@ -82,7 +93,11 @@ namespace SpicyInvader
                 {
                     if(yPos == 12)
                     {
-
+                        Console.SetCursorPosition(xPos, yPos);
+                        Console.Write("         ");
+                        yPos = 18;
+                        Console.SetCursorPosition(xPos, yPos);
+                        Console.Write(_NAVARROW);
                     }
                 }
             }
