@@ -126,6 +126,14 @@ namespace SpicyInvader
                         Console.Write(_NAVARROW);
                     }
                 }
+
+                switch (yPos)
+                {
+                    case 12:
+                        if(Key.Key == ConsoleKey.Enter)
+                            
+                        break;
+                }
             }
         }
         public void Title()
