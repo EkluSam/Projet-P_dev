@@ -194,10 +194,31 @@ namespace SpicyInvader
             Console.WriteLine(_ABOUT);
             Console.WriteLine(_QUIT);
 
-            if(ArrowMoves() == 2)
+            // Clique sur jouer
+            if(ArrowMoves() == 1)
+            {
+                
+            }
+            // Clique sur option
+            else if(ArrowMoves() == 2)
             {
                 DisplayOptionMenu();
             }
+
+            else if (ArrowMoves() == 3)
+            {
+                
+            }
+            else if (ArrowMoves() == 4)
+            {
+                
+            }
+            // Quitte l'application
+            else if (ArrowMoves() == 5)
+            {
+                System.Environment.Exit(1);
+            }
+
         }
         public void DisplayOptionMenu()
         {
