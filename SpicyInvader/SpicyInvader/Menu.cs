@@ -129,7 +129,7 @@ namespace SpicyInvader
 
                 switch (yPos)
                 {
-                    case 12:
+                    case 1:
                         if(Key.Key == ConsoleKey.Enter)
                             
                         break;
