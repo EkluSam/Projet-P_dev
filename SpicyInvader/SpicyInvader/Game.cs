@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace SpicyInvader
 {
-    internal class Game
+    public class Game
     {
-
+        RocketShip Ship = new RocketShip
     }
 }

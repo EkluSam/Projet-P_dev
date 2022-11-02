@@ -35,10 +35,14 @@ namespace SpicyInvader
             get { return _SHIP; }
         }
 
-        public RocketShip(int X, int Y)
+        public RocketShip()
         {
-            _x = X;
-            _y = Y;
+            
+        }
+
+        public void DrawRocketShip()
+        {
+            Console.WriteLine(_SHIP);
         }
     }
 }
