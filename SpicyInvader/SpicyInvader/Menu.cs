@@ -194,40 +194,46 @@ namespace SpicyInvader
             Console.WriteLine(_ABOUT);
             Console.WriteLine(_QUIT);
 
-            // Clique sur jouer
-            if(ArrowMoves() == 1)
+            switch (ArrowMoves())
             {
-                
-            }
-            // Clique sur option
-            else if(ArrowMoves() == 2)
-            {
-                DisplayOptionMenu();
-            }
-
-            else if (ArrowMoves() == 3)
-            {
-                
-            }
-            else if (ArrowMoves() == 4)
-            {
-                
-            }
-            // Quitte l'application
-            else if (ArrowMoves() == 5)
-            {
-                System.Environment.Exit(1);
+                case 1:
+                    Console.Clear();
+                    // Play();
+                    break;
+                case 2:
+                    Console.Clear();
+                    DisplayOptionMenu();
+                    break;
+                case 3:
+                    Console.Clear();
+                    // DisplayHighScore();
+                    break;
+                case 4:
+                    Console.Clear();
+                    // DisplayAbout();
+                    break;
+                case 5:
+                    System.Environment.Exit(1);
+                    break;
             }
 
         }
         public void DisplayOptionMenu()
         {
-            Console.Clear();
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine(_OPTION);
             Console.ForegroundColor = ConsoleColor.White;
             Console.WriteLine(_DIFFICULTY);
             Console.WriteLine(_SOUND);
+
+            
+        }
+
+        public short ArrowMovesOptions()
+        {
+            short i = 0;
+
+            return 
         }
     }
 }
