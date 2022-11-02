@@ -213,7 +213,7 @@ namespace SpicyInvader
                     // DisplayAbout();
                     break;
                 case 5:
-                    System.Environment.Exit(1);
+                    Environment.Exit(0);
                     break;
             }
 
@@ -232,8 +232,16 @@ namespace SpicyInvader
         public short ArrowMovesOptions()
         {
             short i = 0;
+            int xPos = 35;
+            int yPos = 8;
 
-            return 
+            Console.SetCursorPosition(xPos, yPos);
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.Write(_NAVARROW);
+
+
+            return i;
+                
         }
     }
 }
