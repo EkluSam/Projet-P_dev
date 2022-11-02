@@ -59,12 +59,18 @@ namespace SpicyInvader
         ";
 
         private const string _DIFFICULTY = @"
-                             ___ _______          ____   __
-                         ___/ (_) _/ _(_)_____ __/ / /__/_/
-                        / _  / / _/ _/ / __/ // / / __/ -_)
-                        \_,_/_/_//_//_/\__/\_,_/_/\__/\__/
+                                     ___ _______          ____   __
+                                 ___/ (_) _/ _(_)_____ __/ / /__/_/
+                                / _  / / _/ _/ / __/ // / / __/ -_)
+                                \_,_/_/_//_//_/\__/\_,_/_/\__/\__/
         ";
 
+        private const string _SOUND = @"
+                                           ____             
+                                          / __/__  ___      
+                                         _\ \/ _ \/ _ \     
+                                        /___/\___/_//_/  
+        ";
         private const string _NAVARROW = "  <--- ";
         #endregion
 
@@ -78,11 +84,12 @@ namespace SpicyInvader
         /// yPos = 30 -> A PROPOS
         /// yPos = 36 -> QUITTER
         /// </summary>
-        public void ArrowMoves()
+        public short ArrowMoves()
         {
             Console.SetCursorPosition(xPos, yPos);
             Console.ForegroundColor = ConsoleColor.Red;
             Console.Write(_NAVARROW);
+            short i;
 
             while (true)
             {
@@ -129,9 +136,40 @@ namespace SpicyInvader
 
                 switch (yPos)
                 {
-                    case 1:
-                        if(Key.Key == ConsoleKey.Enter)
-                            
+                    case 12:
+                        if (Key.Key == ConsoleKey.Enter)
+                        {
+                            i = 1;
+                            return i;
+                        }                          
+                        break;
+                    case 18:
+                        if (Key.Key == ConsoleKey.Enter)
+                        {
+                            i = 2;
+                            return i;
+                        }
+                        break;
+                    case 24:
+                        if (Key.Key == ConsoleKey.Enter)
+                        {
+                            i = 3;
+                            return i;
+                        }
+                        break;
+                    case 30:
+                        if (Key.Key == ConsoleKey.Enter)
+                        {
+                            i = 4;
+                            return i;
+                        }
+                        break;
+                    case 36:
+                        if (Key.Key == ConsoleKey.Enter)
+                        {
+                            i = 5;
+                            return i;
+                        }
                         break;
                 }
             }
@@ -156,11 +194,19 @@ namespace SpicyInvader
             Console.WriteLine(_ABOUT);
             Console.WriteLine(_QUIT);
 
-            ArrowMoves();
+            if(ArrowMoves() == 2)
+            {
+                DisplayOptionMenu();
+            }
         }
         public void DisplayOptionMenu()
         {
+            Console.Clear();
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine(_OPTION);
+            Console.ForegroundColor = ConsoleColor.White;
             Console.WriteLine(_DIFFICULTY);
+            Console.WriteLine(_SOUND);
         }
     }
 }
