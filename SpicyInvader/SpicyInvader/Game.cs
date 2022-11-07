@@ -8,6 +8,6 @@ namespace SpicyInvader
 {
     public class Game
     {
-        RocketShip Ship = new RocketShip
+        RocketShip Ship = new RocketShip();
     }
 }
