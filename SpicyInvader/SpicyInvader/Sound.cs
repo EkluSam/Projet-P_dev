@@ -6,11 +6,16 @@ namespace SpicyInvader
     {
         private SoundPlayer gameMusic = new SoundPlayer();
 
-        public void PlayMusic()
+        public void PlayMusic(bool music)
         {
+            if (music)
+            {
+                
+            }
+            else
+            {
 
+            }
         }
-    }
-
-    
+    }  
 }
