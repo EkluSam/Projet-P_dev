@@ -72,6 +72,12 @@ namespace SpicyInvader
                                                     /___/\___/_//_/  
         ";
         private const string _NAVARROW = "  <--- ";
+
+        private const string _ON = @"
+                                         /  \ (  ( \    / )   /  \(  __)(  __)
+                                        (  O )/    /   / /   (  O )) _)  ) _) 
+                                         \__/ \_)__)  (_/     \__/(__)  (__) 
+        ";
         #endregion
 
         public int yPos = 12; // position de base
