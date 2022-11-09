@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SpicyInvader
 {
-    class Sound
+    public class Sound
     {
 
     }

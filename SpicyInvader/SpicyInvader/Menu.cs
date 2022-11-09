@@ -8,6 +8,7 @@ namespace SpicyInvader
 {
     public class Menu
     {
+        public bool music = false;
         public Menu()
         {
 
@@ -230,18 +231,30 @@ namespace SpicyInvader
             Console.ForegroundColor = ConsoleColor.White;
             Console.WriteLine(_DIFFICULTY);
             Console.Write(_SOUND);
-            Console.SetCursorPosition(58,17);
+            Console.SetCursorPosition(58, 17);
             Console.ForegroundColor = ConsoleColor.Red;
-            Console.Write("ON");
+            Console.Write("OFF");
+
             if (ArrowMovesOptions() == 1)
             {
                 // Menu difficulté
             }
             else
             {
-                
+                if (!music)
+                {
+                    Console.SetCursorPosition(58, 17);         
+                    Console.Write("OFF");
+                    music = false;
+                }
+                else
+                {
+                    Console.SetCursorPosition(58, 17);                   
+                    Console.Write("ON");
+                    music = true;
+                }
             }
-            
+
         }
 
         public short ArrowMovesOptions()
