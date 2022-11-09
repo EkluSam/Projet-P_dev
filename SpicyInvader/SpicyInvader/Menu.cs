@@ -9,6 +9,7 @@ namespace SpicyInvader
     public class Menu
     {
         public bool music = false;
+        public int difficulty = 1;
         public Menu()
         {
 
@@ -188,6 +189,7 @@ namespace SpicyInvader
         }
         public void DisplayMainMenu()
         {
+            Console.Clear();
             Console.SetWindowSize(120, 50);
             Console.BufferHeight = 50;
             
@@ -234,32 +236,12 @@ namespace SpicyInvader
             Console.SetCursorPosition(58, 17);
             Console.ForegroundColor = ConsoleColor.Red;
             Console.Write("OFF");
-
-            if (ArrowMovesOptions() == 1)
-            {
-                // Menu difficulté
-            }
-            else
-            {
-                if (!music)
-                {
-                    Console.SetCursorPosition(58, 17);         
-                    Console.Write("OFF");
-                    music = false;
-                }
-                else
-                {
-                    Console.SetCursorPosition(58, 17);                   
-                    Console.Write("ON");
-                    music = true;
-                }
-            }
+            ArrowMovesOptions();
 
         }
 
-        public short ArrowMovesOptions()
+        public void ArrowMovesOptions()
         {
-            short i = 0;
             int xPos = 80;
             int yPos = 9;
 
@@ -313,21 +295,45 @@ namespace SpicyInvader
                 switch (yPos)
                 {
                     case 9:
+                        if (Key.Key == ConsoleKey.Escape)
+                        {
+                            DisplayMainMenu();
+                        }
                         if (Key.Key == ConsoleKey.Enter)
                         {
-                            i = 1;
-                            return i;
-                        }
-                        if(Key.Key == ConsoleKey.Escape)
-                        {
-                            Console.Clear();
+                            if (difficulty == 1)
+                            {
+                                Console.SetCursorPosition(58, 13);
+                                Console.Write("ON ");
+                                music = true;
+                            }
+                            else
+                            {
+                                Console.SetCursorPosition(58, 17);
+                                Console.Write("OFF");
+                                music = false;
+                            }
                         }
                         break;
                     case 15:
-                        if (Key.Key == ConsoleKey.Enter)
+                        if(Key.Key == ConsoleKey.Escape)
                         {
-                            i = 2;
-                            return i;
+                            DisplayMainMenu();
+                        }
+                        if (Key.Key == ConsoleKey.Enter)
+                        {                           
+                            if (!music)
+                            {
+                                Console.SetCursorPosition(58, 17);
+                                Console.Write("ON ");
+                                music = true;
+                            }
+                            else
+                            {
+                                Console.SetCursorPosition(58, 17);
+                                Console.Write("OFF");
+                                music = false;
+                            }
                         }
                         break;
                 }
