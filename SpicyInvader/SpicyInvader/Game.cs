@@ -9,5 +9,13 @@ namespace SpicyInvader
     public class Game
     {
         RocketShip Ship = new RocketShip();
+
+        public void Play()
+        {
+            Console.Clear();
+
+            
+            Ship.DrawRocketShip(57, 40);
+        }
     }
 }

@@ -14,6 +14,7 @@ namespace SpicyInvader
             
             // Affichage du menu principal
             Menu mainMenu = new Menu();
+           
             mainMenu.DisplayMainMenu();
 
 

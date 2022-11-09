@@ -205,8 +205,8 @@ namespace SpicyInvader
             switch (ArrowMoves())
             {
                 case 1:
-                    Console.Clear();
-                    // Play();
+                    Game jeu = new Game();
+                    jeu.Play();
                     break;
                 case 2:
                     Console.Clear();
@@ -235,10 +235,16 @@ namespace SpicyInvader
             Console.Write(_SOUND);
             Console.SetCursorPosition(58, 17);
             Console.ForegroundColor = ConsoleColor.Red;
-            Console.Write("OFF");
+            if(!music)
+                Console.Write("OFF");
+            else
+                Console.Write("ON");
             Console.SetCursorPosition(58, 11);
             Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine("FACILE");
+            if (difficulty == 1)
+                Console.WriteLine("FACILE");
+            else
+                Console.WriteLine("JEDI  ");
             ArrowMovesOptions();
 
         }

@@ -24,25 +24,29 @@ namespace SpicyInvader
             set { _y = value; }
         }
 
-        private const string _SHIP = @"
-                 ▲
-                ███
-              ███████
-            ███████████";
-
-        public string Ship
+        private static string[] _ship = new string[3]
         {
-            get { return _SHIP; }
-        }
+            "   ▲   ",
+            "▲█████▲",
+            "███████",
+        };
+                                                         
 
         public RocketShip()
         {
             
         }
 
-        public void DrawRocketShip()
+        public void DrawRocketShip(int x, int y)
         {
-            Console.WriteLine(_SHIP);
+            this.X = x;
+            this.Y = y;         
+            for(int i = 0; i < _ship.Length; i++)
+            {
+                Console.SetCursorPosition(x,y);
+                Console.Write(_ship[i]);
+                y++;
+            }       
         }
     }
 }
