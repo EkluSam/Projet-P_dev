@@ -236,6 +236,9 @@ namespace SpicyInvader
             Console.SetCursorPosition(58, 17);
             Console.ForegroundColor = ConsoleColor.Red;
             Console.Write("OFF");
+            Console.SetCursorPosition(58, 11);
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine("FACILE");
             ArrowMovesOptions();
 
         }
@@ -301,17 +304,17 @@ namespace SpicyInvader
                         }
                         if (Key.Key == ConsoleKey.Enter)
                         {
-                            if (difficulty == 1)
+                            if (difficulty == 2)
                             {
-                                Console.SetCursorPosition(58, 13);
-                                Console.Write("ON ");
-                                music = true;
+                                Console.SetCursorPosition(58, 11);
+                                Console.Write("FACILE ");
+                                difficulty = 1;
                             }
                             else
                             {
-                                Console.SetCursorPosition(58, 17);
-                                Console.Write("OFF");
-                                music = false;
+                                Console.SetCursorPosition(58, 11);
+                                Console.Write("JEDI   ");
+                                difficulty = 2;
                             }
                         }
                         break;
