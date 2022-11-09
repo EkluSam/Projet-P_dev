@@ -4,6 +4,6 @@ namespace SpicyInvader
 {
     public class Sound
     {
-        
+        private SoundPlayer gameMusic = new SoundPlayer();
     }
 }
