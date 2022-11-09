@@ -66,18 +66,17 @@ namespace SpicyInvader
         ";
 
         private const string _SOUND = @"
-                                                       ____             
+                                                       ____           
                                                       / __/__  ___      
-                                                     _\ \/ _ \/ _ \     
+                                                     _\ \/ _ \/ _ \   
                                                     /___/\___/_//_/  
         ";
         private const string _NAVARROW = "  <--- ";
 
-        private const string _ON = @"
-                                         /  \ (  ( \    / )   /  \(  __)(  __)
-                                        (  O )/    /   / /   (  O )) _)  ) _) 
-                                         \__/ \_)__)  (_/     \__/(__)  (__) 
-        ";
+        //private const string _ONOFF = @"/  \ (  ( \    / )   /  \(  __)(  __)
+        //                                    (  O )/    /   / /   (  O )) _)  ) _) 
+        //                                     \__/ \_)__)  (_/     \__/(__)  (__) 
+        //";
         #endregion
 
         public int yPos = 12; // position de base
@@ -230,14 +229,17 @@ namespace SpicyInvader
             Console.WriteLine(_OPTION);
             Console.ForegroundColor = ConsoleColor.White;
             Console.WriteLine(_DIFFICULTY);
-            Console.WriteLine(_SOUND);
-            if(ArrowMovesOptions() == 1)
+            Console.Write(_SOUND);
+            Console.SetCursorPosition(58,17);
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.Write("ON");
+            if (ArrowMovesOptions() == 1)
             {
                 // Menu difficulté
             }
             else
             {
-                // Menu son
+                
             }
             
         }
