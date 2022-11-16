@@ -16,17 +16,40 @@ namespace SpicyInvader
             int xPos = 57; 
             int yPos = 40;
 
+            Ship.DrawRocketShip(xPos, yPos);
             while (true)
             {
+                ConsoleKeyInfo Key = Console.ReadKey(true);
+                if (Key.Key == ConsoleKey.RightArrow)
+                {
+                    if (Ship.X != 112)
+                    {
+                        Ship.EraseRocketShip(Ship.X, Ship.Y);
+                        Ship.X += 1;
+                        Ship.DrawRocketShip(Ship.X, Ship.Y);
+                    }
+                    else
+                    {
 
+                    }
+                }
+                if (Key.Key == ConsoleKey.LeftArrow)
+                {
+                    if (Ship.X != 4)
+                    {
+                        Ship.EraseRocketShip(Ship.X, Ship.Y);
+                        Ship.X -= 1;
+                        Ship.DrawRocketShip(Ship.X, Ship.Y);
+                    }
+                    else
+                    {
+
+                    }
+                }
             }
-            Ship.DrawSymbol(xPos, yPos);
-
-<<<<<<< HEAD
-=======
             
-            Ship.DrawRocketShip(57, 40);
->>>>>>> parent of 6feaf3c (Updates)
+            
+
 
         }
     }

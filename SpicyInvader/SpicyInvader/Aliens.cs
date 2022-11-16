@@ -6,15 +6,20 @@ using System.Threading.Tasks;
 
 namespace SpicyInvader
 {
-    public class Aliens : RocketShip
+    public class Aliens
     {
-<<<<<<< HEAD
+
         private static string[] _symbol = new string[2]
         {
             "o███o",
             "██u██",
         };
-=======
+
+        private static string[] _void = new string[2]
+        {
+            "     ",
+            "     ",
+        };
         private int _x;
 
         public int X
@@ -30,15 +35,5 @@ namespace SpicyInvader
             get { return _y; }
             set { _y = value; }
         }
-
-        private string _symbol;
->>>>>>> parent of 6feaf3c (Updates)
-
-        public string Symbol
-        {
-            get { return _symbol; }
-            set { _symbol = value; }
-        }
-
     }
 }

@@ -30,7 +30,13 @@ namespace SpicyInvader
             "▲█████▲",
             "███████",
         };
-                                                         
+        private static string[] _void = new string[3]
+        {
+            "       ",
+            "       ",
+            "       ",
+        };
+
 
         public RocketShip()
         {
@@ -47,6 +53,15 @@ namespace SpicyInvader
                 Console.Write(_ship[i]);
                 y++;
             }       
+        }
+        public void EraseRocketShip(int x, int y)
+        {
+            for (int i = 0; i < _ship.Length; i++)
+            {
+                Console.SetCursorPosition(x,y);
+                Console.Write(_void[i]); 
+                y++;
+            }
         }
     }
 }
