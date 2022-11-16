@@ -16,7 +16,6 @@ namespace SpicyInvader
             Console.Clear();
             Console.SetCursorPosition(25,7);
             Console.Write("TON PSEUDO ? : ");
-            char heart = '♥';
             string playerName = Console.ReadLine();
             short playerLife = 3;
             Console.Clear();
@@ -35,11 +34,9 @@ namespace SpicyInvader
             {
                 Console.WriteLine("SCORE : ");
 
-                for (int i = 0; i < playerLife;i++)
-                {
-                    Console.SetCursorPosition(110, 3);
-                    Console.Write("Vies : ");
-                }
+                
+
+                
                 ConsoleKeyInfo Key = Console.ReadKey(true);
                 if (Key.Key == ConsoleKey.RightArrow)
                 {
@@ -68,10 +65,16 @@ namespace SpicyInvader
                     }
                 }
             }
-            
-            
-
-
+        }
+        public void DisplayHearts(playerLife)
+        {
+            char heart = '♥';
+            Console.SetCursorPosition(110, 3);
+            Console.Write("Vies : " + displayPlayerLife);
+            for (int i = 0; i < playerLife; i++)
+            {
+                displayPlayerLife += heart;
+            }
         }
     }
 }
