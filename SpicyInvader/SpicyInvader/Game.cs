@@ -22,6 +22,11 @@ namespace SpicyInvader
             }
             Ship.DrawSymbol(xPos, yPos);
 
+<<<<<<< HEAD
+=======
+            
+            Ship.DrawRocketShip(57, 40);
+>>>>>>> parent of 6feaf3c (Updates)
 
         }
     }
