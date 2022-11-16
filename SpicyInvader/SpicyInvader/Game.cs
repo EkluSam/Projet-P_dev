@@ -15,7 +15,7 @@ namespace SpicyInvader
             Console.Clear();
 
             
-            Ship.DrawRocketShip(57, 40);
+            Ship.DrawSymbol(57, 40);
 
         }
     }

@@ -24,13 +24,12 @@ namespace SpicyInvader
             set { _y = value; }
         }
 
-        private string _symbol;
-
-        public string Symbol
+        private static string[] _symbol = new string[2]
         {
-            get { return _symbol; }
-            set { _symbol = value; }
-        }
+            "o███o",
+            "██u██",
+        };
+
 
     }
 }

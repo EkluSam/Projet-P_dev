@@ -8,6 +8,7 @@ namespace SpicyInvader
 {
     public class RocketShip
     {
+
         private int _x;
 
         public int X
@@ -24,7 +25,7 @@ namespace SpicyInvader
             set { _y = value; }
         }
 
-        private static string[] _ship = new string[3]
+        private static string[] _symbol = new string[3]
         {
             "   ▲   ",
             "▲█████▲",
@@ -37,14 +38,14 @@ namespace SpicyInvader
             
         }
 
-        public void DrawRocketShip(int x, int y)
+        public void DrawSymbol(int x, int y)
         {
             this.X = x;
             this.Y = y;         
-            for(int i = 0; i < _ship.Length; i++)
+            for(int i = 0; i < _symbol.Length; i++)
             {
                 Console.SetCursorPosition(x,y);
-                Console.Write(_ship[i]);
+                Console.Write(_symbol[i]);
                 y++;
             }       
         }
