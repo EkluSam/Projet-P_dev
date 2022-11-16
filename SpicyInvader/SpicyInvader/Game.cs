@@ -15,7 +15,11 @@ namespace SpicyInvader
             Console.Clear();
             int xPos = 57; 
             int yPos = 40;
-            
+
+            while (true)
+            {
+
+            }
             Ship.DrawSymbol(xPos, yPos);
 
 
