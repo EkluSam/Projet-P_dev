@@ -17,7 +17,6 @@ namespace SpicyInvader
             Console.SetCursorPosition(25,7);
             Console.Write("TON PSEUDO ? : ");
             string playerName = Console.ReadLine();
-            short playerLife = 3;
             Console.Clear();
             Console.WriteLine("------------------------------------------------------------------------------------------------------------------------");
             Console.WriteLine(playerName);                               
@@ -25,18 +24,18 @@ namespace SpicyInvader
 
             Console.WriteLine("------------------------------------------------------------------------------------------------------------------------");
 
-
+            byte playerLife = 3;
+            int playerScore = 0;
             int xPos = 57; 
             int yPos = 40;
 
             Ship.DrawRocketShip(xPos, yPos);
             while (true)
             {
-                Console.WriteLine("SCORE : ");
+                Console.SetCursorPosition(0, 3);
+                Console.WriteLine("SCORE : " + playerScore);
 
-                
-
-                
+                this.DisplayHearts(playerLife);            
                 ConsoleKeyInfo Key = Console.ReadKey(true);
                 if (Key.Key == ConsoleKey.RightArrow)
                 {
@@ -66,15 +65,17 @@ namespace SpicyInvader
                 }
             }
         }
-        public void DisplayHearts(playerLife)
+        public void DisplayHearts(byte playerLife)
         {
             char heart = '♥';
-            Console.SetCursorPosition(110, 3);
-            Console.Write("Vies : " + playerLife);
+            string hearts = "";           
             for (int i = 0; i < playerLife; i++)
             {
-                displayPlayerLife += heart;
+                hearts += heart;
             }
+            Console.SetCursorPosition(110, 3);
+            Console.Write("Vies : " + hearts);
         }
+
     }
 }
