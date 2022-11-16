@@ -70,7 +70,7 @@ namespace SpicyInvader
         {
             char heart = '♥';
             Console.SetCursorPosition(110, 3);
-            Console.Write("Vies : " + displayPlayerLife);
+            Console.Write("Vies : " + playerLife);
             for (int i = 0; i < playerLife; i++)
             {
                 displayPlayerLife += heart;
