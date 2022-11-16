@@ -10,6 +10,9 @@ namespace SpicyInvader
     {
         RocketShip Ship = new RocketShip();
 
+        /// <summary>
+        /// Méthode PLAY qui lance une partie de Space Invader
+        /// </summary>
         public void Play()
         {
             Console.ForegroundColor = ConsoleColor.White;
@@ -28,6 +31,10 @@ namespace SpicyInvader
             int playerScore = 0;
             int xPos = 57; 
             int yPos = 40;
+       
+            Squad aliens = new Squad();
+
+
 
             Ship.DrawRocketShip(xPos, yPos);
             while (true)
@@ -35,7 +42,17 @@ namespace SpicyInvader
                 Console.SetCursorPosition(0, 3);
                 Console.WriteLine("SCORE : " + playerScore);
 
-                this.DisplayHearts(playerLife);            
+                this.DisplayHearts(playerLife);
+
+                aliens.DisplayAllAliens();
+
+
+
+
+
+
+
+                // Mouvements du vaisseau
                 ConsoleKeyInfo Key = Console.ReadKey(true);
                 if (Key.Key == ConsoleKey.RightArrow)
                 {
@@ -65,6 +82,10 @@ namespace SpicyInvader
                 }
             }
         }
+        /// <summary>
+        /// Méthode qui dessine le nombre de vie (en coeurs) du joueurs
+        /// </summary>
+        /// <param name="playerLife">nombre de vie du joueur</param>
         public void DisplayHearts(byte playerLife)
         {
             char heart = '♥';

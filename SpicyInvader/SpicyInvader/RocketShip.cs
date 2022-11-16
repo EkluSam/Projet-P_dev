@@ -8,6 +8,9 @@ namespace SpicyInvader
 {
     public class RocketShip
     {
+        /// <summary>
+        /// position x du vaisseau
+        /// </summary>
         private int _x;
 
         public int X
@@ -16,6 +19,9 @@ namespace SpicyInvader
             set { _x = value; }
         }
 
+        /// <summary>
+        /// Position y du vaisseau
+        /// </summary>
         private int _y;
 
         public int Y
@@ -24,12 +30,18 @@ namespace SpicyInvader
             set { _y = value; }
         }
 
+        /// <summary>
+        /// tableau de 3 lignes qui dessine le vaisseau
+        /// </summary>
         private static string[] _ship = new string[3]
         {
             "   ▲   ",
             "▲█████▲",
             "███████",
         };
+        /// <summary>
+        /// tableau de 3 lignes rempli de vide pour effacer le vaisseau
+        /// </summary>
         private static string[] _void = new string[3]
         {
             "       ",
@@ -43,6 +55,11 @@ namespace SpicyInvader
             
         }
 
+        /// <summary>
+        /// Méthode qui dessine le vaisseau à la position donné
+        /// </summary>
+        /// <param name="x">position x</param>
+        /// <param name="y">position y</param>
         public void DrawRocketShip(int x, int y)
         {
             this.X = x;
@@ -54,6 +71,11 @@ namespace SpicyInvader
                 y++;
             }       
         }
+        /// <summary>
+        /// Méthode qui efface le vaisseau à la position donné
+        /// </summary>
+        /// <param name="x">position x</param>
+        /// <param name="y">position y</param>
         public void EraseRocketShip(int x, int y)
         {
             for (int i = 0; i < _ship.Length; i++)
