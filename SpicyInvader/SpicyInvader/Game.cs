@@ -12,13 +12,34 @@ namespace SpicyInvader
 
         public void Play()
         {
+            Console.ForegroundColor = ConsoleColor.White;
             Console.Clear();
+            Console.SetCursorPosition(25,7);
+            Console.Write("TON PSEUDO ? : ");
+            char heart = '♥';
+            string playerName = Console.ReadLine();
+            short playerLife = 3;
+            Console.Clear();
+            Console.WriteLine("------------------------------------------------------------------------------------------------------------------------");
+            Console.WriteLine(playerName);                               
+            Console.WriteLine();
+
+            Console.WriteLine("------------------------------------------------------------------------------------------------------------------------");
+
+
             int xPos = 57; 
             int yPos = 40;
 
             Ship.DrawRocketShip(xPos, yPos);
             while (true)
             {
+                Console.WriteLine("SCORE : ");
+
+                for (int i = 0; i < playerLife;i++)
+                {
+                    Console.SetCursorPosition(110, 3);
+                    Console.Write("Vies : ");
+                }
                 ConsoleKeyInfo Key = Console.ReadKey(true);
                 if (Key.Key == ConsoleKey.RightArrow)
                 {
