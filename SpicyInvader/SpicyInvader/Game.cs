@@ -13,9 +13,11 @@ namespace SpicyInvader
         public void Play()
         {
             Console.Clear();
-
+            int xPos = 57; 
+            int yPos = 40;
             
-            Ship.DrawSymbol(57, 40);
+            Ship.DrawSymbol(xPos, yPos);
+
 
         }
     }
