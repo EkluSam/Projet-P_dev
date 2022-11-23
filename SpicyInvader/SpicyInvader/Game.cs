@@ -3,11 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Threading;
 
 namespace SpicyInvader
 {
     public class Game
     {
+        const int GAME_WIDTH = 120;
+
         RocketShip Ship = new RocketShip();
 
         /// <summary>
@@ -31,55 +34,61 @@ namespace SpicyInvader
             int playerScore = 0;
             int xPos = 57; 
             int yPos = 40;
-       
+            int fps = 0;
+            int counter = 0;
             Squad aliens = new Squad();
 
-
-
             Ship.DrawRocketShip(xPos, yPos);
+
             while (true)
             {
+
+                if (fps == 2000)
+                {
+                    
+                    aliens.Move();
+                }
+
+
+
+
                 Console.SetCursorPosition(0, 3);
                 Console.WriteLine("SCORE : " + playerScore);
 
                 this.DisplayHearts(playerLife);
 
-                aliens.DisplayAllAliens();
-
-
-
-
-
-
-
-                // Mouvements du vaisseau
-                ConsoleKeyInfo Key = Console.ReadKey(true);
-                if (Key.Key == ConsoleKey.RightArrow)
+                if (Console.KeyAvailable)
                 {
-                    if (Ship.X != 112)
+                    // Mouvements du vaisseau
+                    ConsoleKeyInfo Key = Console.ReadKey(true);
+                    if (Key.Key == ConsoleKey.RightArrow)
                     {
-                        Ship.EraseRocketShip(Ship.X, Ship.Y);
-                        Ship.X += 1;
-                        Ship.DrawRocketShip(Ship.X, Ship.Y);
-                    }
-                    else
-                    {
+                        if (Ship.X != 112)
+                        {
+                            Ship.EraseRocketShip(Ship.X, Ship.Y);
+                            Ship.X += 1;
+                            Ship.DrawRocketShip(Ship.X, Ship.Y);
+                        }
+                        else
+                        {
 
+                        }
+                    }
+                    if (Key.Key == ConsoleKey.LeftArrow)
+                    {
+                        if (Ship.X != 4)
+                        {
+                            Ship.EraseRocketShip(Ship.X, Ship.Y);
+                            Ship.X -= 1;
+                            Ship.DrawRocketShip(Ship.X, Ship.Y);
+                        }
+                        else
+                        {
+
+                        }
                     }
                 }
-                if (Key.Key == ConsoleKey.LeftArrow)
-                {
-                    if (Ship.X != 4)
-                    {
-                        Ship.EraseRocketShip(Ship.X, Ship.Y);
-                        Ship.X -= 1;
-                        Ship.DrawRocketShip(Ship.X, Ship.Y);
-                    }
-                    else
-                    {
-
-                    }
-                }
+                fps++;
             }
         }
         /// <summary>

@@ -26,20 +26,76 @@ namespace SpicyInvader
         /// </summary>
         public void CreateAlien()
         {
-            for (int i = 0; i < 4; i++)
+            int x = 10;
+            int y = 7;
+            for (int i = 0; i < 8; i++)
             {
-                this._aliens.Add(new Alien());
+                if(i == 4)
+                {
+                    x = 10;
+                    y += 5;
+                }
+                this._aliens.Add(new Alien(x,y));
+                x += 12;
             }
         }
 
-        public void DisplayAllAliens()
+        /// <summary>
+        /// Méthode qui permet d'afficher tous les aliens en jeu
+        /// </summary>
+        public void DrawAllAliens()
         {
-            int x = 10;
-            foreach(Alien alien in this._aliens)
+            for(int i = 0; i < _aliens.Count; i++)
             {
-                alien.DrawAlien(x,10);
-                x += 6;
+                this._aliens[i].DrawAlien();
             }
+        }
+
+        public void RemoveAllAliens()
+        {
+            for (int i = 0; i < _aliens.Count; i++)
+            {
+                this._aliens[i].EraseAlien();
+            }
+        }
+
+        /// <summary>
+        /// Méthode qui fait bouger les aliens 
+        /// si la position de l'alien est au max elle change sa vitesse pour revenir
+        /// </summary>
+        public void Move()
+        {
+            RemoveAllAliens();
+
+            int leftAlienX = 60;
+            int rightAlienX = 0;
+            foreach (Alien alien in this._aliens)
+            {
+                if (alien.X < leftAlienX)
+                {
+                    leftAlienX = alien.X;
+                }
+                if (alien.X > rightAlienX)
+                {
+                    rightAlienX = alien.X;
+                }
+            }
+           
+            for (int i = 0; i < _aliens.Count; i++)
+            {
+                this._aliens[i].X += this._aliens[i].SpeedX;
+                if (rightAlienX >= this._aliens[i].MaxX - 10)
+                {
+                    // inverse la direction des aliens
+                    for (int f = 0; f < _aliens.Count; f++)
+                    {
+                        this._aliens[f].Y += this._aliens[f].SpeedY;
+                        this._aliens[f].SpeedX = -this._aliens[f].SpeedX;
+                    }
+                }
+            }
+
+            DrawAllAliens();
         }
     }
 }

@@ -8,6 +8,15 @@ namespace SpicyInvader
 {
     public class Bullet
     {
+
+        private static string[] _alien = new string[1]
+        {
+            "|",
+        };
+
+        /// <summary>
+        /// Position x du laser
+        /// </summary>
         private int _x;
 
         public int X
@@ -16,6 +25,9 @@ namespace SpicyInvader
             set { _x = value; }
         }
 
+        /// <summary>
+        /// Position y du laser
+        /// </summary>
         private int _y;
 
         public int Y
@@ -23,14 +35,5 @@ namespace SpicyInvader
             get { return _y; }
             set { _y = value; }
         }
-
-        private char _symbol;
-
-        public char Symbol
-        {
-            get { return _symbol; }
-            set { _symbol = value; }
-        }
-
     }
 }
