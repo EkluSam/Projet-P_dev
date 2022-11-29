@@ -30,6 +30,7 @@ namespace SpicyInvader
 
             Console.WriteLine("------------------------------------------------------------------------------------------------------------------------");
 
+            bool isWon = false;
             byte playerLife = 3;
             int playerScore = 0;
             int xPos = 57; 
@@ -47,9 +48,9 @@ namespace SpicyInvader
                 {
                     fps = 0;
                     aliens.Move();
-                    if(aliens.Aliens[0].Y >= 40)
+                    if(aliens.isGameOver())
                     {
-
+                        break;
                     }
                 }
 
@@ -94,6 +95,7 @@ namespace SpicyInvader
                 }
                 fps++;
             }
+            Console.WriteLine("game over");
         }
         /// <summary>
         /// Méthode qui dessine le nombre de vie (en coeurs) du joueurs
@@ -110,6 +112,5 @@ namespace SpicyInvader
             Console.SetCursorPosition(110, 3);
             Console.Write("Vies : " + hearts);
         }
-
     }
 }

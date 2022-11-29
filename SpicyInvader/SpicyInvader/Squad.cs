@@ -85,7 +85,7 @@ namespace SpicyInvader
             if (this._aliens[0].SpeedX == -1)
             {
 
-                if (leftAlienX <= 5)
+                if (leftAlienX <= 2)
                 {
                     // inverse la direction des aliens
                     for (int f = 0; f < _aliens.Count; f++)
@@ -137,6 +137,24 @@ namespace SpicyInvader
             }
             
             DrawAllAliens();
+        }
+
+        /// <summary>
+        /// Méthode qui permet de vérifier si la position Y des aliens
+        /// est supérieure ou égale à 40. (perdu ou pas en gros)
+        /// </summary>
+        /// <returns>True si les aliens sont arrivé à 40 sur la position Y,
+        ///          false si les aliens n'y sont pas encore</returns>
+        public bool isGameOver()
+        {
+            foreach(Alien alien in this._aliens)
+            {
+                if(alien.Y >= 36)
+                {
+                    return true;
+                }
+            }
+            return false;
         }
     }
 }
