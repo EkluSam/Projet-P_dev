@@ -47,6 +47,10 @@ namespace SpicyInvader
                 {
                     fps = 0;
                     aliens.Move();
+                    if(aliens.Aliens[0].Y >= 40)
+                    {
+
+                    }
                 }
 
 
