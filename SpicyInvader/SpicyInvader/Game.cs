@@ -43,9 +43,9 @@ namespace SpicyInvader
             while (true)
             {
 
-                if (fps == 2000)
+                if (fps == 200)
                 {
-                    
+                    fps = 0;
                     aliens.Move();
                 }
 

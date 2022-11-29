@@ -69,13 +69,6 @@ namespace SpicyInvader
             this._y = y;
         }
 
-        private const int _MAX_X = 120;
-
-        public int MaxX
-        {
-            get { return _MAX_X; }
-        }
-
         /// <summary>
         /// Vitesse X de l'alien
         /// </summary>

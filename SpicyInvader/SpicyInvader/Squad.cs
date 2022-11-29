@@ -67,7 +67,7 @@ namespace SpicyInvader
         {
             RemoveAllAliens();
 
-            int leftAlienX = 60;
+            int leftAlienX = 1000;
             int rightAlienX = 0;
             foreach (Alien alien in this._aliens)
             {
@@ -80,21 +80,62 @@ namespace SpicyInvader
                     rightAlienX = alien.X;
                 }
             }
-           
-            for (int i = 0; i < _aliens.Count; i++)
+
+            // Gauche 
+            if (this._aliens[0].SpeedX == -1)
             {
-                this._aliens[i].X += this._aliens[i].SpeedX;
-                if (rightAlienX >= this._aliens[i].MaxX - 10)
+
+                if (leftAlienX <= 5)
                 {
                     // inverse la direction des aliens
                     for (int f = 0; f < _aliens.Count; f++)
                     {
-                        this._aliens[f].Y += this._aliens[f].SpeedY;
-                        this._aliens[f].SpeedX = -this._aliens[f].SpeedX;
+                        this._aliens[f].SpeedX = 1;
+                        this._aliens[f].Y++;
                     }
                 }
-            }
+                else
+                {
+                    foreach (Alien alien in this._aliens)
+                        alien.X += alien.SpeedX;
+                }
+                //for (int i = 0; i < _aliens.Count; i++)
+                //{
 
+                //    if (leftAlienX >= 10)
+                //    {
+                //        // inverse la direction des aliens
+                //        for (int f = 0; f < _aliens.Count; f++)
+                //        {
+                //            this._aliens[f].SpeedX = (-1*this._aliens[f].SpeedX);
+                //            this._aliens[f].Y += this._aliens[f].SpeedY;
+                //        }
+
+                //    }
+                //    this._aliens[i].X += this._aliens[i].SpeedX;
+                //}
+            }
+            // Droite 
+            else
+            {
+                if (rightAlienX >= 110)
+                {
+                    // inverse la direction des aliens
+                    for (int f = 0; f < _aliens.Count; f++)
+                    {
+                        this._aliens[f].SpeedX = -1;
+                        this._aliens[f].Y++;
+                    }
+                }
+                else
+                {                    
+                    foreach (Alien alien in this._aliens)
+                        alien.X += alien.SpeedX;
+                }
+                
+
+            }
+            
             DrawAllAliens();
         }
     }
