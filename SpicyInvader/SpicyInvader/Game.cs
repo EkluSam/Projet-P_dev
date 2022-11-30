@@ -66,12 +66,16 @@ namespace SpicyInvader
                 if (counter == fps)
                 {
                     counter = 0;
+                    bullets.MoveAllBullets();
+                    CheckBulletCollision(aliens,bullets);
+
                     aliens.MoveAllAliens();
                     if(aliens.isGameOver())
                     {
                         isWon = false;
                         break;
-                    }
+                    }                    
+                    
                 }
 
                 Console.SetCursorPosition(0, 3);
@@ -148,6 +152,27 @@ namespace SpicyInvader
         public void DisplayScore(int playerScore)
         {
 
+        }
+
+        public void CheckBulletCollision(Squad squad, Magazine bullets)
+        {
+            foreach (Bullet bullet in bullets.Bullets)
+            {
+                foreach (Alien alien in squad.Aliens)
+                {
+                    if (alien.Alive)
+                    {
+                        if (bullet.X == alien.X && bullet.Y == alien.Y || bullet.Y == 10)
+                        {
+
+                        }
+                    }
+                    else
+                    {
+
+                    }
+                }
+            }
         }
     }
 }

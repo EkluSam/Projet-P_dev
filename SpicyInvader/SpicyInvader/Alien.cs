@@ -22,6 +22,17 @@ namespace SpicyInvader
         };
 
         /// <summary>
+        /// Symbol de l'alien
+        /// </summary>
+        private static string[] _alienMoving = new string[5]
+        {
+               "   ▄██▄   ",
+               " ▄██████▄ ",
+               "███▄██▄███",
+               "   ▄▀ ▀▄  ",
+               "   ▀    ▀ ",
+        };
+        /// <summary>
         /// Vide fait pour effacer l'alien
         /// </summary>
         private static string[] _void = new string[5]

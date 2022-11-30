@@ -276,6 +276,9 @@ namespace SpicyInvader
                 Console.WriteLine("FACILE");
             else
                 Console.WriteLine("JEDI  ");
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.SetCursorPosition(40, 20);
+            Console.Write("Appuyez 'Escape' pour revenir en arrière");
             ArrowMovesOptions();
 
         }

@@ -55,13 +55,11 @@ namespace SpicyInvader
         public void MoveAllBullets()
         {
             EraseAllBullets();
-
-
-        }
-
-        public void CheckBulletCollision(Squad squad)
-        {
-
+            for (int i = 0; i < Bullets.Count;i++)
+            {
+                Bullets[i].Y -= Bullets[i].SpeedY;
+            }
+            DrawAllBullets();
         }
     }
 }

@@ -101,21 +101,7 @@ namespace SpicyInvader
                     foreach (Alien alien in this._aliens)
                         alien.X += alien.SpeedX;
                 }
-                //for (int i = 0; i < _aliens.Count; i++)
-                //{
 
-                //    if (leftAlienX >= 10)
-                //    {
-                //        // inverse la direction des aliens
-                //        for (int f = 0; f < _aliens.Count; f++)
-                //        {
-                //            this._aliens[f].SpeedX = (-1*this._aliens[f].SpeedX);
-                //            this._aliens[f].Y += this._aliens[f].SpeedY;
-                //        }
-
-                //    }
-                //    this._aliens[i].X += this._aliens[i].SpeedX;
-                //}
             }
             // Droite 
             else

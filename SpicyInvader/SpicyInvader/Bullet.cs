@@ -62,13 +62,13 @@ namespace SpicyInvader
         public void DrawBullet()
         {
             Console.SetCursorPosition(this.X,this.Y);
-            Console.WriteLine(_bullet);
+            Console.WriteLine(_bullet[0]);
         }
 
         public void EraseBullet()
         {
             Console.SetCursorPosition(this._x,this._y);
-            Console.WriteLine(_void);
+            Console.WriteLine(_void[0]);
         }
 
 
