@@ -14,6 +14,19 @@ namespace SpicyInvader
             "|",
         };
 
+        private static string[] _void = new string[1]
+        {
+            " ",
+        };
+
+        private List<Bullet> _bullets = new List<Bullet>();
+
+        public List<Bullet> Bullets
+        {
+            get { return _bullets; }
+            private set { _bullets = value; }
+        }
+
         /// <summary>
         /// Position x du laser
         /// </summary>
@@ -34,6 +47,21 @@ namespace SpicyInvader
         {
             get { return _y; }
             set { _y = value; }
+        }
+
+        public void ShootBullet()
+        {
+
+        }
+
+        public void DrawBullet()
+        {
+
+        }
+
+        public void EraseBullet()
+        {
+
         }
     }
 }

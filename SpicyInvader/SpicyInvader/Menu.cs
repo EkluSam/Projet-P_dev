@@ -232,6 +232,7 @@ namespace SpicyInvader
             {
                 case 1:
                     Game jeu = new Game();
+                    jeu.Difficulty = difficulty;                  
                     jeu.Play();
                     break;
                 case 2:

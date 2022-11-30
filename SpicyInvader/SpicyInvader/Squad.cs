@@ -8,12 +8,14 @@ namespace SpicyInvader
 {
     class Squad
     {
+       
+
         private List<Alien> _aliens = new List<Alien>();
 
         public List<Alien> Aliens
         {
             get { return _aliens = new List<Alien>(); }
-            set { _aliens = value; }
+            private set { _aliens = value; }
         }
 
         public Squad()

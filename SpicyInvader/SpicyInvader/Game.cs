@@ -11,7 +11,16 @@ namespace SpicyInvader
     {
         const int GAME_WIDTH = 120;
 
+        private int difficulty;
+
+        public int Difficulty
+        {
+            get { return difficulty; }
+            set { difficulty = value; }
+        }
         RocketShip Ship = new RocketShip();
+        Squad aliens = new Squad();
+        Bullet bullet = new Bullet();
 
         /// <summary>
         /// Méthode PLAY qui lance une partie de Space Invader
@@ -37,19 +46,30 @@ namespace SpicyInvader
             int yPos = 40;
             int fps = 0;
             int counter = 0;
-            Squad aliens = new Squad();
+            
 
             Ship.DrawRocketShip(xPos, yPos);
+
+            // Change la difficulté (vitesse des aliens)
+            if(this.difficulty == 2)
+            {
+                fps = 200;
+            }
+            else
+            {
+                fps = 800;
+            }
 
             while (true)
             {
 
-                if (fps == 200)
+                if (counter == fps)
                 {
-                    fps = 0;
+                    counter = 0;
                     aliens.Move();
                     if(aliens.isGameOver())
                     {
+                        isWon = false;
                         break;
                     }
                 }
@@ -93,9 +113,18 @@ namespace SpicyInvader
                         }
                     }
                 }
-                fps++;
+                counter++;
             }
-            Console.WriteLine("game over");
+
+            // Fin du jeu vérifie si le joueur à gagné la partie
+            if (isWon)
+            {
+
+            }
+            else
+            {
+
+            }
         }
         /// <summary>
         /// Méthode qui dessine le nombre de vie (en coeurs) du joueurs
