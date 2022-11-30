@@ -162,9 +162,11 @@ namespace SpicyInvader
                 {
                     if (alien.Alive)
                     {
-                        if (bullet.X == alien.X && bullet.Y == alien.Y || bullet.Y == 10)
+                        if (bullet.X == alien.X && bullet.Y == alien.Y)
                         {
-
+                            bullets.Bullets.Remove(bullet);
+                            alien.Alive = false;
+                            squad.Aliens.Remove(alien);
                         }
                     }
                     else
