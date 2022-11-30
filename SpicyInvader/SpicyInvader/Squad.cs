@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SpicyInvader
 {
-    class Squad
+    public class Squad
     {
        
 
@@ -53,7 +53,7 @@ namespace SpicyInvader
             }
         }
 
-        public void RemoveAllAliens()
+        public void EraseAllAliens()
         {
             for (int i = 0; i < _aliens.Count; i++)
             {
@@ -65,9 +65,9 @@ namespace SpicyInvader
         /// Méthode qui fait bouger les aliens 
         /// si la position de l'alien est au max elle change sa vitesse pour revenir
         /// </summary>
-        public void Move()
+        public void MoveAllAliens()
         {
-            RemoveAllAliens();
+            EraseAllAliens();
 
             int leftAlienX = 1000;
             int rightAlienX = 0;

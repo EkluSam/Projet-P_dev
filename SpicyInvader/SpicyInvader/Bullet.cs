@@ -9,7 +9,7 @@ namespace SpicyInvader
     public class Bullet
     {
 
-        private static string[] _alien = new string[1]
+        private static string[] _bullet = new string[1]
         {
             "|",
         };
@@ -19,12 +19,12 @@ namespace SpicyInvader
             " ",
         };
 
-        private List<Bullet> _bullets = new List<Bullet>();
-
-        public List<Bullet> Bullets
+        private int speedY = 1;
+        
+        public int SpeedY
         {
-            get { return _bullets; }
-            private set { _bullets = value; }
+            get { return speedY; }
+            private set { speedY = value; }
         }
 
         /// <summary>
@@ -49,19 +49,28 @@ namespace SpicyInvader
             set { _y = value; }
         }
 
-        public void ShootBullet()
+        public Bullet(int x, int y)
+        {
+            this.X = x;
+            this.Y = y;
+        }
+        public Bullet()
         {
 
         }
 
         public void DrawBullet()
         {
-
+            Console.SetCursorPosition(this.X,this.Y);
+            Console.WriteLine(_bullet);
         }
 
         public void EraseBullet()
         {
-
+            Console.SetCursorPosition(this._x,this._y);
+            Console.WriteLine(_void);
         }
+
+
     }
 }

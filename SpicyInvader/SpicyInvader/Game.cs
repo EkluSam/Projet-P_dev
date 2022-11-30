@@ -20,7 +20,7 @@ namespace SpicyInvader
         }
         RocketShip Ship = new RocketShip();
         Squad aliens = new Squad();
-        Bullet bullet = new Bullet();
+        Magazine bullets = new Magazine();
 
         /// <summary>
         /// Méthode PLAY qui lance une partie de Space Invader
@@ -66,16 +66,13 @@ namespace SpicyInvader
                 if (counter == fps)
                 {
                     counter = 0;
-                    aliens.Move();
+                    aliens.MoveAllAliens();
                     if(aliens.isGameOver())
                     {
                         isWon = false;
                         break;
                     }
                 }
-
-
-
 
                 Console.SetCursorPosition(0, 3);
                 Console.WriteLine("SCORE : " + playerScore);
@@ -112,6 +109,12 @@ namespace SpicyInvader
 
                         }
                     }
+
+                    // Tirer avec le vaisseau
+                    if (Key.Key == ConsoleKey.UpArrow)
+                    {
+                        bullets.CreateBullet(Ship.X,Ship.Y-1,aliens);
+                    }
                 }
                 counter++;
             }
@@ -140,6 +143,11 @@ namespace SpicyInvader
             }
             Console.SetCursorPosition(110, 3);
             Console.Write("Vies : " + hearts);
+        }
+
+        public void DisplayScore(int playerScore)
+        {
+
         }
     }
 }
