@@ -14,7 +14,7 @@ namespace SpicyInvader
 
         public List<Alien> Aliens
         {
-            get { return _aliens = new List<Alien>(); }
+            get { return _aliens; }
             private set { _aliens = value; }
         }
 
@@ -84,7 +84,7 @@ namespace SpicyInvader
             }
 
             // Gauche 
-            if (this._aliens[0].SpeedX == -1)
+            if (leftAlienX <= -1)
             {
 
                 if (leftAlienX <= 2)

@@ -117,7 +117,11 @@ namespace SpicyInvader
                     // Tirer avec le vaisseau
                     if (Key.Key == ConsoleKey.UpArrow)
                     {
-                        bullets.CreateBullet(Ship.X,Ship.Y-1,aliens);
+                        bullets.CreateBullet(Ship.X,Ship.Y-1);
+                    }
+                    else
+                    {
+
                     }
                 }
                 counter++;
@@ -156,8 +160,17 @@ namespace SpicyInvader
 
         public void CheckBulletCollision(Squad squad, Magazine bullets)
         {
+            
             foreach (Bullet bullet in bullets.Bullets)
             {
+                if(bullet.Y >= 10)
+                {
+                    bullets.Bullets.Remove(bullet);
+                }
+                else
+                {
+                    
+                }
                 foreach (Alien alien in squad.Aliens)
                 {
                     if (alien.Alive)

@@ -23,7 +23,7 @@ namespace SpicyInvader
         {
             CurrentBullets = 0;
         }
-        public void CreateBullet(int x, int y, Squad squad)
+        public void CreateBullet(int x, int y)
         {
             if (Bullets.Count < 7)
             {
