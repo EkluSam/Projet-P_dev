@@ -11,16 +11,24 @@ namespace SpicyInvader
     {
         const int GAME_WIDTH = 120;
 
-        private int difficulty;
+        private int _difficulty;
 
         public int Difficulty
         {
-            get { return difficulty; }
-            set { difficulty = value; }
+            get { return _difficulty; }
+            set { _difficulty = value; }
         }
+
+        private bool _isWon = false;
+
+        private byte _playerLife = 3;
+
+        private int _playerScore = 0;
+
         RocketShip Ship = new RocketShip();
         Squad aliens = new Squad();
         Magazine bullets = new Magazine();
+        Menu menus = new Menu();
 
         /// <summary>
         /// Méthode PLAY qui lance une partie de Space Invader
@@ -39,9 +47,8 @@ namespace SpicyInvader
 
             Console.WriteLine("------------------------------------------------------------------------------------------------------------------------");
 
-            bool isWon = false;
-            byte playerLife = 3;
-            int playerScore = 0;
+
+
             int xPos = 57; 
             int yPos = 40;
             int fps = 0;
@@ -51,7 +58,7 @@ namespace SpicyInvader
             Ship.DrawRocketShip(xPos, yPos);
 
             // Change la difficulté (vitesse des aliens)
-            if(this.difficulty == 2)
+            if(this._difficulty == 2)
             {
                 fps = 200;
             }
@@ -67,21 +74,24 @@ namespace SpicyInvader
                 {
                     counter = 0;
                     bullets.MoveAllBullets();
-                    CheckBulletCollision(aliens,bullets);
-
-                    aliens.MoveAllAliens();
+                    CheckBulletCollision(aliens,bullets);                   
                     if(aliens.isGameOver())
                     {
-                        isWon = false;
+                        _isWon = false;
                         break;
                     }                    
-                    
+                    else if (_isWon)
+                    {
+                        break;
+                    }
+                    aliens.MoveAllAliens();
+
                 }
 
                 Console.SetCursorPosition(0, 3);
-                Console.WriteLine("SCORE : " + playerScore);
 
-                this.DisplayHearts(playerLife);
+                this.DisplayHearts(_playerLife);
+                this.DisplayScore(_playerScore);
 
                 if (Console.KeyAvailable)
                 {
@@ -117,7 +127,7 @@ namespace SpicyInvader
                     // Tirer avec le vaisseau
                     if (Key.Key == ConsoleKey.UpArrow)
                     {
-                        bullets.CreateBullet(Ship.X,Ship.Y-1);
+                        bullets.CreateBullet(Ship.X+3,Ship.Y-1);
                     }
                     else
                     {
@@ -128,13 +138,13 @@ namespace SpicyInvader
             }
 
             // Fin du jeu vérifie si le joueur à gagné la partie
-            if (isWon)
+            if (_isWon)
             {
-
+                
             }
             else
-            {
-
+            {               
+                
             }
         }
         /// <summary>
@@ -155,7 +165,8 @@ namespace SpicyInvader
 
         public void DisplayScore(int playerScore)
         {
-
+            Console.SetCursorPosition(0, 3);
+            Console.Write("Score : " + playerScore);
         }
 
         public void CheckBulletCollision(Squad squad, Magazine bullets)
@@ -163,9 +174,12 @@ namespace SpicyInvader
             
             foreach (Bullet bullet in bullets.Bullets)
             {
-                if(bullet.Y >= 10)
+                if(bullet.Y <= 10)
                 {
+                    bullet.EraseBullet();
                     bullets.Bullets.Remove(bullet);
+                    bullets.CurrentBullets--;
+                    return;
                 }
                 else
                 {
@@ -175,11 +189,19 @@ namespace SpicyInvader
                 {
                     if (alien.Alive)
                     {
-                        if (bullet.X == alien.X && bullet.Y == alien.Y)
+                        if (bullet.X > alien.X && bullet.X < alien.X+10 && bullet.Y <= alien.Y+5 && bullet.Y >= alien.Y)
                         {
-                            bullets.Bullets.Remove(bullet);
                             alien.Alive = false;
+                            alien.EraseAlien();
                             squad.Aliens.Remove(alien);
+                            bullet.EraseBullet();
+                            bullets.Bullets.Remove(bullet);
+                            _playerScore += 150;
+                            if (squad.Aliens.Count == 0)
+                            {
+                                _isWon = true;
+                            }
+                            return;
                         }
                     }
                     else

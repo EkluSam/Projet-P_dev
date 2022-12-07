@@ -29,8 +29,8 @@ namespace SpicyInvader
                "   ▄██▄   ",
                " ▄██████▄ ",
                "███▄██▄███",
-               "   ▄▀ ▀▄  ",
-               "   ▀    ▀ ",
+               "  ▄▀  ▀▄  ",
+               "   ▀  ▀  ",
         };
         /// <summary>
         /// Vide fait pour effacer l'alien
@@ -74,6 +74,8 @@ namespace SpicyInvader
             set { _alive = value; }
         }
 
+        private int _counter;
+
         public Alien(int x, int y)
         {
             this._x = x;
@@ -111,12 +113,35 @@ namespace SpicyInvader
         {
             int x = this._x;
             int y = this._y;
-            for (int i = 0; i < _alien.Length; i++)
+
+            if (_counter > 7)
             {
-                Console.SetCursorPosition(x, y);
-                Console.Write(_alien[i]);
-                y++;
+                for (int i = 0; i < _alien.Length; i++)
+                {
+                    Console.SetCursorPosition(x, y);
+                    Console.Write(_alienMoving[i]);
+                    y++;
+                }
+                if(_counter == 15)
+                {
+                    _counter = 0;
+                }
+                else
+                {
+                    _counter++;
+                }
             }
+            else
+            {
+                for (int i = 0; i < _alien.Length; i++)
+                {
+                    Console.SetCursorPosition(x, y);
+                    Console.Write(_alien[i]);
+                    y++;
+                }
+                _counter++;
+            }
+            
         }
         /// <summary>
         /// Méthode qui efface le vaisseau à la position donné

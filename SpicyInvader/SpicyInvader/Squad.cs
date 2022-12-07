@@ -84,7 +84,7 @@ namespace SpicyInvader
             }
 
             // Gauche 
-            if (leftAlienX <= -1)
+            if (this._aliens[0].SpeedX == -1)
             {
 
                 if (leftAlienX <= 2)

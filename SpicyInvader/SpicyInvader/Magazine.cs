@@ -11,7 +11,13 @@ namespace SpicyInvader
 
         private List<Bullet> _bullets = new List<Bullet>();
 
-        private int CurrentBullets;
+        private int _currentBullets;
+
+        public int CurrentBullets
+        {
+            get { return _currentBullets; }
+            set { _currentBullets = value; }
+        }
 
         public List<Bullet> Bullets
         {
@@ -21,19 +27,20 @@ namespace SpicyInvader
 
         public Magazine()
         {
-            CurrentBullets = 0;
+            _currentBullets = 0;
         }
         public void CreateBullet(int x, int y)
         {
-            if (Bullets.Count < 7)
+            if(CurrentBullets < 10)
             {
                 Bullets.Add(new Bullet(x, y - 1));
-                CurrentBullets++;          
+                _currentBullets++;
             }
             else
             {
 
-            }
+            }      
+
         }
 
         public void DrawAllBullets()

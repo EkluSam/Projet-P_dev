@@ -95,7 +95,21 @@ namespace SpicyInvader
         /// </summary>
         private const string _NAVARROW = "  <--- ";
 
+        private const string _PAUSE = @"
+                                                 ▄▄▄· ▄▄▄· ▄• ▄▌.▄▄ · ▄▄▄ .
+                                                ▐█ ▄█▐█ ▀█ █▪██▌▐█ ▀. ▀▄.▀·
+                                                 ██▀·▄█▀▀█ █▌▐█▌▄▀▀▀█▄▐▀▀▪▄
+                                                ▐█▪·•▐█ ▪▐▌▐█▄█▌▐█▄▪▐█▐█▄▄▌
+                                                .▀    ▀  ▀  ▀▀▀  ▀▀▀▀  ▀▀▀ 
+        ";
 
+        private const string _GAMEOVER = @"
+                                         ▄▄ •  ▄▄▄· • ▌ ▄ ·. ▄▄▄ .    .▄▄▄   ▌ ▐·▄▄▄ .▄▄▄  
+                                        ▐█ ▀ ▪▐█ ▀█ ·██ ▐███▪▀▄.▀·    ▐▀•▀█ ▪█·█▌▀▄.▀·▀▄ █·
+                                        ▄█ ▀█▄▄█▀▀█ ▐█ ▌▐▌▐█·▐▀▀▪▄    █▌·.█▌▐█▐█•▐▀▀▪▄▐▀▀▄ 
+                                        ▐█▄▪▐█▐█ ▪▐▌██ ██▌▐█▌▐█▄▄▌    ▐█▪▄█· ███ ▐█▄▄▌▐█•█▌
+                                        ·▀▀▀▀  ▀  ▀ ▀▀  █▪▀▀▀ ▀▀▀     ·▀▀█. . ▀   ▀▀▀ .▀  ▀
+        ";
         #endregion
 
         public int yPos = 12; // position de base
@@ -233,7 +247,7 @@ namespace SpicyInvader
                 case 1:
                     Game jeu = new Game();
                     jeu.Difficulty = difficulty;                  
-                    jeu.Play();
+                    jeu.Play();                   
                     break;
                 case 2:
                     Console.Clear();
@@ -252,6 +266,12 @@ namespace SpicyInvader
                     break;
             }
 
+        }
+
+        public void DisplayGameOverMenu()
+        {
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine(_GAMEOVER);
         }
 
         /// <summary>

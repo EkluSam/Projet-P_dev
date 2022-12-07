@@ -9,15 +9,9 @@ namespace SpicyInvader
     public class Bullet
     {
 
-        private static string[] _bullet = new string[1]
-        {
-            "|",
-        };
+        private char _bullet = '|';
 
-        private static string[] _void = new string[1]
-        {
-            " ",
-        };
+        private char _void = ' ';
 
         private int speedY = 1;
         
@@ -62,13 +56,13 @@ namespace SpicyInvader
         public void DrawBullet()
         {
             Console.SetCursorPosition(this.X,this.Y);
-            Console.WriteLine(_bullet[0]);
+            Console.WriteLine(_bullet);
         }
 
         public void EraseBullet()
         {
             Console.SetCursorPosition(this._x,this._y);
-            Console.WriteLine(_void[0]);
+            Console.WriteLine(_void);
         }
 
 
