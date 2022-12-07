@@ -143,8 +143,8 @@ namespace SpicyInvader
                 
             }
             else
-            {               
-                
+            {
+                menus.DisplayGameOverMenu(_playerScore);
             }
         }
         /// <summary>

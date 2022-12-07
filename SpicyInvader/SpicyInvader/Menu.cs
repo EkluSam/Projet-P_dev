@@ -17,7 +17,7 @@ namespace SpicyInvader
 
         #region Menu
         /// <summary>
-        /// Titre de l'application
+        /// Titre de l'application SLANT
         /// </summary>
         private const string _TITLE = @"
                  _____ _____        _____ ______   _____ _   ___      __     _____  ______ _____   _____ 
@@ -96,19 +96,19 @@ namespace SpicyInvader
         private const string _NAVARROW = "  <--- ";
 
         private const string _PAUSE = @"
-                                                 ▄▄▄· ▄▄▄· ▄• ▄▌.▄▄ · ▄▄▄ .
-                                                ▐█ ▄█▐█ ▀█ █▪██▌▐█ ▀. ▀▄.▀·
-                                                 ██▀·▄█▀▀█ █▌▐█▌▄▀▀▀█▄▐▀▀▪▄
-                                                ▐█▪·•▐█ ▪▐▌▐█▄█▌▐█▄▪▐█▐█▄▄▌
-                                                .▀    ▀  ▀  ▀▀▀  ▀▀▀▀  ▀▀▀ 
+                                                ____  ___   __  _______ ______
+                                               / __ \/   | / / / / ___// ____/
+                                              / /_/ / /| |/ / / /\__ \/ __/   
+                                             / ____/ ___ / /_/ /___/ / /___   
+                                            /_/   /_/  |_\____//____/_____/ 
         ";
 
         private const string _GAMEOVER = @"
-                                         ▄▄ •  ▄▄▄· • ▌ ▄ ·. ▄▄▄ .    .▄▄▄   ▌ ▐·▄▄▄ .▄▄▄  
-                                        ▐█ ▀ ▪▐█ ▀█ ·██ ▐███▪▀▄.▀·    ▐▀•▀█ ▪█·█▌▀▄.▀·▀▄ █·
-                                        ▄█ ▀█▄▄█▀▀█ ▐█ ▌▐▌▐█·▐▀▀▪▄    █▌·.█▌▐█▐█•▐▀▀▪▄▐▀▀▄ 
-                                        ▐█▄▪▐█▐█ ▪▐▌██ ██▌▐█▌▐█▄▄▌    ▐█▪▄█· ███ ▐█▄▄▌▐█•█▌
-                                        ·▀▀▀▀  ▀  ▀ ▀▀  █▪▀▀▀ ▀▀▀     ·▀▀█. . ▀   ▀▀▀ .▀  ▀
+                                    _________    __  _________   ____ _    ____________ 
+                                   / ____/   |  /  |/  / ____/  / __ \ |  / / ____/ __ \
+                                  / / __/ /| | / /|_/ / __/    / / / / | / / __/ / /_/ /
+                                 / /_/ / ___ |/ /  / / /___   / /_/ /| |/ / /___/ _, _/ 
+                                 \____/_/  |_/_/  /_/_____/   \____/ |___/_____/_/ |_|                                 
         ";
         #endregion
 
@@ -268,10 +268,16 @@ namespace SpicyInvader
 
         }
 
-        public void DisplayGameOverMenu()
+        /// <summary>
+        /// Méthode qui affiche le menu gave over
+        /// </summary>
+        /// <param name="playerScore">score du joueur au moment ou il a perdu</param>
+        public void DisplayGameOverMenu(int playerScore)
         {
+            Console.Clear();
             Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine(_GAMEOVER);
+            Console.WriteLine("Votre Score : " + playerScore);
         }
 
         /// <summary>
