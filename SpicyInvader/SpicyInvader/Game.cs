@@ -52,7 +52,8 @@ namespace SpicyInvader
             int xPos = 57; 
             int yPos = 40;
             int fps = 0;
-            int counter = 0;
+            int counterFps = 0;
+            int alienBulletCooldown = 0;
             
 
             Ship.DrawRocketShip(xPos, yPos);
@@ -70,12 +71,15 @@ namespace SpicyInvader
             while (true)
             {
 
-                if (counter == fps)
+
+                
+
+                if (counterFps == fps)
                 {
-                    counter = 0;
+                    counterFps = 0;
                     bullets.MoveAllBullets();
                     CheckBulletCollision(aliens,bullets);                   
-                    if(aliens.isGameOver())
+                    if(aliens.IsGameOver())
                     {
                         _isWon = false;
                         break;
@@ -87,6 +91,7 @@ namespace SpicyInvader
                     aliens.MoveAllAliens();
 
                 }
+                aliens.VerifyShootingCooldown(bullets,_difficulty);
 
                 Console.SetCursorPosition(0, 3);
 
@@ -134,7 +139,8 @@ namespace SpicyInvader
 
                     }
                 }
-                counter++;
+                counterFps++;
+                alienBulletCooldown++;
             }
 
             // Fin du jeu vérifie si le joueur à gagné la partie
@@ -175,6 +181,13 @@ namespace SpicyInvader
             foreach (Bullet bullet in bullets.Bullets)
             {
                 if(bullet.Y <= 10)
+                {
+                    bullet.EraseBullet();
+                    bullets.Bullets.Remove(bullet);
+                    bullets.CurrentBullets--;
+                    return;
+                }
+                if(bullet.Y >= 40)
                 {
                     bullet.EraseBullet();
                     bullets.Bullets.Remove(bullet);

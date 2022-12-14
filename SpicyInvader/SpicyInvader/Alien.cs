@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using System.Threading;
 namespace SpicyInvader
 {
     public class Alien
@@ -74,12 +74,19 @@ namespace SpicyInvader
             set { _alive = value; }
         }
 
-        private int _counter;
+        private int _mouvementCounter;
 
+        private int _shootCooldown;
+
+        public int ShootCooldown { get { return _shootCooldown; } set { _shootCooldown = value; } }
+
+        private Random _random = new Random();
         public Alien(int x, int y)
         {
             this._x = x;
             this._y = y;
+            Thread.Sleep(5);
+            this._shootCooldown = _random.Next(0,25000);
         }
 
         /// <summary>
@@ -114,7 +121,7 @@ namespace SpicyInvader
             int x = this._x;
             int y = this._y;
 
-            if (_counter > 7)
+            if (_mouvementCounter > 7)
             {
                 for (int i = 0; i < _alien.Length; i++)
                 {
@@ -122,13 +129,13 @@ namespace SpicyInvader
                     Console.Write(_alienMoving[i]);
                     y++;
                 }
-                if(_counter == 15)
+                if(_mouvementCounter == 15)
                 {
-                    _counter = 0;
+                    _mouvementCounter = 0;
                 }
                 else
                 {
-                    _counter++;
+                    _mouvementCounter++;
                 }
             }
             else
@@ -139,7 +146,7 @@ namespace SpicyInvader
                     Console.Write(_alien[i]);
                     y++;
                 }
-                _counter++;
+                _mouvementCounter++;
             }
             
         }

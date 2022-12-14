@@ -133,7 +133,7 @@ namespace SpicyInvader
         /// </summary>
         /// <returns>True si les aliens sont arrivé à 40 sur la position Y,
         ///          false si les aliens n'y sont pas encore</returns>
-        public bool isGameOver()
+        public bool IsGameOver()
         {
             foreach(Alien alien in this._aliens)
             {
@@ -143,6 +143,31 @@ namespace SpicyInvader
                 }
             }
             return false;
+        }
+
+        public void VerifyShootingCooldown(Magazine bullets,int difficulty)
+        {
+            foreach(Alien alien in this._aliens)
+            {
+                alien.ShootCooldown++;
+                if(difficulty == 2)
+                {
+                    if (alien.ShootCooldown >= 25000)
+                    {
+                        alien.ShootCooldown = 0;
+                        bullets.CreateBullet(alien.X, alien.Y + 5, 1);
+                    }
+                }
+                else
+                {
+                    if (alien.ShootCooldown >= 40000)
+                    {
+                        alien.ShootCooldown = 0;
+                        bullets.CreateBullet(alien.X, alien.Y + 5, 1);
+                    }
+                }
+                
+            }
         }
     }
 }

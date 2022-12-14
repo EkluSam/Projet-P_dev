@@ -31,7 +31,7 @@ namespace UnitTestProject1
         [TestMethod]
         public void TestMethod3()
         {
-            Alien firstAlien = new Alien();
+            Alien firstAlien = new Alien(3,3);
             Bullet shipBullet = new Bullet();
             shipBullet.Y += 7;
 
