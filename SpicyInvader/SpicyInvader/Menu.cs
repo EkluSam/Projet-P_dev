@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace SpicyInvader
@@ -259,13 +260,42 @@ namespace SpicyInvader
                     break;
                 case 4:
                     Console.Clear();
-                    // DisplayAbout();
+                    DisplayAbout();
                     break;
                 case 5:
                     Environment.Exit(0);
                     break;
             }
 
+        }
+
+        public void DisplayAbout()
+        {
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine(_TITLE);
+            Console.SetCursorPosition(40, 17);
+            string about = "!Space invader réalisé en C# dans projet dev!\n\t\t\t\t\t     Réalisé par Samuel EKLU (CIN2A-2022)\n\t\t\t\t\t        Chef de projet, Xavier Carrel";
+            foreach (char c in about)
+            {
+                Console.Write(c);
+                Thread.Sleep(5);
+            }
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.SetCursorPosition(40, 24);
+            string escape = "   Appuyez 'Escape' pour revenir en arrière";
+            foreach (char c in escape)
+            {
+                Console.Write(c);
+                Thread.Sleep(5);
+            }
+            ConsoleKeyInfo Key = Console.ReadKey(true);
+
+            if (Key.Key == ConsoleKey.Escape)
+            {
+                DisplayMainMenu();
+            }
+
+            
         }
 
         /// <summary>
