@@ -282,17 +282,22 @@ namespace SpicyInvader
             }
             Console.ForegroundColor = ConsoleColor.White;
             Console.SetCursorPosition(40, 24);
-            string escape = "   Appuyez 'Escape' pour revenir en arrière";
+            string escape = "  " +
+                "" +
+                " Appuyez 'Escape' pour revenir en arrière";
             foreach (char c in escape)
             {
                 Console.Write(c);
                 Thread.Sleep(5);
             }
-            ConsoleKeyInfo Key = Console.ReadKey(true);
-
-            if (Key.Key == ConsoleKey.Escape)
+           
+            while (true)
             {
-                DisplayMainMenu();
+                ConsoleKeyInfo Key = Console.ReadKey(true);
+                if (Key.Key == ConsoleKey.Escape)
+                {
+                    DisplayMainMenu();
+                }
             }
 
             

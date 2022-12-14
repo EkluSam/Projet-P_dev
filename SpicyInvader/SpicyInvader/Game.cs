@@ -159,14 +159,13 @@ namespace SpicyInvader
         /// </summary>
         /// <param name="playerLife">nombre de vie du joueur</param>
         public void DisplayHearts(byte playerLife)
-        {
-            char heart = '♥';
-            string hearts = "";           
-            for (int i = 0; i < playerLife; i++)
-            {
-                hearts += heart;
-            }
+        {           
+            string hearts = "♥♥♥";           
             Console.SetCursorPosition(110, 3);
+            foreach (char c in hearts)
+            {
+
+            }
             Console.Write("Vies : " + hearts);
         }
 
@@ -195,9 +194,11 @@ namespace SpicyInvader
                     bullets.CurrentBullets--;
                     return;
                 }
-                if(bullet.X > _ship.X && bullet.X < _ship.X +10 && bullet.Y <= _ship.Y + 5 && bullet.Y >= _ship.Y)
+                if(bullet.X > _ship.X && bullet.X < _ship.X +10 && bullet.Y <= _ship.Y + 5 && bullet.Y == _ship.Y)
                 {
-
+                    bullet.EraseBullet();
+                    bullets.Bullets.Remove(bullet);
+                    bullets.CurrentBullets--;
                     _playerLife--;
                     return;
                 }

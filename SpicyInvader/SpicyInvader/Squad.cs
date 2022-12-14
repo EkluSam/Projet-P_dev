@@ -191,7 +191,10 @@ namespace SpicyInvader
                     }
                     else
                     {
-                        bullets.CreateBullet(alien.X + 4, alien.Y + 6, 1);
+                        if (this._aliens[index].Alive)
+                        {
+                            bullets.CreateBullet(alien.X + 4, alien.Y + 6, 1);
+                        }
                     }
                 }
                 index++;
