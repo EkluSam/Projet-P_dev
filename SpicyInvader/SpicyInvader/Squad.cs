@@ -49,7 +49,14 @@ namespace SpicyInvader
         {
             for(int i = 0; i < _aliens.Count; i++)
             {
-                this._aliens[i].DrawAlien();
+                if (this._aliens[i].Alive)
+                {
+                    this._aliens[i].DrawAlien();
+                }
+                else
+                {
+
+                }
             }
         }
 
@@ -57,7 +64,10 @@ namespace SpicyInvader
         {
             for (int i = 0; i < _aliens.Count; i++)
             {
-                this._aliens[i].EraseAlien();
+                if (this._aliens[i].Alive)
+                {
+                    this._aliens[i].EraseAlien();
+                }              
             }
         }
 
@@ -145,28 +155,46 @@ namespace SpicyInvader
             return false;
         }
 
+        /// <summary>
+        /// Méthode qui vérifie les cooldowns des aliens les aliens tirent si le cooldown est au bon moment
+        /// </summary>
+        /// <param name="bullets">le chargeur qui contient les balles</param>
+        /// <param name="difficulty">la difficulté de la partie</param>
         public void VerifyShootingCooldown(Magazine bullets,int difficulty)
         {
-            foreach(Alien alien in this._aliens)
+            int cooldown = 0; 
+            int index = 0;
+            // le cooldown va varier en fonction de la difficulté de la partie
+            if(difficulty == 2)
             {
+                cooldown = 25000;
+            }
+            else
+            {
+                cooldown = 40000;
+            }
+
+            foreach(Alien alien in this._aliens)
+            {               
                 alien.ShootCooldown++;
-                if(difficulty == 2)
+                if (alien.ShootCooldown >= cooldown)
                 {
-                    if (alien.ShootCooldown >= 25000)
+                    alien.ShootCooldown = 0;
+                    // Si l'alien a un équipier devant lui il doit vérifier si il est en vie pour savoir si il peut tirer
+                    // sinon sa veut dire qu'il est devant et qu'il peut tirer 
+                    if (index+4 < this._aliens.Count)
                     {
-                        alien.ShootCooldown = 0;
-                        bullets.CreateBullet(alien.X, alien.Y + 5, 1);
+                        if (!this._aliens[index+4].Alive)
+                        {
+                            bullets.CreateBullet(alien.X + 4, alien.Y + 6, 1);
+                        }
+                    }
+                    else
+                    {
+                        bullets.CreateBullet(alien.X + 4, alien.Y + 6, 1);
                     }
                 }
-                else
-                {
-                    if (alien.ShootCooldown >= 40000)
-                    {
-                        alien.ShootCooldown = 0;
-                        bullets.CreateBullet(alien.X, alien.Y + 5, 1);
-                    }
-                }
-                
+                index++;
             }
         }
     }

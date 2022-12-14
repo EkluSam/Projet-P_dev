@@ -25,10 +25,10 @@ namespace SpicyInvader
 
         private int _playerScore = 0;
 
-        RocketShip Ship = new RocketShip();
-        Squad aliens = new Squad();
-        Magazine bullets = new Magazine();
-        Menu menus = new Menu();
+        private RocketShip _ship = new RocketShip();
+        private Squad _aliens = new Squad();
+        private Magazine _bullets = new Magazine();
+        private Menu _menus = new Menu();
 
         /// <summary>
         /// Méthode PLAY qui lance une partie de Space Invader
@@ -50,13 +50,13 @@ namespace SpicyInvader
 
 
             int xPos = 57; 
-            int yPos = 40;
+            int yPos = 44;
             int fps = 0;
             int counterFps = 0;
             int alienBulletCooldown = 0;
-            
+            int counterBullet = 0;
 
-            Ship.DrawRocketShip(xPos, yPos);
+            _ship.DrawRocketShip(xPos, yPos);
 
             // Change la difficulté (vitesse des aliens)
             if(this._difficulty == 2)
@@ -77,9 +77,9 @@ namespace SpicyInvader
                 if (counterFps == fps)
                 {
                     counterFps = 0;
-                    bullets.MoveAllBullets();
-                    CheckBulletCollision(aliens,bullets);                   
-                    if(aliens.IsGameOver())
+                    _bullets.MoveAllBullets();                
+                    CheckBulletCollision(_aliens,_bullets);                   
+                    if(_aliens.IsGameOver())
                     {
                         _isWon = false;
                         break;
@@ -88,10 +88,10 @@ namespace SpicyInvader
                     {
                         break;
                     }
-                    aliens.MoveAllAliens();
+                    _aliens.MoveAllAliens();
 
                 }
-                aliens.VerifyShootingCooldown(bullets,_difficulty);
+                _aliens.VerifyShootingCooldown(_bullets,_difficulty);
 
                 Console.SetCursorPosition(0, 3);
 
@@ -104,24 +104,24 @@ namespace SpicyInvader
                     ConsoleKeyInfo Key = Console.ReadKey(true);
                     if (Key.Key == ConsoleKey.RightArrow)
                     {
-                        if (Ship.X != 112)
+                        if (_ship.X != 112)
                         {
-                            Ship.EraseRocketShip(Ship.X, Ship.Y);
-                            Ship.X += 1;
-                            Ship.DrawRocketShip(Ship.X, Ship.Y);
+                            _ship.EraseRocketShip(_ship.X, _ship.Y);
+                            _ship.X += 1;
+                            _ship.DrawRocketShip(_ship.X, _ship.Y);
                         }
                         else
                         {
-
+                           
                         }
                     }
                     if (Key.Key == ConsoleKey.LeftArrow)
                     {
-                        if (Ship.X != 4)
+                        if (_ship.X != 4)
                         {
-                            Ship.EraseRocketShip(Ship.X, Ship.Y);
-                            Ship.X -= 1;
-                            Ship.DrawRocketShip(Ship.X, Ship.Y);
+                            _ship.EraseRocketShip(_ship.X, _ship.Y);
+                            _ship.X -= 1;
+                            _ship.DrawRocketShip(_ship.X, _ship.Y);
                         }
                         else
                         {
@@ -132,7 +132,7 @@ namespace SpicyInvader
                     // Tirer avec le vaisseau
                     if (Key.Key == ConsoleKey.UpArrow)
                     {
-                        bullets.CreateBullet(Ship.X+3,Ship.Y-1,-1);
+                        _bullets.CreateBullet(_ship.X+3,_ship.Y-1,-1);
                     }
                     else
                     {
@@ -140,7 +140,8 @@ namespace SpicyInvader
                     }
                 }
                 counterFps++;
-                alienBulletCooldown++;
+                counterBullet++;
+
             }
 
             // Fin du jeu vérifie si le joueur à gagné la partie
@@ -150,7 +151,7 @@ namespace SpicyInvader
             }
             else
             {
-                menus.DisplayGameOverMenu(_playerScore);
+                _menus.DisplayGameOverMenu(_playerScore);
             }
         }
         /// <summary>
@@ -187,26 +188,28 @@ namespace SpicyInvader
                     bullets.CurrentBullets--;
                     return;
                 }
-                if(bullet.Y >= 40)
+                if(bullet.Y >= 48)
                 {
                     bullet.EraseBullet();
                     bullets.Bullets.Remove(bullet);
                     bullets.CurrentBullets--;
                     return;
                 }
-                else
+                if(bullet.X > _ship.X && bullet.X < _ship.X +10 && bullet.Y <= _ship.Y + 5 && bullet.Y >= _ship.Y)
                 {
-                    
+
+                    _playerLife--;
+                    return;
                 }
                 foreach (Alien alien in squad.Aliens)
                 {
                     if (alien.Alive)
                     {
-                        if (bullet.X > alien.X && bullet.X < alien.X+10 && bullet.Y <= alien.Y+5 && bullet.Y >= alien.Y)
-                        {
+                        // si la balle touche un alien et qu'elle a été tirer par le joueur, l'alien meurt
+                        if (bullet.X > alien.X && bullet.X < alien.X+10 && bullet.Y <= alien.Y+5 && bullet.Y >= alien.Y && bullet.SpeedY == -1)
+                        {                           
                             alien.Alive = false;
-                            alien.EraseAlien();
-                            squad.Aliens.Remove(alien);
+                            alien.EraseAlien();                            
                             bullet.EraseBullet();
                             bullets.Bullets.Remove(bullet);
                             _playerScore += 150;
