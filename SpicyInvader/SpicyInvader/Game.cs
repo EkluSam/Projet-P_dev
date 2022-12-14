@@ -159,12 +159,20 @@ namespace SpicyInvader
         /// </summary>
         /// <param name="playerLife">nombre de vie du joueur</param>
         public void DisplayHearts(byte playerLife)
-        {           
+        {
+            byte index = 0;
             string hearts = "♥♥♥";           
             Console.SetCursorPosition(110, 3);
             foreach (char c in hearts)
             {
-
+                if (index == playerLife)
+                {
+                    return;
+                }
+                else
+                {
+                    Console.Write(c);
+                }
             }
             Console.Write("Vies : " + hearts);
         }
