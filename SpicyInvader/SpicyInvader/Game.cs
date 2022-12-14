@@ -127,7 +127,7 @@ namespace SpicyInvader
                     // Tirer avec le vaisseau
                     if (Key.Key == ConsoleKey.UpArrow)
                     {
-                        bullets.CreateBullet(Ship.X+3,Ship.Y-1);
+                        bullets.CreateBullet(Ship.X+3,Ship.Y-1,-1);
                     }
                     else
                     {

@@ -13,12 +13,12 @@ namespace SpicyInvader
 
         private char _void = ' ';
 
-        private int speedY = 1;
+        private int _speedY;
         
         public int SpeedY
         {
-            get { return speedY; }
-            private set { speedY = value; }
+            get { return _speedY; }
+            private set { _speedY = value; }
         }
 
         /// <summary>
@@ -43,10 +43,11 @@ namespace SpicyInvader
             set { _y = value; }
         }
 
-        public Bullet(int x, int y)
+        public Bullet(int x, int y, int speedY)
         {
             this.X = x;
             this.Y = y;
+            this._speedY = speedY;
         }
         public Bullet()
         {

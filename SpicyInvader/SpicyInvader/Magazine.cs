@@ -29,11 +29,11 @@ namespace SpicyInvader
         {
             _currentBullets = 0;
         }
-        public void CreateBullet(int x, int y)
+        public void CreateBullet(int x, int y,int speedY)
         {
             if(CurrentBullets < 10)
             {
-                Bullets.Add(new Bullet(x, y - 1));
+                Bullets.Add(new Bullet(x, y - 1,speedY));
                 _currentBullets++;
             }
             else
@@ -64,7 +64,7 @@ namespace SpicyInvader
             EraseAllBullets();
             for (int i = 0; i < Bullets.Count;i++)
             {
-                Bullets[i].Y -= Bullets[i].SpeedY;
+                Bullets[i].Y += Bullets[i].SpeedY;
             }
             DrawAllBullets();
         }
