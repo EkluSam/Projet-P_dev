@@ -53,7 +53,6 @@ namespace SpicyInvader
             int yPos = 44;
             int fps = 0;
             int counterFps = 0;
-            int alienBulletCooldown = 0;
             int counterBullet = 0;
 
             _ship.DrawRocketShip(xPos, yPos);
@@ -71,12 +70,18 @@ namespace SpicyInvader
             while (true)
             {
 
-
+                
                 
 
                 if (counterFps == fps)
                 {
                     counterFps = 0;
+                    if (_aliens.isGameWon())
+                    {
+                        _isWon = true;
+                        break;
+                    }
+
                     _bullets.MoveAllBullets();                
                     CheckBulletCollision(_aliens,_bullets);                   
                     if(_aliens.IsGameOver())
@@ -174,7 +179,6 @@ namespace SpicyInvader
                     Console.Write(c);
                 }
             }
-            Console.Write("Vies : " + hearts);
         }
 
         public void DisplayScore(int playerScore)

@@ -83,11 +83,11 @@ namespace SpicyInvader
             int rightAlienX = 0;
             foreach (Alien alien in this._aliens)
             {
-                if (alien.X < leftAlienX)
+                if (alien.X < leftAlienX && alien.Alive)
                 {
                     leftAlienX = alien.X;
                 }
-                if (alien.X > rightAlienX)
+                if (alien.X > rightAlienX && alien.Alive)
                 {
                     rightAlienX = alien.X;
                 }
@@ -184,7 +184,7 @@ namespace SpicyInvader
                     // sinon sa veut dire qu'il est devant et qu'il peut tirer 
                     if (index+4 < this._aliens.Count)
                     {
-                        if (!this._aliens[index+4].Alive)
+                        if (!this._aliens[index+4].Alive && this._aliens[index].Alive)
                         {
                             bullets.CreateBullet(alien.X + 4, alien.Y + 6, 1);
                         }
@@ -199,6 +199,22 @@ namespace SpicyInvader
                 }
                 index++;
             }
+        }
+
+        /// <summary>
+        /// Méthode qui permet de savoir si tous les aliens sont en vie ou pas
+        /// </summary>
+        /// <returns>true si les aliens sont mort, false si un des aliens est encore en vie</returns>
+        public bool isGameWon()
+        {
+            foreach(Alien alien in this._aliens)
+            {
+                if (alien.Alive)
+                {
+                    return false;
+                }
+            }
+            return true;
         }
     }
 }

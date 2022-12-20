@@ -304,7 +304,7 @@ namespace SpicyInvader
         }
 
         /// <summary>
-        /// Méthode qui affiche le menu gave over
+        /// Méthode qui affiche le menu game over
         /// </summary>
         /// <param name="playerScore">score du joueur au moment ou il a perdu</param>
         public void DisplayGameOverMenu(int playerScore)
