@@ -19,8 +19,6 @@ namespace SpicyInvader
             set { _difficulty = value; }
         }
 
-        private bool _isWon = false;
-
         private byte _playerLife = 3;
 
         private int _playerScore = 0;
@@ -69,9 +67,6 @@ namespace SpicyInvader
 
             while (true)
             {
-
-                
-                
 
                 if (counterFps == fps)
                 {
@@ -218,10 +213,6 @@ namespace SpicyInvader
                             bullets.Bullets.Remove(bullet);
                             bullets.CurrentBullets--;
                             _playerScore += 150;
-                            if (squad.Aliens.Count == 0)
-                            {
-                                _isWon = true;
-                            }
                             return;
                         }
                     }

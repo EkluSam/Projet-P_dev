@@ -31,7 +31,7 @@ namespace SpicyInvader
         }
         public void CreateBullet(int x, int y,int speedY)
         {
-            if(CurrentBullets < 10)
+            if(CurrentBullets < 5)
             {
                 Bullets.Add(new Bullet(x, y - 1,speedY));
                 _currentBullets++;
