@@ -81,7 +81,11 @@ namespace SpicyInvader
                         _isWon = true;
                         break;
                     }
-
+                    if (_playerLife <= 0)
+                    {
+                        _isWon = false;
+                        break;
+                    }
                     _bullets.MoveAllBullets();                
                     CheckBulletCollision(_aliens,_bullets);                   
                     if(_aliens.IsGameOver())
@@ -166,18 +170,20 @@ namespace SpicyInvader
         public void DisplayHearts(byte playerLife)
         {
             byte index = 0;
-            string hearts = "♥♥♥";           
+            string hearts = "♥♥♥";  
+            char empty = ' ';
             Console.SetCursorPosition(110, 3);
             foreach (char c in hearts)
             {
-                if (index == playerLife)
+                if (index >= _playerLife)
                 {
-                    return;
+                   Console.Write(empty);
                 }
                 else
                 {
                     Console.Write(c);
                 }
+                index++;
             }
         }
 
@@ -206,7 +212,7 @@ namespace SpicyInvader
                     bullets.CurrentBullets--;
                     return;
                 }
-                if(bullet.X > _ship.X && bullet.X < _ship.X +10 && bullet.Y <= _ship.Y + 5 && bullet.Y == _ship.Y)
+                if(bullet.X >= _ship.X && bullet.X < _ship.X+7 && bullet.Y >= _ship.Y && bullet.Y <= _ship.Y +4)
                 {
                     bullet.EraseBullet();
                     bullets.Bullets.Remove(bullet);
@@ -214,6 +220,7 @@ namespace SpicyInvader
                     _playerLife--;
                     return;
                 }
+                // quand un alien est touché
                 foreach (Alien alien in squad.Aliens)
                 {
                     if (alien.Alive)

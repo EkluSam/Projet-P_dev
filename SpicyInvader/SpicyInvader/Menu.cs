@@ -95,7 +95,9 @@ namespace SpicyInvader
         /// Flèche qui indique sur quel bouton le joueur se situe
         /// </summary>
         private const string _NAVARROW = "  <--- ";
-
+        /// <summary>
+        /// Titre Pause
+        /// </summary>
         private const string _PAUSE = @"
                                                 ____  ___   __  _______ ______
                                                / __ \/   | / / / / ___// ____/
@@ -103,13 +105,23 @@ namespace SpicyInvader
                                              / ____/ ___ / /_/ /___/ / /___   
                                             /_/   /_/  |_\____//____/_____/ 
         ";
-
+        /// <summary>
+        /// Titre game over
+        /// </summary>
         private const string _GAMEOVER = @"
                                     _________    __  _________   ____ _    ____________ 
                                    / ____/   |  /  |/  / ____/  / __ \ |  / / ____/ __ \
                                   / / __/ /| | / /|_/ / __/    / / / / | / / __/ / /_/ /
                                  / /_/ / ___ |/ /  / / /___   / /_/ /| |/ / /___/ _, _/ 
                                  \____/_/  |_/_/  /_/_____/   \____/ |___/_____/_/ |_|                                 
+        ";
+
+        private const string _GAMEWON = @"       
+                                     _    ______________________  ________  ______
+                                    | |  / /  _/ ____/_  __/ __ \/  _/ __ \/ ____/
+                                    | | / // // /     / / / / / // // /_/ / __/   
+                                    | |/ // // /___  / / / /_/ // // _, _/ /___   
+                                    |___/___/\____/ /_/  \____/___/_/ |_/_____/ 
         ";
         #endregion
 
@@ -282,9 +294,7 @@ namespace SpicyInvader
             }
             Console.ForegroundColor = ConsoleColor.White;
             Console.SetCursorPosition(40, 24);
-            string escape = "  " +
-                "" +
-                " Appuyez 'Escape' pour revenir en arrière";
+            string escape = "  Appuyez 'Escape' pour revenir en arrière";
             foreach (char c in escape)
             {
                 Console.Write(c);
@@ -302,17 +312,70 @@ namespace SpicyInvader
 
             
         }
+        /// <summary>
+        /// Méthode qui affiche le menu de victoire
+        /// </summary>
+        /// <param name="playerScore"></param>
+        public void DisplayGameWonMenu(int playerScore)
+        {
+            string gameWonSentence = "";
+            string scoreDisplay = "Votre Score: ";
+            Console.Clear();
+            Console.ForegroundColor = ConsoleColor.Green;
 
+        }
         /// <summary>
         /// Méthode qui affiche le menu game over
         /// </summary>
         /// <param name="playerScore">score du joueur au moment ou il a perdu</param>
         public void DisplayGameOverMenu(int playerScore)
         {
+            string gameOverSentence = "Vous avez perdu.";
+            string scoreDisplay = "Votre Score: ";
             Console.Clear();
             Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine(_GAMEOVER);
-            Console.WriteLine("Votre Score : " + playerScore);
+            Console.SetCursorPosition(55, 17);
+            foreach (char c in gameOverSentence)
+            {
+                Console.Write(c);
+                Thread.Sleep(5);
+            }
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.SetCursorPosition(55, 18);
+            foreach (char c in scoreDisplay)
+            {
+                Console.Write(c);
+                Thread.Sleep(5);
+            }
+            Console.SetCursorPosition(68, 18);
+            Console.WriteLine(playerScore);
+            Console.SetCursorPosition(40, 24);
+            string escape = "  Appuyez 'Escape' pour revenir en arrière";
+            foreach (char c in escape)
+            {
+                Console.Write(c);
+                Thread.Sleep(5);
+            }
+            Console.SetCursorPosition(40, 25);
+            string quit = "  Appuyez 'X' pour quitter le jeu";
+            foreach (char c in quit)
+            {
+                Console.Write(c);
+                Thread.Sleep(5);
+            }
+            while (true)
+            {
+                ConsoleKeyInfo Key = Console.ReadKey(true);
+                if (Key.Key == ConsoleKey.Escape)
+                {
+                    DisplayMainMenu();
+                }
+                if (Key.Key == ConsoleKey.X)
+                {
+                   Environment.Exit(0);
+                }
+            }
         }
 
         /// <summary>
