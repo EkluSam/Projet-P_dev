@@ -308,22 +308,51 @@ namespace SpicyInvader
                 {
                     DisplayMainMenu();
                 }
-            }
-
-            
+            }          
         }
-        /// <summary>
-        /// Méthode qui affiche le menu de victoire
-        /// </summary>
-        /// <param name="playerScore"></param>
-        public void DisplayGameWonMenu(int playerScore)
-        {
-            string gameWonSentence = "";
-            string scoreDisplay = "Votre Score: ";
-            Console.Clear();
-            Console.ForegroundColor = ConsoleColor.Green;
-
-        }
+        #region new feature
+        ///// <summary>
+        ///// Méthode qui affiche le menu de victoire
+        ///// </summary>
+        ///// <param name="playerScore"></param>
+        //public void DisplayGameWonMenu(int playerScore)
+        //{
+        //    string gameWonSentence = "";
+        //    string scoreDisplay = "Votre Score: ";
+        //    Console.Clear();
+        //    Console.ForegroundColor = ConsoleColor.Green;
+        //    Console.WriteLine(_GAMEWON);
+        //    Console.SetCursorPosition(55, 17);
+        //    foreach (char c in gameWonSentence)
+        //    {
+        //        Console.Write(c);
+        //        Thread.Sleep(5);
+        //    }
+        //    Console.ForegroundColor = ConsoleColor.White;
+        //    Console.SetCursorPosition(55, 18);
+        //    foreach (char c in scoreDisplay)
+        //    {
+        //        Console.Write(c);
+        //        Thread.Sleep(5);
+        //    }
+        //    Console.SetCursorPosition(68, 18);
+        //    Console.WriteLine(playerScore);
+        //    Console.SetCursorPosition(40, 24);
+        //    string escape = "  Appuyez 'Escape' pour revenir en arrière";
+        //    foreach (char c in escape)
+        //    {
+        //        Console.Write(c);
+        //        Thread.Sleep(5);
+        //    }
+        //    Console.SetCursorPosition(40, 26);
+        //    string quit = "  Appuyez 'X' pour quitter le jeu";
+        //    foreach (char c in quit)
+        //    {
+        //        Console.Write(c);
+        //        Thread.Sleep(5);
+        //    }
+        //}
+        #endregion
         /// <summary>
         /// Méthode qui affiche le menu game over
         /// </summary>
@@ -342,13 +371,13 @@ namespace SpicyInvader
                 Thread.Sleep(5);
             }
             Console.ForegroundColor = ConsoleColor.White;
-            Console.SetCursorPosition(55, 18);
+            Console.SetCursorPosition(55, 19);
             foreach (char c in scoreDisplay)
             {
                 Console.Write(c);
                 Thread.Sleep(5);
             }
-            Console.SetCursorPosition(68, 18);
+            Console.SetCursorPosition(68, 19);
             Console.WriteLine(playerScore);
             Console.SetCursorPosition(40, 24);
             string escape = "  Appuyez 'Escape' pour revenir en arrière";
@@ -357,7 +386,7 @@ namespace SpicyInvader
                 Console.Write(c);
                 Thread.Sleep(5);
             }
-            Console.SetCursorPosition(40, 25);
+            Console.SetCursorPosition(40, 26);
             string quit = "  Appuyez 'X' pour quitter le jeu";
             foreach (char c in quit)
             {

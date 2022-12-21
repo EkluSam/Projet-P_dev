@@ -199,22 +199,22 @@ namespace SpicyInvader
                 }
                 index++;
             }
-        }
-
+        } 
         /// <summary>
         /// Méthode qui permet de savoir si tous les aliens sont en vie ou pas
         /// </summary>
         /// <returns>true si les aliens sont mort, false si un des aliens est encore en vie</returns>
-        public bool isGameWon()
+        public void areAliensDead()
         {
             foreach(Alien alien in this._aliens)
             {
                 if (alien.Alive)
                 {
-                    return false;
+                    return;
                 }
             }
-            return true;
+            this._aliens.Clear();
+            CreateAlien();
         }
     }
 }

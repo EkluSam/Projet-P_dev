@@ -76,27 +76,18 @@ namespace SpicyInvader
                 if (counterFps == fps)
                 {
                     counterFps = 0;
-                    if (_aliens.isGameWon())
-                    {
-                        _isWon = true;
-                        break;
-                    }
+                    _aliens.areAliensDead();
                     if (_playerLife <= 0)
                     {
-                        _isWon = false;
                         break;
                     }
                     _bullets.MoveAllBullets();                
                     CheckBulletCollision(_aliens,_bullets);                   
                     if(_aliens.IsGameOver())
                     {
-                        _isWon = false;
                         break;
                     }                    
-                    else if (_isWon)
-                    {
-                        break;
-                    }
+
                     _aliens.MoveAllAliens();
 
                 }
@@ -153,15 +144,8 @@ namespace SpicyInvader
 
             }
 
-            // Fin du jeu vérifie si le joueur à gagné la partie
-            if (_isWon)
-            {
-                
-            }
-            else
-            {
-                _menus.DisplayGameOverMenu(_playerScore);
-            }
+            _menus.DisplayGameOverMenu(_playerScore);
+
         }
         /// <summary>
         /// Méthode qui dessine le nombre de vie (en coeurs) du joueurs
@@ -232,6 +216,7 @@ namespace SpicyInvader
                             alien.EraseAlien();                            
                             bullet.EraseBullet();
                             bullets.Bullets.Remove(bullet);
+                            bullets.CurrentBullets--;
                             _playerScore += 150;
                             if (squad.Aliens.Count == 0)
                             {
