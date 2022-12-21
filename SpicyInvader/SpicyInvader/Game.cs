@@ -39,11 +39,7 @@ namespace SpicyInvader
             Console.Write("TON PSEUDO ? : ");
             string playerName = Console.ReadLine();
             Console.Clear();
-            Console.WriteLine("------------------------------------------------------------------------------------------------------------------------");
-            Console.WriteLine(playerName);                               
-            Console.WriteLine();
-
-            Console.WriteLine("------------------------------------------------------------------------------------------------------------------------");
+            
 
 
 
@@ -58,15 +54,21 @@ namespace SpicyInvader
             // Change la difficulté (vitesse des aliens)
             if(this._difficulty == 2)
             {
-                fps = 200;
+                fps = 80;
             }
             else
             {
-                fps = 800;
+                fps = 200;
             }
 
             while (true)
             {
+                _ship.DrawRocketShip(_ship.X, _ship.Y);
+                Console.SetCursorPosition(0, 0);
+                Console.WriteLine("------------------------------------------------------------------------------------------------------------------------");
+                Console.WriteLine(playerName);
+                Console.WriteLine();
+                Console.WriteLine("------------------------------------------------------------------------------------------------------------------------");
 
                 if (counterFps == fps)
                 {
@@ -127,11 +129,16 @@ namespace SpicyInvader
                     // Tirer avec le vaisseau
                     if (Key.Key == ConsoleKey.UpArrow)
                     {
-                        _bullets.CreateBullet(_ship.X+3,_ship.Y-1,-1);
+                        _bullets.CreateBullet(_ship.X+3,_ship.Y-1,-1,true);
                     }
                     else
                     {
 
+                    }
+                    //Menu Pause
+                    if (Key.Key == ConsoleKey.P)
+                    {
+                        _menus.DisplayPauseMenu();
                     }
                 }
                 counterFps++;
@@ -181,21 +188,21 @@ namespace SpicyInvader
                 {
                     bullet.EraseBullet();
                     bullets.Bullets.Remove(bullet);
-                    bullets.CurrentBullets--;
+                    bullets.CurrentShipBullets--;
                     return;
                 }
                 if(bullet.Y >= 48)
                 {
                     bullet.EraseBullet();
                     bullets.Bullets.Remove(bullet);
-                    bullets.CurrentBullets--;
+                    bullets.CurrentAlienBullets--;
                     return;
                 }
                 if(bullet.X >= _ship.X && bullet.X < _ship.X+7 && bullet.Y >= _ship.Y && bullet.Y <= _ship.Y +4)
                 {
                     bullet.EraseBullet();
                     bullets.Bullets.Remove(bullet);
-                    bullets.CurrentBullets--;
+                    bullets.CurrentAlienBullets--;
                     _playerLife--;
                     return;
                 }
@@ -205,13 +212,13 @@ namespace SpicyInvader
                     if (alien.Alive)
                     {
                         // si la balle touche un alien et qu'elle a été tirer par le joueur, l'alien meurt
-                        if (bullet.X > alien.X && bullet.X < alien.X+10 && bullet.Y <= alien.Y+5 && bullet.Y >= alien.Y && bullet.SpeedY == -1)
+                        if (bullet.X >= alien.X && bullet.X < alien.X+10 && bullet.Y <= alien.Y+4 && bullet.Y >= alien.Y && bullet.SpeedY == -1)
                         {                           
                             alien.Alive = false;
                             alien.EraseAlien();                            
                             bullet.EraseBullet();
                             bullets.Bullets.Remove(bullet);
-                            bullets.CurrentBullets--;
+                            bullets.CurrentShipBullets--;
                             _playerScore += 150;
                             return;
                         }

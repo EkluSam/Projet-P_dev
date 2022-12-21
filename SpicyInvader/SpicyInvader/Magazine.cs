@@ -11,12 +11,20 @@ namespace SpicyInvader
 
         private List<Bullet> _bullets = new List<Bullet>();
 
-        private int _currentBullets;
+        private int _currentAlienBullets = 0;
 
-        public int CurrentBullets
+        public int CurrentAlienBullets
         {
-            get { return _currentBullets; }
-            set { _currentBullets = value; }
+            get { return _currentAlienBullets; }
+            set { _currentAlienBullets = value; }
+        }
+
+        private int _currentShipBullets = 0;
+
+        public int CurrentShipBullets
+        {
+            get { return _currentShipBullets; }
+            set { _currentShipBullets = value; }
         }
 
         public List<Bullet> Bullets
@@ -27,21 +35,26 @@ namespace SpicyInvader
 
         public Magazine()
         {
-            _currentBullets = 0;
+            
         }
-        public void CreateBullet(int x, int y,int speedY)
+        public void CreateBullet(int x, int y,int speedY,bool friendly)
         {
-            if(CurrentBullets < 5)
+            if (friendly)
             {
-                Bullets.Add(new Bullet(x, y - 1,speedY));
-                _currentBullets++;
+                if (CurrentShipBullets < 5)
+                {
+                    Bullets.Add(new Bullet(x, y - 1, speedY));
+                    _currentShipBullets++;
+                }
             }
             else
             {
-
+                    Bullets.Add(new Bullet(x, y - 1, speedY));
+                    _currentAlienBullets++;              
             }      
 
         }
+
 
         public void DrawAllBullets()
         {

@@ -10,6 +10,7 @@ namespace SpicyInvader
     public class Menu
     {
         public bool music = false;
+        private bool _unpause = false;
         public int difficulty = 1;
         public Menu()
         {
@@ -243,8 +244,8 @@ namespace SpicyInvader
         public void DisplayMainMenu()
         {
             Console.Clear();
-            Console.SetWindowSize(120, 50);
-            Console.BufferHeight = 50;
+            Console.SetWindowSize(120, 51);
+            Console.BufferHeight = 51;
             
             Title();
 
@@ -435,6 +436,31 @@ namespace SpicyInvader
             ArrowMovesOptions();
 
         }
+        /// <summary>
+        /// Méthode qui permet d'afficher le menu pause
+        /// </summary>
+        public void DisplayPauseMenu()
+        {
+            Console.Clear();
+            while (true)
+            {
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine(_PAUSE);
+                Console.ForegroundColor = ConsoleColor.White;
+                Console.SetCursorPosition(40, 6);
+                Console.WriteLine(_PLAY);
+                Console.WriteLine();
+                Console.WriteLine(_QUIT);
+                ArrowMovesPause();
+                if (this._unpause)
+                {
+                    this._unpause = false;
+                    break; 
+                }
+            }
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.Clear();
+        }
 
         /// <summary>
         /// Méthode qui permet de bouger dans le menu option avec les flèches
@@ -537,6 +563,94 @@ namespace SpicyInvader
                         }
                         break;
                 }
+
+            }
+        }
+
+
+        /// <summary>
+        /// Méthode qui permet de bouger dans le menu pause avec les flèches
+        /// directionnelles HAUT et BAS
+        /// </summary>
+        public void ArrowMovesPause()
+        {
+            int xPos = 80;
+            int yPos = 9;
+
+            Console.SetCursorPosition(xPos, yPos);
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.Write(_NAVARROW);
+
+            while (true)
+            {
+                ConsoleKeyInfo Key = Console.ReadKey(true);
+                if (Key.Key == ConsoleKey.UpArrow)
+                {
+                    if (yPos <= 9)
+                    {
+                        Console.SetCursorPosition(xPos, yPos);
+                        Console.Write("         ");
+                        yPos = 15;
+                        Console.SetCursorPosition(xPos, yPos);
+                        Console.Write(_NAVARROW);
+                    }
+                    else
+                    {
+                        Console.SetCursorPosition(xPos, yPos);
+                        Console.Write("         ");
+                        yPos -= 6;
+                        Console.SetCursorPosition(xPos, yPos);
+                        Console.Write(_NAVARROW);
+                    }
+                }
+
+                if (Key.Key == ConsoleKey.DownArrow)
+                {
+                    if (yPos >= 15)
+                    {
+                        Console.SetCursorPosition(xPos, yPos);
+                        Console.Write("         ");
+                        yPos = 9;
+                        Console.SetCursorPosition(xPos, yPos);
+                        Console.Write(_NAVARROW);
+                    }
+                    else
+                    {
+                        Console.SetCursorPosition(xPos, yPos);
+                        Console.Write("         ");
+                        yPos += 6;
+                        Console.SetCursorPosition(xPos, yPos);
+                        Console.Write(_NAVARROW);
+                    }
+                }
+
+                switch (yPos)
+                {
+                    case 9:
+                        if (Key.Key == ConsoleKey.Escape)
+                        {
+                            this._unpause = true;
+                            return;
+                        }
+                        if (Key.Key == ConsoleKey.Enter)
+                        {
+                            this._unpause = true;
+                            return;
+                        }
+                        break;
+                    case 15:
+                        if (Key.Key == ConsoleKey.Escape)
+                        {
+                            this._unpause = true;
+                            return;
+                        }
+                        if (Key.Key == ConsoleKey.Enter)
+                        {
+                            DisplayMainMenu();
+                        }
+                        break;
+                }
+
             }
         }
     }
