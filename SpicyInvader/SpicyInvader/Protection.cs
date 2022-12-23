@@ -76,7 +76,13 @@ namespace SpicyInvader
         /// </summary>
         public void EraseAllWall()
         {
-
+            foreach (Wall wall in this._walls)
+            {
+                if (wall.Alive)
+                {
+                    wall.EraseWall();
+                }
+            }
         }
 
     }
