@@ -178,11 +178,11 @@ namespace SpicyInvader
             // le cooldown va varier en fonction de la difficulté de la partie
             if(difficulty == 2)
             {
-                cooldown = 25000;
+                cooldown = 15000;
             }
             else
             {
-                cooldown = 40000;
+                cooldown = 20000;
             }
 
             foreach(Alien alien in this._aliens)

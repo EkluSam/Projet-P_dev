@@ -31,13 +31,43 @@ namespace SpicyInvader
         /// Vie du joueur. 3 vies au debut
         /// </summary>
         private byte _playerLife = 3;
+        /// <summary>
+        /// Getter  setter de la vie du joueur
+        /// </summary>
+        public byte PlayerLife
+        {
+            get { return _playerLife; }
+            private set { _playerLife = value; }
+        }
 
-
+        /// <summary>
+        /// Score du joueur
+        /// </summary>
         private int _playerScore = 0;
+        /// <summary>
+        /// Getter setter du score du joueur
+        /// </summary>
+        public int PlayerScore
+        {
+            get { return _playerScore; }
+            private set { _playerScore = value; }
+        }
 
+        /// <summary>
+        /// Objet du vaisseau
+        /// </summary>
         private RocketShip _ship = new RocketShip();
+        /// <summary>
+        /// Objet des aliens
+        /// </summary>
         private Squad _aliens = new Squad();
+        /// <summary>
+        /// Objet des lazers
+        /// </summary>
         private Magazine _bullets = new Magazine();
+        /// <summary>
+        /// Objet menu
+        /// </summary>
         private Menu _menus = new Menu();
 
         /// <summary>
@@ -54,14 +84,14 @@ namespace SpicyInvader
             
 
 
-
-            int xPos = 57; 
-            int yPos = 44;
+            
+            int shipStartX = 57; 
+            int shipStartY = 44;
             int fps = 0;
             int counterFps = 0;
             int counterBullet = 0;
 
-            _ship.DrawRocketShip(xPos, yPos);
+            _ship.DrawRocketShip(shipStartX, shipStartY);
 
             // Change la difficulté (vitesse des aliens)
             if(this._difficulty == 2)
@@ -73,6 +103,7 @@ namespace SpicyInvader
                 fps = 200;
             }
 
+            // Boucle de la partie
             while (true)
             {
                 _ship.DrawRocketShip(_ship.X, _ship.Y);
@@ -82,6 +113,7 @@ namespace SpicyInvader
                 Console.WriteLine();
                 Console.WriteLine("------------------------------------------------------------------------------------------------------------------------");
 
+                // Les "frames" du jeu, en gros le moment où les aliens se déplacent
                 if (counterFps == fps)
                 {
                     counterFps = 0;
@@ -100,6 +132,7 @@ namespace SpicyInvader
                     _aliens.MoveAllAliens();
 
                 }
+                // Le tir des aliens
                 _aliens.VerifyShootingCooldown(_bullets,_difficulty);
 
                 Console.SetCursorPosition(0, 3);
@@ -107,10 +140,12 @@ namespace SpicyInvader
                 this.DisplayHearts(_playerLife);
                 this.DisplayScore(_playerScore);
 
+                // Vérifie les inputs de l'utilisateur sans ralentir le jeu
                 if (Console.KeyAvailable)
                 {
-                    // Mouvements du vaisseau
+                    
                     ConsoleKeyInfo Key = Console.ReadKey(true);
+                    // Mouvement droite du vaisseau
                     if (Key.Key == ConsoleKey.RightArrow)
                     {
                         if (_ship.X != 112)
@@ -124,6 +159,7 @@ namespace SpicyInvader
                            
                         }
                     }
+                    // Mouvement gauche du vaisseau
                     if (Key.Key == ConsoleKey.LeftArrow)
                     {
                         if (_ship.X != 4)
@@ -142,10 +178,6 @@ namespace SpicyInvader
                     if (Key.Key == ConsoleKey.UpArrow)
                     {
                         _bullets.CreateBullet(_ship.X+3,_ship.Y-1,-1,true);
-                    }
-                    else
-                    {
-
                     }
                     //Menu Pause
                     if (Key.Key == ConsoleKey.P)
@@ -170,7 +202,7 @@ namespace SpicyInvader
             byte index = 0;
             string hearts = "♥♥♥";  
             char empty = ' ';
-            Console.SetCursorPosition(110, 3);
+            Console.SetCursorPosition(110, 3);         
             foreach (char c in hearts)
             {
                 if (index >= _playerLife)
@@ -184,18 +216,30 @@ namespace SpicyInvader
                 index++;
             }
         }
-
+        /// <summary>
+        /// Méthode qui affiche le score du joueur
+        /// </summary>
+        /// <param name="playerScore">Variable du score du joueur</param>
         public void DisplayScore(int playerScore)
         {
             Console.SetCursorPosition(0, 3);
             Console.Write("Score : " + playerScore);
         }
-
+        /// <summary>
+        /// Méthode qui gère toutes les collisions :
+        /// lazer du vaisseau qui touche un alien ou le mur du haut
+        /// lazer aliens qui touche le vaisseau ou le mur du bas 
+        /// TODO : lazers aliens qui touche des murs
+        /// TODO : lazers du vaisseau qui  touche les murs
+        /// </summary>
+        /// <param name="squad">L'objet des aliens</param>
+        /// <param name="bullets">L'objets des lazers</param>
         public void CheckBulletCollision(Squad squad, Magazine bullets)
         {
             
             foreach (Bullet bullet in bullets.Bullets)
             {
+                // Mur du haut
                 if(bullet.Y <= 10)
                 {
                     bullet.EraseBullet();
@@ -203,6 +247,7 @@ namespace SpicyInvader
                     bullets.CurrentShipBullets--;
                     return;
                 }
+                // Mur du bas
                 if(bullet.Y >= 48)
                 {
                     bullet.EraseBullet();
@@ -210,6 +255,7 @@ namespace SpicyInvader
                     bullets.CurrentAlienBullets--;
                     return;
                 }
+                // quand le vaisseau est touché
                 if(bullet.X >= _ship.X && bullet.X < _ship.X+7 && bullet.Y >= _ship.Y && bullet.Y <= _ship.Y +4)
                 {
                     bullet.EraseBullet();
@@ -218,12 +264,12 @@ namespace SpicyInvader
                     _playerLife--;
                     return;
                 }
-                // quand un alien est touché
+                // boucle qui vérifie pour chaque alien si il est touché
                 foreach (Alien alien in squad.Aliens)
                 {
                     if (alien.Alive)
                     {
-                        // si la balle touche un alien et qu'elle a été tirer par le joueur, l'alien meurt
+                        // si la balle touche l'alien et qu'elle a été tirer par le joueur, l'alien meurt
                         if (bullet.X >= alien.X && bullet.X < alien.X+10 && bullet.Y <= alien.Y+4 && bullet.Y >= alien.Y && bullet.SpeedY == -1)
                         {                           
                             alien.Alive = false;

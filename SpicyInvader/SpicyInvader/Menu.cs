@@ -15,15 +15,53 @@ namespace SpicyInvader
 {
     public class Menu
     {
+        /// <summary>
+        /// Musique dans le jeu
+        /// </summary>
         public bool music = false;
+        /// <summary>
+        /// Getter setter de la musique
+        /// </summary>
+        public bool Music
+        {
+            get { return music; }
+            set { music = value; }
+        }
+        /// <summary>
+        /// booléen pour savoir si le joueur est sorti de la pause
+        /// </summary>
         private bool _unpause = false;
+        /// <summary>
+        /// Getter setter 
+        /// </summary>
+        public bool Unpause
+        {
+            get { return _unpause; }
+            set { _unpause = value; }
+        }
+        /// <summary>
+        /// Difficulté de la partie
+        /// </summary>
         public int difficulty = 1;
+        /// <summary>
+        /// Getter setter de la difficulté de la partie
+        /// </summary>
+        public int Difficulty
+        {
+            get { return difficulty; }
+            set { difficulty = value; }
+        }
+
+        public int yPos = 12; // position de base
+
+        public int xPos = 85; // position de base
+
         public Menu()
         {
 
         }
 
-        #region Menu
+        #region Boutons du menu
         /// <summary>
         /// Titre de l'application SLANT
         /// </summary>
@@ -123,6 +161,9 @@ namespace SpicyInvader
                                  \____/_/  |_/_/  /_/_____/   \____/ |___/_____/_/ |_|                                 
         ";
 
+        /// <summary>
+        /// Titre Victoire (En vue d'une future implémentation)
+        /// </summary>
         private const string _GAMEWON = @"       
                                      _    ______________________  ________  ______
                                     | |  / /  _/ ____/_  __/ __ \/  _/ __ \/ ____/
@@ -132,108 +173,7 @@ namespace SpicyInvader
         ";
         #endregion
 
-        public int yPos = 12; // position de base
-        public int xPos = 85; // position de base
-
-        /// <summary>
-        /// Méthode qui permet la navigation dans le menu
-        /// yPos = 12 -> JOUER
-        /// yPos = 18 -> OPTION
-        /// yPos = 24 -> HIGHSCORE
-        /// yPos = 30 -> A PROPOS
-        /// yPos = 36 -> QUITTER
-        /// </summary>
-        public short ArrowMoves()
-        {
-            Console.SetCursorPosition(xPos, yPos);
-            Console.ForegroundColor = ConsoleColor.Red;
-            Console.Write(_NAVARROW);
-            short i;
-
-            while (true)
-            {
-                ConsoleKeyInfo Key = Console.ReadKey(true);
-                if(Key.Key == ConsoleKey.UpArrow)
-                {
-                    if(yPos <= 12)
-                    {
-                        Console.SetCursorPosition(xPos, yPos);
-                        Console.Write("         ");
-                        yPos = 36;
-                        Console.SetCursorPosition(xPos, yPos);
-                        Console.Write(_NAVARROW);
-                    }
-                    else
-                    {
-                        Console.SetCursorPosition(xPos, yPos);
-                        Console.Write("         ");
-                        yPos -= 6;
-                        Console.SetCursorPosition(xPos, yPos);
-                        Console.Write(_NAVARROW);
-                    }
-                }
-
-                if(Key.Key == ConsoleKey.DownArrow)
-                {
-                    if(yPos >= 36)
-                    {
-                        Console.SetCursorPosition(xPos, yPos);
-                        Console.Write("         ");
-                        yPos = 12;
-                        Console.SetCursorPosition(xPos, yPos);
-                        Console.Write(_NAVARROW);
-                    }
-                    else
-                    {
-                        Console.SetCursorPosition(xPos, yPos);
-                        Console.Write("         ");
-                        yPos += 6;
-                        Console.SetCursorPosition(xPos, yPos);
-                        Console.Write(_NAVARROW);
-                    }
-                }
-
-                switch (yPos)
-                {
-                    case 12:
-                        if (Key.Key == ConsoleKey.Enter)
-                        {
-                            i = 1;
-                            return i;
-                        }                          
-                        break;
-                    case 18:
-                        if (Key.Key == ConsoleKey.Enter)
-                        {
-                            i = 2;
-                            return i;
-                        }
-                        break;
-                    case 24:
-                        if (Key.Key == ConsoleKey.Enter)
-                        {
-                            i = 3;
-                            return i;
-                        }
-                        break;
-                    case 30:
-                        if (Key.Key == ConsoleKey.Enter)
-                        {
-                            i = 4;
-                            return i;
-                        }
-                        break;
-                    case 36:
-                        if (Key.Key == ConsoleKey.Enter)
-                        {
-                            i = 5;
-                            return i;
-                        }
-                        break;
-                }
-            }
-        }
-
+        #region Affichage
         /// <summary>
         /// Méthode qui affiche le titre de l'application
         /// </summary>
@@ -244,50 +184,10 @@ namespace SpicyInvader
             Console.ForegroundColor = ConsoleColor.Gray;
         }
 
+        
         /// <summary>
-        /// Méthode qui affiche le menu principal
+        /// Méthode qui affiche le texte de la section à propos
         /// </summary>
-        public void DisplayMainMenu()
-        {
-            Console.Clear();
-            Console.SetWindowSize(120, 51);
-            Console.BufferHeight = 51;
-            
-            Title();
-
-            Console.ForegroundColor = ConsoleColor.White;
-            Console.WriteLine(_PLAY);
-            Console.WriteLine(_OPTION);
-            Console.WriteLine(_HIGHSCORE);
-            Console.WriteLine(_ABOUT);
-            Console.WriteLine(_QUIT);
-
-            switch (ArrowMoves())
-            {
-                case 1:
-                    Game jeu = new Game();
-                    jeu.Difficulty = difficulty;                  
-                    jeu.Play();                   
-                    break;
-                case 2:
-                    Console.Clear();
-                    DisplayOptionMenu();
-                    break;
-                case 3:
-                    Console.Clear();
-                    // DisplayHighScore();
-                    break;
-                case 4:
-                    Console.Clear();
-                    DisplayAbout();
-                    break;
-                case 5:
-                    Environment.Exit(0);
-                    break;
-            }
-
-        }
-
         public void DisplayAbout()
         {
             Console.ForegroundColor = ConsoleColor.Green;
@@ -317,7 +217,9 @@ namespace SpicyInvader
                 }
             }          
         }
-        #region new feature
+        #endregion
+
+        #region future implémentation de la victoire?
         ///// <summary>
         ///// Méthode qui affiche le menu de victoire
         ///// </summary>
@@ -360,6 +262,52 @@ namespace SpicyInvader
         //    }
         //}
         #endregion
+
+        #region Menus
+        /// <summary>
+        /// Méthode qui affiche le menu principal
+        /// </summary>
+        public void DisplayMainMenu()
+        {
+            Console.Clear();
+            Console.SetWindowSize(120, 51);
+            Console.BufferHeight = 51;
+
+            Title();
+
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.WriteLine(_PLAY);
+            Console.WriteLine(_OPTION);
+            Console.WriteLine(_HIGHSCORE);
+            Console.WriteLine(_ABOUT);
+            Console.WriteLine(_QUIT);
+            // effectue des actions en fonction du bouton cliqué par l'utilisateur (fonctionne avec la position de la flèche)
+            switch (ArrowMoves())
+            {
+                case 1:
+                    Game jeu = new Game();
+                    jeu.Difficulty = difficulty;
+                    jeu.Play();
+                    break;
+                case 2:
+                    Console.Clear();
+                    DisplayOptionMenu();
+                    break;
+                case 3:
+                    Console.Clear();
+                    // DisplayHighScore();
+                    break;
+                case 4:
+                    Console.Clear();
+                    DisplayAbout();
+                    break;
+                case 5:
+                    Environment.Exit(0);
+                    break;
+            }
+
+        }
+
         /// <summary>
         /// Méthode qui affiche le menu game over
         /// </summary>
@@ -448,6 +396,7 @@ namespace SpicyInvader
         public void DisplayPauseMenu()
         {
             Console.Clear();
+            // Boucle pour rester dans la pause
             while (true)
             {
                 Console.ForegroundColor = ConsoleColor.Green;
@@ -467,6 +416,108 @@ namespace SpicyInvader
             Console.ForegroundColor = ConsoleColor.White;
             Console.Clear();
         }
+        #endregion
+
+        #region Méthodes ArrowMoves
+        /// <summary>
+        /// Méthode qui permet la navigation dans le menu principal
+        /// yPos = 12 -> JOUER
+        /// yPos = 18 -> OPTION
+        /// yPos = 24 -> HIGHSCORE
+        /// yPos = 30 -> A PROPOS
+        /// yPos = 36 -> QUITTER
+        /// </summary>
+        public short ArrowMoves()
+        {
+            Console.SetCursorPosition(xPos, yPos);
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.Write(_NAVARROW);
+            short i;
+
+            while (true)
+            {
+                ConsoleKeyInfo Key = Console.ReadKey(true);
+                if (Key.Key == ConsoleKey.UpArrow)
+                {
+                    if (yPos <= 12)
+                    {
+                        Console.SetCursorPosition(xPos, yPos);
+                        Console.Write("         ");
+                        yPos = 36;
+                        Console.SetCursorPosition(xPos, yPos);
+                        Console.Write(_NAVARROW);
+                    }
+                    else
+                    {
+                        Console.SetCursorPosition(xPos, yPos);
+                        Console.Write("         ");
+                        yPos -= 6;
+                        Console.SetCursorPosition(xPos, yPos);
+                        Console.Write(_NAVARROW);
+                    }
+                }
+
+                if (Key.Key == ConsoleKey.DownArrow)
+                {
+                    if (yPos >= 36)
+                    {
+                        Console.SetCursorPosition(xPos, yPos);
+                        Console.Write("         ");
+                        yPos = 12;
+                        Console.SetCursorPosition(xPos, yPos);
+                        Console.Write(_NAVARROW);
+                    }
+                    else
+                    {
+                        Console.SetCursorPosition(xPos, yPos);
+                        Console.Write("         ");
+                        yPos += 6;
+                        Console.SetCursorPosition(xPos, yPos);
+                        Console.Write(_NAVARROW);
+                    }
+                }
+                // effectue des actions en fonction du bouton cliqué par l'utilisateur (fonctionne avec la position de la flèche)
+                switch (yPos)
+                {
+                    case 12:
+                        if (Key.Key == ConsoleKey.Enter)
+                        {
+                            i = 1;
+                            return i;
+                        }
+                        break;
+                    case 18:
+                        if (Key.Key == ConsoleKey.Enter)
+                        {
+                            i = 2;
+                            return i;
+                        }
+                        break;
+                    case 24:
+                        if (Key.Key == ConsoleKey.Enter)
+                        {
+                            i = 3;
+                            return i;
+                        }
+                        break;
+                    case 30:
+                        if (Key.Key == ConsoleKey.Enter)
+                        {
+                            i = 4;
+                            return i;
+                        }
+                        break;
+                    case 36:
+                        if (Key.Key == ConsoleKey.Enter)
+                        {
+                            i = 5;
+                            return i;
+                        }
+                        break;
+                }
+            }
+        }
+
 
         /// <summary>
         /// Méthode qui permet de bouger dans le menu option avec les flèches
@@ -474,8 +525,8 @@ namespace SpicyInvader
         /// </summary>
         public void ArrowMovesOptions()
         {
-            int xPos = 80;
-            int yPos = 9;
+            int xPos = 80; // Position x de base
+            int yPos = 9;  // Position y de base
 
             Console.SetCursorPosition(xPos, yPos);
             Console.ForegroundColor = ConsoleColor.Red;
@@ -484,6 +535,7 @@ namespace SpicyInvader
             while (true)
             {
                 ConsoleKeyInfo Key = Console.ReadKey(true);
+                // Monte dans le menu ou revient en bas si il est tout en haut
                 if (Key.Key == ConsoleKey.UpArrow)
                 {
                     if (yPos <= 9)
@@ -503,7 +555,7 @@ namespace SpicyInvader
                         Console.Write(_NAVARROW);
                     }
                 }
-
+                // Descend dans le menu ou revient tout en haut si il est tout en bas
                 if (Key.Key == ConsoleKey.DownArrow)
                 {
                     if (yPos >= 15)
@@ -523,7 +575,7 @@ namespace SpicyInvader
                         Console.Write(_NAVARROW);
                     }
                 }
-
+                // effectue des actions en fonction du bouton cliqué par l'utilisateur (fonctionne avec la position de la flèche)
                 switch (yPos)
                 {
                     case 9:
@@ -629,9 +681,9 @@ namespace SpicyInvader
                         Console.Write(_NAVARROW);
                     }
                 }
-
+                // effectue des actions en fonction du bouton cliqué par l'utilisateur (fonctionne avec la position de la flèche)
                 switch (yPos)
-                {
+                {                   
                     case 9:
                         if (Key.Key == ConsoleKey.Escape)
                         {
@@ -656,8 +708,8 @@ namespace SpicyInvader
                         }
                         break;
                 }
-
             }
         }
+        #endregion
     }
 }
