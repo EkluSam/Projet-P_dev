@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace SpicyInvader
 {
-    internal class Protection
+    public class Protection
     {
         /// <summary>
         /// Liste de murs
@@ -55,7 +55,7 @@ namespace SpicyInvader
                     groupOfWallCount++;
                     wallCount = 0;
                 }
-                this._walls.Add(new Wall(x,y));
+                this._walls.Add(new Wall(x,y, groupOfWallCount));
                 wallCount++;
                 x++;
             }

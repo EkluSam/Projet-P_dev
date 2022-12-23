@@ -151,7 +151,7 @@ namespace SpicyInvader
         {
             foreach(Alien alien in this._aliens)
             {
-                if(alien.Y >= 36)
+                if(alien.Y >= 40)
                 {
                     return true;
                 }

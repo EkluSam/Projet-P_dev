@@ -72,12 +72,24 @@ namespace SpicyInvader
             get { return _y; }
             set { _y = value; }
         }
-
-        public Laser(int x, int y, int speedY)
+        /// <summary>
+        /// Booléen qui détermine si le laser est tiré par le vaisseau ou l'alien
+        /// </summary>
+        private bool _friendly;
+        /// <summary>
+        /// Getter setter du booléen friendly
+        /// </summary>
+        public bool Friendly
+        {
+            get { return _friendly; }
+            private set { _friendly = value; }
+        }
+        public Laser(int x, int y, int speedY, bool friendly)
         {
             this.X = x;
             this.Y = y;
             this._speedY = speedY;
+            this._friendly = friendly;
         }
         public Laser()
         {

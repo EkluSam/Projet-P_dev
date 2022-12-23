@@ -67,7 +67,7 @@ namespace SpicyInvader
         /// <summary>
         /// Objet des murs
         /// </summary>
-        private Protection _protection = new Protection();
+        private Protection _walls = new Protection();
         
        
 
@@ -100,7 +100,7 @@ namespace SpicyInvader
                 fps = 200;
             }
 
-            _protection.DrawAllWalls();
+            _walls.DrawAllWalls();
             // Boucle de la partie
             while (true)
             {
@@ -121,7 +121,7 @@ namespace SpicyInvader
                         break;
                     }
                     _bullets.MoveAllBullets();                
-                    CheckBulletCollision(_aliens,_bullets);                   
+                    CheckBulletCollision(_aliens,_bullets,_walls);                   
                     if(_aliens.IsGameOver())
                     {
                         break;
@@ -229,34 +229,35 @@ namespace SpicyInvader
         /// TODO : lazers du vaisseau qui  touche les murs
         /// </summary>
         /// <param name="squad">L'objet des aliens</param>
-        /// <param name="bullets">L'objets des lazers</param>
-        public void CheckBulletCollision(Squad squad, Magazine bullets)
+        /// <param name="lasers">L'objets des lazers</param>
+        public void CheckBulletCollision(Squad squad, Magazine lasers, Protection walls)
         {
             
-            foreach (Laser bullet in bullets.Lasers)
-            {
-                // Mur du haut
+            foreach (Laser bullet in lasers.Lasers)
+            {               
+                
+                // Limite du haut
                 if(bullet.Y <= 10)
                 {
                     bullet.EraseBullet();
-                    bullets.Lasers.Remove(bullet);
-                    bullets.CurrentShipLasers--;
+                    lasers.Lasers.Remove(bullet);
+                    lasers.CurrentShipLasers--;
                     return;
                 }
-                // Mur du bas
+                // Limite du bas
                 if(bullet.Y >= 48)
                 {
                     bullet.EraseBullet();
-                    bullets.Lasers.Remove(bullet);
-                    bullets.CurrentAlienLasers--;
+                    lasers.Lasers.Remove(bullet);
+                    lasers.CurrentAlienLasers--;
                     return;
                 }
                 // quand le vaisseau est touché
                 if(bullet.X >= _ship.X && bullet.X < _ship.X+7 && bullet.Y >= _ship.Y && bullet.Y <= _ship.Y +4)
                 {
                     bullet.EraseBullet();
-                    bullets.Lasers.Remove(bullet);
-                    bullets.CurrentAlienLasers--;
+                    lasers.Lasers.Remove(bullet);
+                    lasers.CurrentAlienLasers--;
                     _playerLife--;
                     return;
                 }
@@ -271,8 +272,8 @@ namespace SpicyInvader
                             alien.Alive = false;
                             alien.EraseAlien();                            
                             bullet.EraseBullet();
-                            bullets.Lasers.Remove(bullet);
-                            bullets.CurrentShipLasers--;
+                            lasers.Lasers.Remove(bullet);
+                            lasers.CurrentShipLasers--;
                             _playerScore += 150;
                             return;
                         }
@@ -280,6 +281,48 @@ namespace SpicyInvader
                     else
                     {
 
+                    }
+                }
+                // Si un mur est touché
+                foreach (Wall wall in walls.Walls)
+                {
+                    if (wall.Alive)
+                    {
+                        if(bullet.Y == wall.Y && bullet.X == wall.X)
+                        {
+                            
+                            bullet.EraseBullet();
+                            // Baisse le compteur en fonction du tireur du laser
+                            if (bullet.Friendly)
+                            {
+                                lasers.CurrentShipLasers--;
+                            }
+                            else
+                            {
+                                lasers.CurrentAlienLasers--;
+                            }
+                            
+                            lasers.Lasers.Remove(bullet);
+                            
+                            // Baisse les hp du groupe du mur
+                            foreach (Wall groupwall in walls.Walls)
+                            {
+                                if (groupwall.GroupNumber == wall.GroupNumber)
+                                {
+                                    groupwall.Hp--;
+                                    if (groupwall.Hp <= 0)
+                                    {
+                                        groupwall.Alive = false;
+                                        groupwall.EraseWall();
+                                    }
+                                    else
+                                    {
+                                        groupwall.DrawWall();
+                                    }
+                                }
+                            }
+                            return;
+                        }
                     }
                 }
             }

@@ -86,10 +86,24 @@ namespace SpicyInvader
             set { _alive = value; }
         }
 
-        public Wall(int x, int y)
+        /// <summary>
+        /// Nombre du groupe du mur
+        /// Chaque mur appartient à un groupe et ce groupe à un numéro
+        /// </summary>
+        private int _groupNumber;
+        /// <summary>
+        /// Getter setter du nombre du groupe
+        /// </summary>
+        public int GroupNumber
+        {
+            get { return _groupNumber; }
+            set { _groupNumber = value; }
+        }
+        public Wall(int x, int y, int groupNumber)
         {
             this._x = x;
             this._y = y;
+            this._groupNumber = groupNumber;
         }
         /// <summary>
         /// Méthode qui affiche le mur
@@ -107,7 +121,7 @@ namespace SpicyInvader
                     Console.Write(_symbol);
                     break;
                 case 2:
-                    Console.ForegroundColor = ConsoleColor.DarkYellow;
+                    Console.ForegroundColor = ConsoleColor.Yellow;
                     Console.Write(_symbol);
                     Console.ForegroundColor = ConsoleColor.White;
                     break;

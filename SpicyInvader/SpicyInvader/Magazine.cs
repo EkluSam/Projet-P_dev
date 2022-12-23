@@ -64,14 +64,14 @@ namespace SpicyInvader
             {
                 if (CurrentShipLasers < 5)
                 {
-                    Lasers.Add(new Laser(x, y - 1, speedY));
+                    Lasers.Add(new Laser(x, y - 1, speedY, friendly));
                     _currentShipLasers++;
                 }
             }
-            else
+            else 
             {
-                    Lasers.Add(new Laser(x, y - 1, speedY));
-                    _currentAlienLasers++;              
+                Lasers.Add(new Laser(x, y - 1, speedY, friendly));
+                _currentAlienLasers++;              
             }      
 
         }
