@@ -70,7 +70,9 @@ namespace SpicyInvader
                 }
             }
         }
-
+        /// <summary>
+        /// Méthode qui efface tous les aliens en jeu qui sont en vie
+        /// </summary>
         public void EraseAllAliens()
         {
             for (int i = 0; i < _aliens.Count; i++)
