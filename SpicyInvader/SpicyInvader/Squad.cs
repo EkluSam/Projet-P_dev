@@ -1,4 +1,10 @@
-﻿using System;
+﻿// ---------------------------------------------
+// Auteur : Samuel EKLU (CIN2A-2022)
+// Date   : 23.12.2022
+// Description : Classe Sqaud qui est utilisée
+// avoir un groupe d'aliens.
+// ---------------------------------------------
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,9 +15,14 @@ namespace SpicyInvader
     public class Squad
     {
        
-
+        /// <summary>
+        /// Liste d'aliens 
+        /// </summary>
         private List<Alien> _aliens = new List<Alien>();
 
+        /// <summary>
+        /// Getter setter de la liste d'aliens
+        /// </summary>
         public List<Alien> Aliens
         {
             get { return _aliens; }

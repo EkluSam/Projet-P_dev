@@ -1,4 +1,10 @@
-﻿using System;
+﻿// ---------------------------------------------
+// Auteur : Samuel EKLU (CIN2A-2022)
+// Date   : 23.12.2022
+// Description : Classe game qui est utilisée pour 
+// gérer une partie
+// ---------------------------------------------
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,18 +14,24 @@ using System.Threading;
 namespace SpicyInvader
 {
     public class Game
-    {
-        const int GAME_WIDTH = 120;
-
+    {       
+        /// <summary>
+        /// Difficulté de la partie
+        /// </summary>
         private int _difficulty;
-
+        /// <summary>
+        /// Getter setter de la difficulté de la partie
+        /// </summary>
         public int Difficulty
         {
             get { return _difficulty; }
             set { _difficulty = value; }
         }
-
+        /// <summary>
+        /// Vie du joueur. 3 vies au debut
+        /// </summary>
         private byte _playerLife = 3;
+
 
         private int _playerScore = 0;
 
