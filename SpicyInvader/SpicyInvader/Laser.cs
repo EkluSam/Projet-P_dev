@@ -7,20 +7,20 @@ using System;
 
 namespace SpicyInvader
 {
-    public class Bullet
+    public class Laser
     {
 
         /// <summary>
         /// Symbol du laser
         /// </summary>
-        private char _laser = '|';
+        private char _symbol = '|';
         /// <summary>
         /// Getter setter du symbol du laser
         /// </summary>
-        public char Laser
+        public char Symbol
         {
-            get { return _laser; }
-            private set { _laser = value; }
+            get { return _symbol; }
+            private set { _symbol = value; }
         }
         /// <summary>
         /// Vide pour effacer le laser
@@ -73,13 +73,13 @@ namespace SpicyInvader
             set { _y = value; }
         }
 
-        public Bullet(int x, int y, int speedY)
+        public Laser(int x, int y, int speedY)
         {
             this.X = x;
             this.Y = y;
             this._speedY = speedY;
         }
-        public Bullet()
+        public Laser()
         {
 
         }
@@ -89,7 +89,7 @@ namespace SpicyInvader
         public void DrawBullet()
         {
             Console.SetCursorPosition(this.X,this.Y);
-            Console.WriteLine(_laser);
+            Console.WriteLine(_symbol);
         }
         /// <summary>
         /// Méthode qui efface le laser

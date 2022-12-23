@@ -226,7 +226,7 @@ namespace SpicyInvader
         public void CheckBulletCollision(Squad squad, Magazine bullets)
         {
             
-            foreach (Bullet bullet in bullets.Lasers)
+            foreach (Laser bullet in bullets.Lasers)
             {
                 // Mur du haut
                 if(bullet.Y <= 10)

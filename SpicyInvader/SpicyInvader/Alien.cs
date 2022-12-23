@@ -4,10 +4,6 @@
 // Description : Classe alien
 // ---------------------------------------------
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Threading;
 namespace SpicyInvader
 {
@@ -53,7 +49,9 @@ namespace SpicyInvader
         /// Position x de l'alien
         /// </summary>
         private int _x;
-
+        /// <summary>
+        /// Getter setter de la position x de l'alien
+        /// </summary>
         public int X
         {
             get { return _x; }
@@ -64,26 +62,42 @@ namespace SpicyInvader
         /// Position y de l'alien
         /// </summary>
         private int _y;
-
+        /// <summary>
+        /// Getter setter de la positon y de l'alien
+        /// </summary>
         public int Y
         {
             get { return _y; }
             set { _y = value; }
         }
-
+        /// <summary>
+        /// booléen pour savoir si l'alien est en vie
+        /// </summary>
         private bool _alive = true;
-
+        /// <summary>
+        /// Getter setter du booléen pour savoir si l'alien est en vie
+        /// </summary>
         public bool Alive
         {
             get { return _alive; }
             set { _alive = value; }
         }
-
+        /// <summary>
+        /// Compteur pour savoir si l'alien est en mouvement
+        /// </summary>
         private int _mouvementCounter;
 
+        /// <summary>
+        /// cooldown du tir de l'alien
+        /// </summary>
         private int _shootCooldown;
-
-        public int ShootCooldown { get { return _shootCooldown; } set { _shootCooldown = value; } }
+        /// <summary>
+        /// Getter setter du cooldown du tir de l'alien
+        /// </summary>
+        public int ShootCooldown {
+            get { return _shootCooldown; } 
+            set { _shootCooldown = value; } 
+        }
 
         private Random _random = new Random();
         public Alien(int x, int y)
@@ -98,7 +112,9 @@ namespace SpicyInvader
         /// Vitesse X de l'alien
         /// </summary>
         private int speedX = 1;
-
+        /// <summary>
+        /// Getter setter de la vitesse x de l'alien
+        /// </summary>
         public int SpeedX
         {
             get { return speedX; }
@@ -109,7 +125,9 @@ namespace SpicyInvader
         /// Vitesse Y de l'alien
         /// </summary>
         private int speedY = 1;
-
+        /// <summary>
+        /// Getter setter de la vitesse y de l'alien
+        /// </summary>
         public int SpeedY
         {
             get { return speedY; }
@@ -119,8 +137,6 @@ namespace SpicyInvader
         /// <summary>
         /// Méthode qui dessine le vaisseau à la position donné
         /// </summary>
-        /// <param name="x">position x</param>
-        /// <param name="y">position y</param>
         public void DrawAlien()
         {
             int x = this._x;
@@ -158,8 +174,6 @@ namespace SpicyInvader
         /// <summary>
         /// Méthode qui efface le vaisseau à la position donné
         /// </summary>
-        /// <param name="x">position x</param>
-        /// <param name="y">position y</param>
         public void EraseAlien()
         {
             int x = this._x;

@@ -27,13 +27,13 @@ namespace SpicyInvader
 
         public Squad()
         {
-            CreateAlien();
+            CreateAliens();
         }
 
         /// <summary>
         /// Méthode qui créé des aliens et les mets dans une liste
         /// </summary>
-        public void CreateAlien()
+        public void CreateAliens()
         {
             int x = 10;
             int y = 7;
@@ -53,16 +53,12 @@ namespace SpicyInvader
         /// Méthode qui permet d'afficher tous les aliens en jeu
         /// </summary>
         public void DrawAllAliens()
-        {
-            for(int i = 0; i < _aliens.Count; i++)
+        {           
+            foreach(Alien alien in this._aliens)
             {
-                if (this._aliens[i].Alive)
+                if (alien.Alive)
                 {
-                    this._aliens[i].DrawAlien();
-                }
-                else
-                {
-
+                    alien.DrawAlien();
                 }
             }
         }
@@ -71,12 +67,12 @@ namespace SpicyInvader
         /// </summary>
         public void EraseAllAliens()
         {
-            for (int i = 0; i < _aliens.Count; i++)
+            foreach (Alien alien in this._aliens)
             {
-                if (this._aliens[i].Alive)
+                if (alien.Alive)
                 {
-                    this._aliens[i].EraseAlien();
-                }              
+                    alien.EraseAlien();
+                }
             }
         }
 
@@ -108,11 +104,11 @@ namespace SpicyInvader
 
                 if (leftAlienX <= 2)
                 {
-                    // inverse la direction des aliens
-                    for (int f = 0; f < _aliens.Count; f++)
+                    // inverse la direction des aliens                   
+                    foreach (Alien alien in this._aliens)
                     {
-                        this._aliens[f].SpeedX = 1;
-                        this._aliens[f].Y++;
+                        alien.SpeedX = 1;
+                        alien.Y++;
                     }
                 }
                 else
@@ -128,18 +124,17 @@ namespace SpicyInvader
                 if (rightAlienX >= 110)
                 {
                     // inverse la direction des aliens
-                    for (int f = 0; f < _aliens.Count; f++)
+                    foreach (Alien alien in this._aliens)
                     {
-                        this._aliens[f].SpeedX = -1;
-                        this._aliens[f].Y++;
+                        alien.SpeedX = -1;
+                        alien.Y++;
                     }
                 }
                 else
                 {                    
                     foreach (Alien alien in this._aliens)
                         alien.X += alien.SpeedX;
-                }
-                
+                }              
 
             }
             
@@ -223,7 +218,7 @@ namespace SpicyInvader
                 }
             }
             this._aliens.Clear();
-            CreateAlien();
+            CreateAliens();
         }
     }
 }

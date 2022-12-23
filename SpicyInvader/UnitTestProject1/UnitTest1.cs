@@ -32,7 +32,7 @@ namespace UnitTestProject1
         public void TestMethod3()
         {
             Alien firstAlien = new Alien(3,3);
-            Bullet shipBullet = new Bullet();
+            Laser shipBullet = new Laser();
             shipBullet.Y += 7;
 
             Assert.AreEqual(shipBullet.Y, firstAlien.Y);
@@ -42,7 +42,7 @@ namespace UnitTestProject1
         [TestMethod]
         public void TestMethod4()
         {
-            Bullet firstAlienBullet = new Bullet();
+            Laser firstAlienBullet = new Laser();
             RocketShip ship = new RocketShip();
 
             firstAlienBullet.Y += 7;

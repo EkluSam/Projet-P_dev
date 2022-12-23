@@ -12,11 +12,11 @@ namespace SpicyInvader
         /// <summary>
         /// Liste de lasers 
         /// </summary>
-        private List<Bullet> _lasers = new List<Bullet>();
+        private List<Laser> _lasers = new List<Laser>();
         /// <summary>
         /// Getter setter de la liste de lasers
         /// </summary>
-        public List<Bullet> Lasers
+        public List<Laser> Lasers
         {
             get { return _lasers; }
             private set { _lasers = value; }
@@ -64,13 +64,13 @@ namespace SpicyInvader
             {
                 if (CurrentShipLasers < 5)
                 {
-                    Lasers.Add(new Bullet(x, y - 1, speedY));
+                    Lasers.Add(new Laser(x, y - 1, speedY));
                     _currentShipLasers++;
                 }
             }
             else
             {
-                    Lasers.Add(new Bullet(x, y - 1, speedY));
+                    Lasers.Add(new Laser(x, y - 1, speedY));
                     _currentAlienLasers++;              
             }      
 

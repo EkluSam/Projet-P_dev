@@ -49,8 +49,9 @@
     <Compile Include="Menu.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Protection.cs" />
     <Compile Include="RocketShip.cs" />
-    <Compile Include="Bullet.cs" />
+    <Compile Include="Laser.cs" />
     <Compile Include="Sound.cs" />
     <Compile Include="Squad.cs" />
     <Compile Include="Wall.cs" />

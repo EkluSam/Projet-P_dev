@@ -4,11 +4,14 @@
 // Description : Classe Son
 // ---------------------------------------------
 using System.Media;
-
+using System;
 namespace SpicyInvader
 {
     public class Sound
     {
+        /// <summary>
+        /// objet SoundPlayer 
+        /// </summary>
         private SoundPlayer gameMusic = new SoundPlayer();
 
         public void PlayMusic(bool music)
