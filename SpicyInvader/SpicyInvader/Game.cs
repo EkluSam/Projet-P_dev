@@ -64,6 +64,12 @@ namespace SpicyInvader
         /// Objet menu
         /// </summary>
         private Menu _menus = new Menu();
+        /// <summary>
+        /// Objet des murs
+        /// </summary>
+        private Protection _protection = new Protection();
+        
+       
 
         /// <summary>
         /// Méthode PLAY qui lance une partie de Space Invader
@@ -94,6 +100,7 @@ namespace SpicyInvader
                 fps = 200;
             }
 
+            _protection.DrawAllWalls();
             // Boucle de la partie
             while (true)
             {

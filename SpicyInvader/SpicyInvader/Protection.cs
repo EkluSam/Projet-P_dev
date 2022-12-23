@@ -40,18 +40,20 @@ namespace SpicyInvader
             int wallCount = 0;
             int groupOfWallCount = 0;
 
-            for (int i = 0; i <= 6;i++)
+            for (int i = 0; i <= 15;i++)
             {
-                if(wallCount == 6)
+                if(wallCount == 15)
                 {
-                    groupOfWallCount++;
+                    
                     // je veux seulement 4 groupes de murs
-                    if(groupOfWallCount == 4)
+                    if(groupOfWallCount == 3)
                     {
                         break;
                     }
-                    x += 4;
+                    x += 14;
                     i = 0;
+                    groupOfWallCount++;
+                    wallCount = 0;
                 }
                 this._walls.Add(new Wall(x,y));
                 wallCount++;

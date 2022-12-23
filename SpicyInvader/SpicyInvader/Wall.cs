@@ -125,7 +125,11 @@ namespace SpicyInvader
         /// </summary>
         public void EraseWall()
         {
+            int x = this._x;
+            int y = this._y;
 
+            Console.SetCursorPosition(x,y);
+            Console.Write(_void);
         }
     }
 }
