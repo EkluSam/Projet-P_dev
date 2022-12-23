@@ -1,4 +1,9 @@
-﻿using System;
+﻿// ---------------------------------------------
+// Auteur : Samuel EKLU (CIN2A-2022)
+// Date   : 23.12.2022
+// Description : Classe du Mur
+// ---------------------------------------------
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;

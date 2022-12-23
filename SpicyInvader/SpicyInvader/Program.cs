@@ -1,8 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿// ---------------------------------------------
+// Auteur : Samuel EKLU (CIN2A-2022)
+// Date   : 23.12.2022
+// Description : Programme principal
+// ---------------------------------------------
+using System;
 
 namespace SpicyInvader
 {
@@ -11,7 +12,9 @@ namespace SpicyInvader
         static void Main(string[] args)
         {
             Console.CursorVisible = false;
-            
+            Console.SetWindowSize(120, 51);
+            Console.BufferHeight = 51;
+
             // Affichage du menu principal
             Menu mainMenu = new Menu();
            

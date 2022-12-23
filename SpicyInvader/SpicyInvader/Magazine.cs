@@ -1,83 +1,110 @@
-﻿using System;
+﻿// ---------------------------------------------
+// Auteur : Samuel EKLU (CIN2A-2022)
+// Date   : 23.12.2022
+// Description : Classe Magazine qui contient une liste de lasers
+// ---------------------------------------------
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SpicyInvader
 {
     public class Magazine
     {
-
-        private List<Bullet> _bullets = new List<Bullet>();
-
-        private int _currentAlienBullets = 0;
-
-        public int CurrentAlienBullets
+        /// <summary>
+        /// Liste de lasers 
+        /// </summary>
+        private List<Bullet> _lasers = new List<Bullet>();
+        /// <summary>
+        /// Getter setter de la liste de lasers
+        /// </summary>
+        public List<Bullet> Lasers
         {
-            get { return _currentAlienBullets; }
-            set { _currentAlienBullets = value; }
+            get { return _lasers; }
+            private set { _lasers = value; }
+        }
+        /// <summary>
+        /// Compteur des lasers des aliens
+        /// </summary>
+        private int _currentAlienLasers = 0;
+        /// <summary>
+        /// Getter setter du compteur des lasers d'aliens
+        /// </summary>
+        public int CurrentAlienLasers
+        {
+            get { return _currentAlienLasers; }
+            set { _currentAlienLasers = value; }
+        }
+        /// <summary>
+        /// Compteur des lasers du vaisseau
+        /// </summary>
+        private int _currentShipLasers = 0;
+        /// <summary>
+        /// Getter setter du compteur de lasers du vaisseau
+        /// </summary>
+        public int CurrentShipLasers
+        {
+            get { return _currentShipLasers; }
+            set { _currentShipLasers = value; }
         }
 
-        private int _currentShipBullets = 0;
-
-        public int CurrentShipBullets
-        {
-            get { return _currentShipBullets; }
-            set { _currentShipBullets = value; }
-        }
-
-        public List<Bullet> Bullets
-        {
-            get { return _bullets; }
-            private set { _bullets = value; }
-        }
-
+       
         public Magazine()
         {
             
         }
-        public void CreateBullet(int x, int y,int speedY,bool friendly)
+        /// <summary>
+        /// Méthodes qui crée un laser allié ou enemy
+        /// </summary>
+        /// <param name="x">position x du laser</param>
+        /// <param name="y">position y du laser</param>
+        /// <param name="speedY">direction du laser</param>
+        /// <param name="friendly">booléen allié ou pas</param>
+        public void CreateLaser(int x, int y,int speedY,bool friendly)
         {
             if (friendly)
             {
-                if (CurrentShipBullets < 5)
+                if (CurrentShipLasers < 5)
                 {
-                    Bullets.Add(new Bullet(x, y - 1, speedY));
-                    _currentShipBullets++;
+                    Lasers.Add(new Bullet(x, y - 1, speedY));
+                    _currentShipLasers++;
                 }
             }
             else
             {
-                    Bullets.Add(new Bullet(x, y - 1, speedY));
-                    _currentAlienBullets++;              
+                    Lasers.Add(new Bullet(x, y - 1, speedY));
+                    _currentAlienLasers++;              
             }      
 
         }
 
-
+        /// <summary>
+        /// Méthode qui affiche tous les lasers
+        /// </summary>
         public void DrawAllBullets()
         {
-            for(int i = 0; i < Bullets.Count; i++)
+            for(int i = 0; i < Lasers.Count; i++)
             {
-                this.Bullets[i].DrawBullet();
+                this.Lasers[i].DrawBullet();
             }
         }
-
+        /// <summary>
+        /// Méthode qui efface tous les lasers
+        /// </summary>
         public void EraseAllBullets()
         {
-            for (int i = 0; i < Bullets.Count; i++)
+            for (int i = 0; i < Lasers.Count; i++)
             {
-                this.Bullets[i].EraseBullet();
+                this.Lasers[i].EraseBullet();
             }
         }
-
+        /// <summary>
+        /// Méthode qui déplace tous les laser en fonction de leur vitesse
+        /// </summary>
         public void MoveAllBullets()
         {
             EraseAllBullets();
-            for (int i = 0; i < Bullets.Count;i++)
+            for (int i = 0; i < Lasers.Count;i++)
             {
-                Bullets[i].Y += Bullets[i].SpeedY;
+                Lasers[i].Y += Lasers[i].SpeedY;
             }
             DrawAllBullets();
         }

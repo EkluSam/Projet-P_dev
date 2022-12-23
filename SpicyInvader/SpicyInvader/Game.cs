@@ -5,11 +5,6 @@
 // gérer une partie
 // ---------------------------------------------
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Threading;
 
 namespace SpicyInvader
 {
@@ -81,15 +76,11 @@ namespace SpicyInvader
             Console.Write("TON PSEUDO ? : ");
             string playerName = Console.ReadLine();
             Console.Clear();
-            
-
-
-            
+      
             int shipStartX = 57; 
             int shipStartY = 44;
             int fps = 0;
             int counterFps = 0;
-            int counterBullet = 0;
 
             _ship.DrawRocketShip(shipStartX, shipStartY);
 
@@ -177,7 +168,7 @@ namespace SpicyInvader
                     // Tirer avec le vaisseau
                     if (Key.Key == ConsoleKey.UpArrow)
                     {
-                        _bullets.CreateBullet(_ship.X+3,_ship.Y-1,-1,true);
+                        _bullets.CreateLaser(_ship.X+3,_ship.Y-1,-1,true);
                     }
                     //Menu Pause
                     if (Key.Key == ConsoleKey.P)
@@ -186,10 +177,8 @@ namespace SpicyInvader
                     }
                 }
                 counterFps++;
-                counterBullet++;
-
             }
-
+            // TODO : faire un fichier pour les score (GPT3)
             _menus.DisplayGameOverMenu(_playerScore);
 
         }
@@ -237,30 +226,30 @@ namespace SpicyInvader
         public void CheckBulletCollision(Squad squad, Magazine bullets)
         {
             
-            foreach (Bullet bullet in bullets.Bullets)
+            foreach (Bullet bullet in bullets.Lasers)
             {
                 // Mur du haut
                 if(bullet.Y <= 10)
                 {
                     bullet.EraseBullet();
-                    bullets.Bullets.Remove(bullet);
-                    bullets.CurrentShipBullets--;
+                    bullets.Lasers.Remove(bullet);
+                    bullets.CurrentShipLasers--;
                     return;
                 }
                 // Mur du bas
                 if(bullet.Y >= 48)
                 {
                     bullet.EraseBullet();
-                    bullets.Bullets.Remove(bullet);
-                    bullets.CurrentAlienBullets--;
+                    bullets.Lasers.Remove(bullet);
+                    bullets.CurrentAlienLasers--;
                     return;
                 }
                 // quand le vaisseau est touché
                 if(bullet.X >= _ship.X && bullet.X < _ship.X+7 && bullet.Y >= _ship.Y && bullet.Y <= _ship.Y +4)
                 {
                     bullet.EraseBullet();
-                    bullets.Bullets.Remove(bullet);
-                    bullets.CurrentAlienBullets--;
+                    bullets.Lasers.Remove(bullet);
+                    bullets.CurrentAlienLasers--;
                     _playerLife--;
                     return;
                 }
@@ -275,8 +264,8 @@ namespace SpicyInvader
                             alien.Alive = false;
                             alien.EraseAlien();                            
                             bullet.EraseBullet();
-                            bullets.Bullets.Remove(bullet);
-                            bullets.CurrentShipBullets--;
+                            bullets.Lasers.Remove(bullet);
+                            bullets.CurrentShipLasers--;
                             _playerScore += 150;
                             return;
                         }

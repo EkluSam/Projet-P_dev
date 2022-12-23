@@ -5,11 +5,7 @@
 // pour gérer tous les menus
 // ---------------------------------------------
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 
 namespace SpicyInvader
 {
@@ -270,8 +266,6 @@ namespace SpicyInvader
         public void DisplayMainMenu()
         {
             Console.Clear();
-            Console.SetWindowSize(120, 51);
-            Console.BufferHeight = 51;
 
             Title();
 
@@ -281,7 +275,7 @@ namespace SpicyInvader
             Console.WriteLine(_HIGHSCORE);
             Console.WriteLine(_ABOUT);
             Console.WriteLine(_QUIT);
-            // effectue des actions en fonction du bouton cliqué par l'utilisateur (fonctionne avec la position de la flèche)
+            // effectue des actions en fonction du bouton cliqué par l'utilisateur 
             switch (ArrowMoves())
             {
                 case 1:

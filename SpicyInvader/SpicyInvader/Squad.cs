@@ -4,11 +4,7 @@
 // Description : Classe Sqaud qui est utilisée
 // avoir un groupe d'aliens.
 // ---------------------------------------------
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SpicyInvader
 {
@@ -199,14 +195,14 @@ namespace SpicyInvader
                     {
                         if (!this._aliens[index+4].Alive && this._aliens[index].Alive)
                         {
-                            bullets.CreateBullet(alien.X + 4, alien.Y + 6, 1,false);
+                            bullets.CreateLaser(alien.X + 4, alien.Y + 6, 1,false);
                         }
                     }
                     else
                     {
                         if (this._aliens[index].Alive)
                         {
-                            bullets.CreateBullet(alien.X + 4, alien.Y + 6, 1,false);
+                            bullets.CreateLaser(alien.X + 4, alien.Y + 6, 1,false);
                         }
                     }
                 }
