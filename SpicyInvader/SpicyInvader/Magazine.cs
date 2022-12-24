@@ -51,6 +51,7 @@ namespace SpicyInvader
         {
             
         }
+
         /// <summary>
         /// Méthodes qui crée un laser allié ou enemy
         /// </summary>
