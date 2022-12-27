@@ -396,7 +396,7 @@ namespace SpicyInvader
                 Console.ForegroundColor = ConsoleColor.Green;
                 Console.WriteLine(_PAUSE);
                 Console.ForegroundColor = ConsoleColor.White;
-                Console.SetCursorPosition(40, 6);
+                Console.SetCursorPosition(40, 12);
                 Console.WriteLine(_PLAY);
                 Console.WriteLine();
                 Console.WriteLine(_QUIT);
@@ -626,8 +626,9 @@ namespace SpicyInvader
         /// </summary>
         public void ArrowMovesPause()
         {
+            // Position initiale de la flèche
             int xPos = 80;
-            int yPos = 9;
+            int yPos = 15;
 
             Console.SetCursorPosition(xPos, yPos);
             Console.ForegroundColor = ConsoleColor.Red;
@@ -638,11 +639,12 @@ namespace SpicyInvader
                 ConsoleKeyInfo Key = Console.ReadKey(true);
                 if (Key.Key == ConsoleKey.UpArrow)
                 {
-                    if (yPos <= 9)
+                    // si la flèche est tout en haut
+                    if (yPos <= 15)
                     {
                         Console.SetCursorPosition(xPos, yPos);
                         Console.Write("         ");
-                        yPos = 15;
+                        yPos = 21;
                         Console.SetCursorPosition(xPos, yPos);
                         Console.Write(_NAVARROW);
                     }
@@ -658,11 +660,12 @@ namespace SpicyInvader
 
                 if (Key.Key == ConsoleKey.DownArrow)
                 {
-                    if (yPos >= 15)
+                    // si la flèche est tout en bas 
+                    if (yPos >= 19)
                     {
                         Console.SetCursorPosition(xPos, yPos);
                         Console.Write("         ");
-                        yPos = 9;
+                        yPos = 15;
                         Console.SetCursorPosition(xPos, yPos);
                         Console.Write(_NAVARROW);
                     }
@@ -678,7 +681,7 @@ namespace SpicyInvader
                 // effectue des actions en fonction du bouton cliqué par l'utilisateur (fonctionne avec la position de la flèche)
                 switch (yPos)
                 {                   
-                    case 9:
+                    case 19:
                         if (Key.Key == ConsoleKey.Escape)
                         {
                             this._unpause = true;
