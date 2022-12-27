@@ -128,6 +128,7 @@ namespace SpicyInvader
                     }                    
 
                     _aliens.MoveAllAliens();
+                    _walls.DrawAllWalls();
 
                 }
                 // Le tir des aliens

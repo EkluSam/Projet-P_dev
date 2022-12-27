@@ -622,7 +622,8 @@ namespace SpicyInvader
 
         /// <summary>
         /// Méthode qui permet de bouger dans le menu pause avec les flèches
-        /// directionnelles HAUT et BAS
+        /// directionnelles HAUT et BAS. Permet aussi d'effectuer une action si
+        /// on clique ENTER sur un bouton
         /// </summary>
         public void ArrowMovesPause()
         {
@@ -661,7 +662,7 @@ namespace SpicyInvader
                 if (Key.Key == ConsoleKey.DownArrow)
                 {
                     // si la flèche est tout en bas 
-                    if (yPos >= 19)
+                    if (yPos >= 21)
                     {
                         Console.SetCursorPosition(xPos, yPos);
                         Console.Write("         ");
@@ -680,20 +681,9 @@ namespace SpicyInvader
                 }
                 // effectue des actions en fonction du bouton cliqué par l'utilisateur (fonctionne avec la position de la flèche)
                 switch (yPos)
-                {                   
-                    case 19:
-                        if (Key.Key == ConsoleKey.Escape)
-                        {
-                            this._unpause = true;
-                            return;
-                        }
-                        if (Key.Key == ConsoleKey.Enter)
-                        {
-                            this._unpause = true;
-                            return;
-                        }
-                        break;
-                    case 15:
+                {           
+                    // Bouton Quitter
+                    case 21:
                         if (Key.Key == ConsoleKey.Escape)
                         {
                             this._unpause = true;
@@ -702,6 +692,14 @@ namespace SpicyInvader
                         if (Key.Key == ConsoleKey.Enter)
                         {
                             DisplayMainMenu();
+                        }
+                        break;
+                    // Bouton Jouer
+                    case 15:
+                        if (Key.Key == ConsoleKey.Escape || Key.Key == ConsoleKey.Enter)
+                        {
+                            this._unpause = true;
+                            return;
                         }
                         break;
                 }
