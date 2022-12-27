@@ -68,8 +68,7 @@ namespace SpicyInvader
         /// Objet des murs
         /// </summary>
         private Protection _walls = new Protection();
-        
-       
+              
 
         /// <summary>
         /// Méthode PLAY qui lance une partie de Space Invader
@@ -79,7 +78,7 @@ namespace SpicyInvader
             Console.ForegroundColor = ConsoleColor.White;
             Console.Clear();
             Console.SetCursorPosition(25,7);
-            Console.Write("TON PSEUDO ? : ");
+            Console.Write("VOTRE PSEUDO ? : ");
             string playerName = Console.ReadLine();
             Console.Clear();
       
@@ -199,7 +198,8 @@ namespace SpicyInvader
             byte index = 0;
             string hearts = "♥♥♥";  
             char empty = ' ';
-            Console.SetCursorPosition(110, 3);         
+            Console.SetCursorPosition(110, 3);
+            Console.ForegroundColor = ConsoleColor.Red;
             foreach (char c in hearts)
             {
                 if (index >= _playerLife)
@@ -212,6 +212,7 @@ namespace SpicyInvader
                 }
                 index++;
             }
+            Console.ForegroundColor = ConsoleColor.White;
         }
         /// <summary>
         /// Méthode qui affiche le score du joueur
