@@ -205,7 +205,8 @@ namespace SpicyInvader
             }
         } 
         /// <summary>
-        /// Méthode qui permet de savoir si tous les aliens sont en vie ou pas
+        /// Méthode qui permet de savoir si tous les aliens sont en vie ou pas.
+        /// Si le tous les aliens sont morts il les recrée pour que la partie continue.
         /// </summary>
         /// <returns>true si les aliens sont mort, false si un des aliens est encore en vie</returns>
         public void areAliensDead()
