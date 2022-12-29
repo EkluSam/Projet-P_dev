@@ -86,6 +86,7 @@ namespace SpicyInvader
 
             int leftAlienX = 1000;
             int rightAlienX = 0;
+            // prend la position de l'alien le plus à droite et le plus à gauche
             foreach (Alien alien in this._aliens)
             {
                 if (alien.X < leftAlienX && alien.Alive)

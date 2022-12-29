@@ -7,22 +7,26 @@ using System.Media;
 using System;
 namespace SpicyInvader
 {
-    public class Sound
+    public static class Sound
     {
         /// <summary>
         /// objet SoundPlayer 
         /// </summary>
-        private SoundPlayer gameMusic = new SoundPlayer();
+        private static SoundPlayer gameMusic = new SoundPlayer("Music.wav");
 
-        public void PlayMusic(bool music)
+        /// <summary>
+        /// Méthode qui joue de la musique ou pas en fonction du booléen music
+        /// </summary>
+        /// <param name="music">booléen qui détermine si la musique est jouée ou pas</param>
+        public static void PlayMusic(bool music)
         {
             if (music)
             {
-                
+                gameMusic.PlayLooping();
             }
             else
             {
-
+                gameMusic.Stop();
             }
         }
     }  

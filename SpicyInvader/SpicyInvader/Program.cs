@@ -9,6 +9,10 @@ namespace SpicyInvader
 {
     internal class Program
     {
+        /// <summary>
+        /// Méthode Main
+        /// </summary>
+        /// <param name="args"></param>
         static void Main(string[] args)
         {
             Console.CursorVisible = false;
@@ -17,11 +21,9 @@ namespace SpicyInvader
 
             // Affichage du menu principal
             Menu mainMenu = new Menu();
-           
+            Sound.PlayMusic(false);
             mainMenu.DisplayMainMenu();
-
-
-            Console.ReadLine();
+            
         }
     }
 }

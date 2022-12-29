@@ -167,6 +167,17 @@ namespace SpicyInvader
                                     | |/ // // /___  / / / /_/ // // _, _/ /___   
                                     |___/___/\____/ /_/  \____/___/_/ |_/_____/ 
         ";
+
+        /// <summary>
+        /// Bouton recommencer
+        /// </summary>
+        private const string _RESTART = @"
+                            ____  ________________  __  _____  __________   __________________     
+                           / __ \/ ____/ ____/ __ \/  |/  /  |/  / ____/ | / / ____/ ____/ __ \    
+                          / /_/ / __/ / /   / / / / /|_/ / /|_/ / __/ /  |/ / /   / __/ / /_/ /    
+                         / _, _/ /___/ /___/ /_/ / /  / / /  / / /___/ /|  / /___/ /___/ _, _/     
+                        /_/ |_/_____/\____/\____/_/  /_/_/  /_/_____/_/ |_/\____/_____/_/ |_| 
+        ";
         #endregion
 
         #region Affichage
@@ -279,9 +290,9 @@ namespace SpicyInvader
             switch (ArrowMoves())
             {
                 case 1:
-                    Game jeu = new Game();
-                    jeu.Difficulty = difficulty;
-                    jeu.Play();
+                    Game game = new Game();
+                    game.Difficulty = difficulty;
+                    game.Play();
                     break;
                 case 2:
                     Console.Clear();
@@ -313,47 +324,25 @@ namespace SpicyInvader
             Console.Clear();
             Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine(_GAMEOVER);
-            Console.SetCursorPosition(55, 17);
+            Console.SetCursorPosition(55, 24);
             foreach (char c in gameOverSentence)
             {
                 Console.Write(c);
                 Thread.Sleep(5);
             }
             Console.ForegroundColor = ConsoleColor.White;
-            Console.SetCursorPosition(55, 19);
+            Console.SetCursorPosition(55, 26);
             foreach (char c in scoreDisplay)
             {
                 Console.Write(c);
                 Thread.Sleep(5);
             }
-            Console.SetCursorPosition(68, 19);
+            Console.SetCursorPosition(68, 26);
             Console.WriteLine(playerScore);
-            Console.SetCursorPosition(40, 24);
-            string escape = "  Appuyez 'Escape' pour revenir en arrière";
-            foreach (char c in escape)
-            {
-                Console.Write(c);
-                Thread.Sleep(5);
-            }
-            Console.SetCursorPosition(40, 26);
-            string quit = "  Appuyez 'X' pour quitter le jeu";
-            foreach (char c in quit)
-            {
-                Console.Write(c);
-                Thread.Sleep(5);
-            }
-            while (true)
-            {
-                ConsoleKeyInfo Key = Console.ReadKey(true);
-                if (Key.Key == ConsoleKey.Escape)
-                {
-                    DisplayMainMenu();
-                }
-                if (Key.Key == ConsoleKey.X)
-                {
-                   Environment.Exit(0);
-                }
-            }
+            Console.SetCursorPosition(40, 12);
+            Console.WriteLine(_RESTART);
+            Console.WriteLine(_QUIT);
+            ArrowMovesGameOver();
         }
 
         /// <summary>
@@ -375,9 +364,9 @@ namespace SpicyInvader
             Console.SetCursorPosition(58, 11);
             Console.ForegroundColor = ConsoleColor.Red;
             if (difficulty == 1)
-                Console.WriteLine("FACILE");
+                Console.WriteLine("PADAWAN");
             else
-                Console.WriteLine("JEDI  ");
+                Console.WriteLine("JEDI   ");
             Console.ForegroundColor = ConsoleColor.White;
             Console.SetCursorPosition(40, 20);
             Console.Write("Appuyez 'Escape' pour revenir en arrière");
@@ -582,13 +571,13 @@ namespace SpicyInvader
                             if (difficulty == 2)
                             {
                                 Console.SetCursorPosition(58, 11);
-                                Console.Write("FACILE ");
+                                Console.Write("PADAWAN ");
                                 difficulty = 1;
                             }
                             else
                             {
                                 Console.SetCursorPosition(58, 11);
-                                Console.Write("JEDI   ");
+                                Console.Write("JEDI    ");
                                 difficulty = 2;
                             }
                         }
@@ -605,12 +594,14 @@ namespace SpicyInvader
                                 Console.SetCursorPosition(58, 17);
                                 Console.Write("ON ");
                                 music = true;
+                                Sound.PlayMusic(music);
                             }
                             else
                             {
                                 Console.SetCursorPosition(58, 17);
                                 Console.Write("OFF");
                                 music = false;
+                                Sound.PlayMusic(music);
                             }
                         }
                         break;
@@ -700,6 +691,92 @@ namespace SpicyInvader
                         {
                             this._unpause = true;
                             return;
+                        }
+                        break;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Méthode qui permet de bouger dans le menu game over avec les flèches
+        /// directionnelles HAUT et BAS. Permet aussi d'effectuer une action si
+        /// on clique ENTER sur un bouton
+        /// </summary>
+        public void ArrowMovesGameOver()
+        {
+            // Position initiale de la flèche
+            int xPos = 90;
+            int yPos = 15;
+
+            Console.SetCursorPosition(xPos, yPos);
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.Write(_NAVARROW);
+
+            while (true)
+            {
+                ConsoleKeyInfo Key = Console.ReadKey(true);
+                if (Key.Key == ConsoleKey.UpArrow)
+                {
+                    // si la flèche est tout en haut
+                    if (yPos <= 15)
+                    {
+                        Console.SetCursorPosition(xPos, yPos);
+                        Console.Write("         ");
+                        yPos = 21;
+                        Console.SetCursorPosition(xPos, yPos);
+                        Console.Write(_NAVARROW);
+                    }
+                    else
+                    {
+                        Console.SetCursorPosition(xPos, yPos);
+                        Console.Write("         ");
+                        yPos -= 6;
+                        Console.SetCursorPosition(xPos, yPos);
+                        Console.Write(_NAVARROW);
+                    }
+                }
+
+                if (Key.Key == ConsoleKey.DownArrow)
+                {
+                    // si la flèche est tout en bas 
+                    if (yPos >= 21)
+                    {
+                        Console.SetCursorPosition(xPos, yPos);
+                        Console.Write("         ");
+                        yPos = 15;
+                        Console.SetCursorPosition(xPos, yPos);
+                        Console.Write(_NAVARROW);
+                    }
+                    else
+                    {
+                        Console.SetCursorPosition(xPos, yPos);
+                        Console.Write("         ");
+                        yPos += 6;
+                        Console.SetCursorPosition(xPos, yPos);
+                        Console.Write(_NAVARROW);
+                    }
+                }
+                // effectue des actions en fonction du bouton cliqué par l'utilisateur (fonctionne avec la position de la flèche)
+                switch (yPos)
+                {
+                    // Bouton Quitter
+                    case 21:
+                        if (Key.Key == ConsoleKey.Escape)
+                        {
+                            DisplayMainMenu();
+                        }
+                        if (Key.Key == ConsoleKey.Enter)
+                        {
+                            DisplayMainMenu();
+                        }
+                        break;
+                    // Bouton Recommencer
+                    case 15:
+                        if (Key.Key == ConsoleKey.Escape || Key.Key == ConsoleKey.Enter)
+                        {
+                            Game game = new Game();
+                            game.Difficulty = difficulty;
+                            game.Play();
                         }
                         break;
                 }

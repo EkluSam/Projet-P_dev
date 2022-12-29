@@ -78,6 +78,7 @@ namespace UnitTestProject1
                 hit = true;
             }
 
+            // Assert
             Assert.IsTrue(hit);
         }
     }
