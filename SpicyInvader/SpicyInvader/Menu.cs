@@ -5,6 +5,7 @@
 // pour gérer tous les menus
 // ---------------------------------------------
 using System;
+using System.Collections.Generic;
 using System.Threading;
 
 namespace SpicyInvader
@@ -22,6 +23,18 @@ namespace SpicyInvader
         {
             get { return music; }
             set { music = value; }
+        }
+        /// <summary>
+        /// Liste de scores pour chaque joueur qui à jouer une partie
+        /// </summary>
+        private List<string> _playerScore = new List<string>();
+        /// <summary>
+        /// Getter setter de la liste de scores
+        /// </summary>
+        public List<string> PlayerScore
+        {
+            get { return _playerScore; }
+            set { _playerScore = value; }
         }
         /// <summary>
         /// booléen pour savoir si le joueur est sorti de la pause
@@ -224,6 +237,27 @@ namespace SpicyInvader
                 }
             }          
         }
+
+        /// <summary>
+        /// Méthode qui affiche les 10 meilleurs scores qui ont été enregistré
+        /// après avoir lancer la console
+        /// </summary>
+        public void DisplayHighScores()
+        {
+            int y = 17;
+            string[] strSplit;
+            if(this._playerScore.Count > 0)
+            {
+                Console.SetCursorPosition(40, y);
+                foreach(string score in this._playerScore)
+                {
+                    strSplit = score.Split(' ');
+                    Console.Write(strSplit[0] + ": " + strSplit[1]);
+
+                }
+            }
+            
+        }
         #endregion
 
         #region future implémentation de la victoire?
@@ -300,7 +334,7 @@ namespace SpicyInvader
                     break;
                 case 3:
                     Console.Clear();
-                    // DisplayHighScore();
+                    // DisplayHighScores();
                     break;
                 case 4:
                     Console.Clear();
@@ -324,20 +358,20 @@ namespace SpicyInvader
             Console.Clear();
             Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine(_GAMEOVER);
-            Console.SetCursorPosition(55, 24);
+            Console.SetCursorPosition(50, 24);
             foreach (char c in gameOverSentence)
             {
                 Console.Write(c);
                 Thread.Sleep(5);
             }
             Console.ForegroundColor = ConsoleColor.White;
-            Console.SetCursorPosition(55, 26);
+            Console.SetCursorPosition(50, 26);
             foreach (char c in scoreDisplay)
             {
                 Console.Write(c);
                 Thread.Sleep(5);
             }
-            Console.SetCursorPosition(68, 26);
+            Console.SetCursorPosition(63, 26);
             Console.WriteLine(playerScore);
             Console.SetCursorPosition(40, 12);
             Console.WriteLine(_RESTART);
@@ -705,7 +739,7 @@ namespace SpicyInvader
         public void ArrowMovesGameOver()
         {
             // Position initiale de la flèche
-            int xPos = 90;
+            int xPos = 95;
             int yPos = 15;
 
             Console.SetCursorPosition(xPos, yPos);
