@@ -192,6 +192,17 @@ namespace SpicyInvader
                          / _, _/ /___/ /___/ /_/ / /  / / /  / / /___/ /|  / /___/ /___/ _, _/     
                         /_/ |_/_____/\____/\____/_/  /_/_/  /_/_____/_/ |_/\____/_____/_/ |_| 
         ";
+
+        /// <summary>
+        /// Titre de la page Highscores
+        /// </summary>
+        private const string _HALLOFFAME = @"
+                            __  _____    __    __       ____  ______   _________    __  _________
+                           / / / /   |  / /   / /      / __ \/ ____/  / ____/   |  /  |/  / ____/
+                          / /_/ / /| | / /   / /      / / / / /_     / /_  / /| | / /|_/ / __/   
+                         / __  / ___ |/ /___/ /___   / /_/ / __/    / __/ / ___ |/ /  / / /___   
+                        /_/ /_/_/  |_/_____/_____/   \____/_/      /_/   /_/  |_/_/  /_/_____/   
+        ";
         #endregion
 
         #region Affichage
@@ -245,30 +256,46 @@ namespace SpicyInvader
         /// </summary>
         public void DisplayHighScores()
         {
-            
-            Console.Clear();
-
-            // Prend les 10 meilleurs scores dans l'ordre du premier au dixième
-            var sortedScores = _topScores.OrderByDescending(s => s.Item2).Take(10);
-
-            // Prend la taille du pseudo le plus long
-            int maxNameLength = sortedScores.Max(s => s.Item1.Length);
-
-            // Prend le centre de la console dans des variables
-            int leftPadding = (Console.WindowWidth - maxNameLength) / 2;
-            int topPadding = Console.WindowHeight / 2;
-
-            // Affiche les 10 meilleurs scores
-            int i = 1;
-            foreach ((string name, int score) in sortedScores)
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine(_HALLOFFAME);
+            if (_topScores.Count > 0)
             {
-                Console.SetCursorPosition(leftPadding, topPadding + i - 1);
-                Console.WriteLine($"{i}. {name}: {score}");
-                i++;
+                // Prend les 10 meilleurs scores dans l'ordre du premier au dixième
+                var sortedScores = _topScores.OrderByDescending(s => s.Item2).Take(10);
+
+                // Prend la taille du pseudo le plus long
+                int maxNameLength = sortedScores.Max(s => s.Item1.Length);
+
+                // Prend le centre de la console dans des variables
+                int leftPadding = (Console.WindowWidth - maxNameLength) / 2;
+                int topPadding = Console.WindowHeight / 2;
+
+                // Affiche les 10 meilleurs scores
+                int i = 1;
+                foreach ((string name, int score) in sortedScores)
+                {
+                    if (i == 1)
+                    {
+                        Console.ForegroundColor = ConsoleColor.Blue;
+                    }
+                    Console.SetCursorPosition(leftPadding - 5, topPadding + i - 1);                  
+                    Console.WriteLine($"{i}. {name}: {score}");
+                    Console.ForegroundColor = ConsoleColor.White;
+                    i++;
+                }
+                Console.SetCursorPosition(40, 40);
+                Console.WriteLine("Appuyez 'Escape' pour revenir en arrière");
+            }
+            else
+            {
+                Console.SetCursorPosition(40, 17);
+                Console.Write("Aucun score pour le moment.");
+                Console.ForegroundColor = ConsoleColor.White;
+                Console.SetCursorPosition(40, 20);
+                Console.Write("Appuyez 'Escape' pour revenir en arrière");
             }
             
-            Console.SetCursorPosition(leftPadding, topPadding + i);
-            Console.WriteLine("Appuyez 'Escape' pour revenir en arrière");
+            
             while (true)
             {
                 ConsoleKeyInfo Key = Console.ReadKey(true);
@@ -354,7 +381,7 @@ namespace SpicyInvader
                     break;
                 case 3:
                     Console.Clear();
-                    // DisplayHighScores();
+                    DisplayHighScores();
                     break;
                 case 4:
                     Console.Clear();
