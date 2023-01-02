@@ -761,7 +761,7 @@ namespace SpicyInvader
                             this._unpause = true;
                             return;
                         }
-                        if (Key.Key == ConsoleKey.Enter)
+                        if (Key.Key == ConsoleKey.Enter || Key.Key == ConsoleKey.X)
                         {
                             DisplayMainMenu();
                         }
