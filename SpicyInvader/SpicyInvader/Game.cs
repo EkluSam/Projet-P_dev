@@ -187,7 +187,7 @@ namespace SpicyInvader
             }
             // TODO : faire un fichier pour les score (GPT3)
             _menus.DisplayGameOverMenu(_playerScore);
-            _menus.PlayerScore.Add(playerName + " " + this._playerScore);
+            _menus.PlayerScore.Add((playerName, this._playerScore));
 
         }
         /// <summary>

@@ -6,6 +6,7 @@
 // ---------------------------------------------
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 
 namespace SpicyInvader
@@ -27,14 +28,14 @@ namespace SpicyInvader
         /// <summary>
         /// Liste de scores pour chaque joueur qui à jouer une partie
         /// </summary>
-        private List<string> _playerScore = new List<string>();
+        private List<(string, int)> _topScores = new List<(string, int)>();
         /// <summary>
         /// Getter setter de la liste de scores
         /// </summary>
-        public List<string> PlayerScore
+        public List<(string, int)> PlayerScore
         {
-            get { return _playerScore; }
-            set { _playerScore = value; }
+            get { return _topScores; }
+            set { _topScores = value; }
         }
         /// <summary>
         /// booléen pour savoir si le joueur est sorti de la pause
@@ -244,19 +245,38 @@ namespace SpicyInvader
         /// </summary>
         public void DisplayHighScores()
         {
-            int y = 17;
-            string[] strSplit;
-            if(this._playerScore.Count > 0)
-            {
-                Console.SetCursorPosition(40, y);
-                foreach(string score in this._playerScore)
-                {
-                    strSplit = score.Split(' ');
-                    Console.Write(strSplit[0] + ": " + strSplit[1]);
+            
+            Console.Clear();
 
-                }
+            // Prend les 10 meilleurs scores dans l'ordre du premier au dixième
+            var sortedScores = _topScores.OrderByDescending(s => s.Item2).Take(10);
+
+            // Prend la taille du pseudo le plus long
+            int maxNameLength = sortedScores.Max(s => s.Item1.Length);
+
+            // Prend le centre de la console dans des variables
+            int leftPadding = (Console.WindowWidth - maxNameLength) / 2;
+            int topPadding = Console.WindowHeight / 2;
+
+            // Affiche les 10 meilleurs scores
+            int i = 1;
+            foreach ((string name, int score) in sortedScores)
+            {
+                Console.SetCursorPosition(leftPadding, topPadding + i - 1);
+                Console.WriteLine($"{i}. {name}: {score}");
+                i++;
             }
             
+            Console.SetCursorPosition(leftPadding, topPadding + i);
+            Console.WriteLine("Appuyez 'Escape' pour revenir en arrière");
+            while (true)
+            {
+                ConsoleKeyInfo Key = Console.ReadKey(true);
+                if (Key.Key == ConsoleKey.Escape)
+                {
+                    DisplayMainMenu();
+                }
+            }
         }
         #endregion
 
