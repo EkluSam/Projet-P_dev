@@ -98,7 +98,7 @@ namespace SpicyInvader
         /// <summary>
         /// Méthode qui affiche le laser
         /// </summary>
-        public void DrawBullet()
+        public void DrawLaser()
         {
             Console.SetCursorPosition(this.X,this.Y);
             Console.WriteLine(_symbol);
@@ -106,7 +106,7 @@ namespace SpicyInvader
         /// <summary>
         /// Méthode qui efface le laser
         /// </summary>
-        public void EraseBullet()
+        public void EraseLaser()
         {
             Console.SetCursorPosition(this._x,this._y);
             Console.WriteLine(_void);
