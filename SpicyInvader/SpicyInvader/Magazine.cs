@@ -80,34 +80,34 @@ namespace SpicyInvader
         /// <summary>
         /// Méthode qui affiche tous les lasers
         /// </summary>
-        public void DrawAllBullets()
+        public void DrawAllLasers()
         {
             for(int i = 0; i < Lasers.Count; i++)
             {
-                this.Lasers[i].DrawBullet();
+                this.Lasers[i].DrawLaser();
             }
         }
         /// <summary>
         /// Méthode qui efface tous les lasers
         /// </summary>
-        public void EraseAllBullets()
+        public void EraseAllLasers()
         {
             for (int i = 0; i < Lasers.Count; i++)
             {
-                this.Lasers[i].EraseBullet();
+                this.Lasers[i].EraseLaser();
             }
         }
         /// <summary>
         /// Méthode qui déplace tous les laser en fonction de leur vitesse
         /// </summary>
-        public void MoveAllBullets()
+        public void MoveAllLasers()
         {
-            EraseAllBullets();
+            EraseAllLasers();
             for (int i = 0; i < Lasers.Count;i++)
             {
                 Lasers[i].Y += Lasers[i].SpeedY;
             }
-            DrawAllBullets();
+            DrawAllLasers();
         }
     }
 }

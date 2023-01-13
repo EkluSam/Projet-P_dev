@@ -119,8 +119,8 @@ namespace SpicyInvader
                     {
                         break;
                     }
-                    _bullets.MoveAllBullets();                
-                    CheckBulletCollision(_aliens,_bullets,_walls);                   
+                    _bullets.MoveAllLasers();                
+                    CheckLaserCollision(_aliens,_bullets,_walls);                   
                     if(_aliens.IsGameOver())
                     {
                         break;
@@ -234,7 +234,7 @@ namespace SpicyInvader
         /// </summary>
         /// <param name="squad">L'objet des aliens</param>
         /// <param name="lasers">L'objets des lazers</param>
-        public void CheckBulletCollision(Squad squad, Magazine lasers, Protection walls)
+        public void CheckLaserCollision(Squad squad, Magazine lasers, Protection walls)
         {
             
             foreach (Laser bullet in lasers.Lasers)
@@ -243,7 +243,7 @@ namespace SpicyInvader
                 // Limite du haut
                 if(bullet.Y <= 10)
                 {
-                    bullet.EraseBullet();
+                    bullet.EraseLaser();
                     lasers.Lasers.Remove(bullet);
                     lasers.CurrentShipLasers--;
                     return;
@@ -251,7 +251,7 @@ namespace SpicyInvader
                 // Limite du bas
                 if(bullet.Y >= 48)
                 {
-                    bullet.EraseBullet();
+                    bullet.EraseLaser();
                     lasers.Lasers.Remove(bullet);
                     lasers.CurrentAlienLasers--;
                     return;
@@ -259,7 +259,7 @@ namespace SpicyInvader
                 // quand le vaisseau est touché
                 if(bullet.X >= _ship.X && bullet.X < _ship.X+7 && bullet.Y >= _ship.Y && bullet.Y <= _ship.Y +4)
                 {
-                    bullet.EraseBullet();
+                    bullet.EraseLaser();
                     lasers.Lasers.Remove(bullet);
                     lasers.CurrentAlienLasers--;
                     _playerLife--;
@@ -275,7 +275,7 @@ namespace SpicyInvader
                         {                           
                             alien.Alive = false;
                             alien.EraseAlien();                            
-                            bullet.EraseBullet();
+                            bullet.EraseLaser();
                             lasers.Lasers.Remove(bullet);
                             lasers.CurrentShipLasers--;
                             _playerScore += 150;
@@ -295,7 +295,7 @@ namespace SpicyInvader
                         if(bullet.Y == wall.Y && bullet.X == wall.X)
                         {
                             
-                            bullet.EraseBullet();
+                            bullet.EraseLaser();
                             // Baisse le compteur en fonction du tireur du laser
                             if (bullet.Friendly)
                             {

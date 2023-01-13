@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="SpicyInvader.Alien">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIAIAARAAAAEgAAAAAABAEEAAwQAAAAAAAAAaAE=</HashCode>
+      <FileName>Alien.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SpicyInvader.Game">
+    <Position X="7.75" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABACUAAAAAgAAQABAAAAAAAAAAIAAAAAgAAAAGQAAIA=</HashCode>
+      <FileName>Game.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SpicyInvader.Laser">
+    <Position X="9.75" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAACAAIAAQAAIAEAAAAAAABAIAAAAAIAAAAAAACaAA=</HashCode>
+      <FileName>Laser.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SpicyInvader.Magazine">
+    <Position X="13" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAiAAQAAAAAAAAAAAAQAAAAAAAAABAAUAAAAQAAAIAA=</HashCode>
+      <FileName>Magazine.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SpicyInvader.Squad">
+    <Position X="2.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAgAAAAEAAEAAAAAAABAAAAQBAABAACAAgA=</HashCode>
+      <FileName>Squad.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SpicyInvader.Sound">
+    <Position X="3.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAQAAEAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Sound.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SpicyInvader.RocketShip">
+    <Position X="5.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAIAAQAAgAEAAAAAAAAAAAAAAAAAAAAAAAAaAA=</HashCode>
+      <FileName>RocketShip.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SpicyInvader.Protection">
+    <Position X="5.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABAAAAAAAAAAgAAAAAAAAQAAAAAAAAAAAAAAAACAgAA=</HashCode>
+      <FileName>Protection.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SpicyInvader.Program">
+    <Position X="1.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>Program.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SpicyInvader.Menu">
+    <Position X="11.25" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAIIgAEBYAqBAUAAAMgIAAQAACAgAIAAQAAAEQAsBKA=</HashCode>
+      <FileName>Menu.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SpicyInvader.Wall">
+    <Position X="4" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAIAAQAAAAEAAAAAAAAQIAAAAQBEgAACAACaAA=</HashCode>
+      <FileName>Wall.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

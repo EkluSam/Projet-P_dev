@@ -222,6 +222,8 @@ namespace SpicyInvader
         /// </summary>
         public void DisplayAbout()
         {
+            Console.SetCursorPosition(0, 0);
+            Console.Write("version 1.0");
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine(_TITLE);
             Console.SetCursorPosition(40, 17);
@@ -256,6 +258,8 @@ namespace SpicyInvader
         /// </summary>
         public void DisplayHighScores()
         {
+            Console.SetCursorPosition(0, 0);
+            Console.Write("version 1.0");
             Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine(_HALLOFFAME);
             if (_topScores.Count > 0)
@@ -358,7 +362,8 @@ namespace SpicyInvader
         public void DisplayMainMenu()
         {
             Console.Clear();
-
+            Console.SetCursorPosition(0, 0);
+            Console.Write("version 1.0");
             Title();
 
             Console.ForegroundColor = ConsoleColor.White;
@@ -403,6 +408,8 @@ namespace SpicyInvader
             string gameOverSentence = "Vous avez perdu.";
             string scoreDisplay = "Votre Score: ";
             Console.Clear();
+            Console.SetCursorPosition(0, 0);
+            Console.Write("version 1.0");
             Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine(_GAMEOVER);
             Console.SetCursorPosition(50, 24);
@@ -431,6 +438,8 @@ namespace SpicyInvader
         /// </summary>
         public void DisplayOptionMenu()
         {
+            Console.SetCursorPosition(0, 0);
+            Console.Write("version 1.0");
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine(_OPTION);
             Console.ForegroundColor = ConsoleColor.White;
@@ -460,6 +469,8 @@ namespace SpicyInvader
         public void DisplayPauseMenu()
         {
             Console.Clear();
+            Console.SetCursorPosition(0, 0);
+            Console.Write("version 1.0");
             // Boucle pour rester dans la pause
             while (true)
             {

@@ -22,6 +22,8 @@ namespace SpicyInvader
             // Affichage du menu principal
             Menu mainMenu = new Menu();
             Sound.PlayMusic(false);
+            Console.SetCursorPosition(0, 0);
+            Console.Write("version 1.0");
             mainMenu.DisplayMainMenu();
             
         }
